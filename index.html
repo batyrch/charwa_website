@@ -35,6 +35,7 @@
             overflow: hidden;
             display: grid;
             grid-template-columns: 1fr 1fr;
+            grid-template-areas: "content map";
             min-height: 650px;
         }
         
@@ -44,6 +45,14 @@
             flex-direction: column;
             justify-content: center;
             text-align: center;
+        }
+        
+        .content-top {
+            grid-area: content;
+        }
+        
+        .content-bottom {
+            display: none; /* Hidden on desktop - content is together */
         }
         
         .brand {
@@ -96,6 +105,7 @@
         .map-container {
             position: relative;
             background: #f1f5f9;
+            grid-area: map;
         }
         
         #map {
@@ -114,19 +124,37 @@
         @media (max-width: 968px) {
             .container {
                 grid-template-columns: 1fr;
+                grid-template-areas: 
+                    "content-top"
+                    "map"
+                    "content-bottom";
+                display: grid;
+            }
+            
+            .content-top {
+                grid-area: content-top;
+                padding: 3rem 2rem 1.5rem 2rem;
+            }
+            
+            .content-top .description {
+                margin-bottom: 0; /* Remove bottom margin since map follows */
             }
             
             .map-container {
+                grid-area: map;
                 min-height: 300px;
-                order: -1;
+            }
+            
+            .content-bottom {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                grid-area: content-bottom;
+                padding: 2rem 2rem 3rem 2rem;
             }
             
             #map {
                 min-height: 300px;
-            }
-            
-            .content {
-                padding: 3rem 2rem;
             }
             
             .brand {
@@ -158,10 +186,22 @@
             
             .container {
                 border-radius: 0;
+                grid-template-areas: 
+                    "content-top"
+                    "map"
+                    "content-bottom";
             }
             
-            .content {
-                padding: 2.5rem 1.5rem;
+            .content-top {
+                padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+            }
+            
+            .content-top .description {
+                margin-bottom: 1.5rem;
+            }
+            
+            .content-bottom {
+                padding: 1.5rem 1.5rem 2.5rem 1.5rem;
             }
             
             .brand {
@@ -179,7 +219,6 @@
             
             .description {
                 font-size: 1rem;
-                margin-bottom: 2.5rem;
                 line-height: 1.65;
                 text-align: center;
             }
@@ -224,7 +263,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="content">
+        <div class="content content-top">
             <div class="brand">CHARWA GmbH</div>
             
             <h1 class="headline">Where European Quality Meets Central Asian Opportunity</h1>
@@ -232,13 +271,15 @@
             <p class="description">
                 Specialized in truck exports and freight forwarding across EU-Central Asia corridors. Quality vehicles, expert documentation, reliable logistics—all in one partnership.
             </p>
-            
-            <div class="contact">Get in touch</div>
-            <a href="mailto:info@charwa.de" class="email">info@charwa.de</a>
         </div>
         
         <div class="map-container">
             <div id="map"></div>
+        </div>
+        
+        <div class="content content-bottom">
+            <div class="contact">Get in touch</div>
+            <a href="mailto:info@charwa.de" class="email">info@charwa.de</a>
         </div>
     </div>
     
