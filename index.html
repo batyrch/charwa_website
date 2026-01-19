@@ -35,7 +35,9 @@
             overflow: hidden;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-template-areas: "content map";
+            grid-template-areas: 
+                "content-top map"
+                "content-bottom map";
             min-height: 650px;
         }
         
@@ -48,11 +50,17 @@
         }
         
         .content-top {
-            grid-area: content;
+            grid-area: content-top;
+            padding-bottom: 2rem;
         }
         
         .content-bottom {
-            display: none; /* Hidden on desktop - content is together */
+            grid-area: content-bottom;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-top: 2rem;
         }
         
         .brand {
