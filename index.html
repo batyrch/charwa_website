@@ -67,7 +67,7 @@
             color: #64748b;
             line-height: 1.7;
             margin-bottom: 3rem;
-            text-align: left;
+            text-align: center;
         }
         
         .contact {
@@ -81,11 +81,16 @@
             color: #0d9488;
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s;
+            transition: all 0.3s;
         }
         
         .email:hover {
             color: #14b8a6;
+        }
+        
+        /* Email button style for mobile */
+        .email-wrapper {
+            margin-top: 1rem;
         }
         
         .map-container {
@@ -112,30 +117,33 @@
             }
             
             .map-container {
-                min-height: 400px;
+                min-height: 350px;
                 order: -1;
             }
             
             #map {
-                min-height: 400px;
+                min-height: 350px;
             }
             
             .content {
-                padding: 2rem 1.5rem;
+                padding: 3rem 2rem;
             }
             
             .brand {
-                font-size: 1.25rem;
+                font-size: 1.35rem;
+                margin-bottom: 1.25rem;
             }
             
             .headline {
-                font-size: 1.5rem;
-                margin-bottom: 1.5rem;
+                font-size: 1.75rem;
+                margin-bottom: 1.75rem;
+                line-height: 1.4;
             }
             
             .description {
-                font-size: 1rem;
-                margin-bottom: 2rem;
+                font-size: 1.0625rem;
+                margin-bottom: 2.5rem;
+                line-height: 1.65;
             }
             
             .email {
@@ -153,38 +161,57 @@
             }
             
             .content {
-                padding: 1.5rem 1rem;
+                padding: 2rem 1.25rem;
             }
             
             .brand {
-                font-size: 1.125rem;
+                font-size: 1.25rem;
                 margin-bottom: 1rem;
             }
             
             .headline {
-                font-size: 1.25rem;
+                font-size: 1.375rem;
                 margin-bottom: 1.25rem;
+                line-height: 1.35;
             }
             
             .description {
-                font-size: 0.9375rem;
-                margin-bottom: 1.5rem;
+                font-size: 1rem;
+                margin-bottom: 2rem;
+                line-height: 1.6;
             }
             
             .contact {
-                font-size: 0.875rem;
+                font-size: 0.9375rem;
+                margin-bottom: 1rem;
             }
             
             .email {
-                font-size: 1rem;
+                display: inline-block;
+                font-size: 1.0625rem;
+                padding: 0.875rem 1.75rem;
+                background: #ecfdf5;
+                border: 2px solid #14b8a6;
+                border-radius: 50px;
+                color: #0d9488;
+                text-decoration: none;
+                transition: all 0.3s;
+                min-height: 44px; /* iOS touch target */
+            }
+            
+            .email:hover,
+            .email:active {
+                background: #14b8a6;
+                color: white;
+                transform: translateY(-1px);
             }
             
             .map-container {
-                min-height: 300px;
+                min-height: 250px;
             }
             
             #map {
-                min-height: 300px;
+                min-height: 250px;
             }
         }
     </style>
