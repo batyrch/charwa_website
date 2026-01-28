@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGB - CHARWA | Charwa GmbH</title>
+
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-card: #151514;
+            --border-color: #252523;
+            --border-light: #1f1f1d;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #6b6b6b;
+            --accent: #22c55e;
+            --accent-hover: #16a34a;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            background: var(--bg-primary);
+        }
+
+        .header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .content {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 48px;
+            margin: 32px auto;
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .updated {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 32px;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            margin-bottom: 16px;
+        }
+
+        ul {
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .info-box {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        a {
+            color: var(--accent);
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        .footer {
+            background: var(--bg-primary);
+            color: var(--text-muted);
+            padding: 32px 0;
+            margin-top: 48px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .lang-selector {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .lang-selector button {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .lang-selector button:hover {
+            background: var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .lang-selector button.active {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        @media (max-width: 640px) {
+            .content {
+                padding: 24px;
+                margin: 16px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">CHARWA</a>
+            <a href="index.html" class="back-link">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                <span data-i18n="back">Zurück zur Startseite</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="content">
+            <div class="lang-selector">
+                <button onclick="setLanguage('de')" class="active">DE</button>
+                <button onclick="setLanguage('en')">EN</button>
+                <button onclick="setLanguage('tr')">TR</button>
+            </div>
+
+            <h1 data-i18n="title">Allgemeine Geschäftsbedingungen</h1>
+            <p class="updated" data-i18n="updated">Zuletzt aktualisiert: Januar 2026</p>
+
+            <h2 data-i18n="scope_title">1. Geltungsbereich</h2>
+            <p data-i18n="scope_text">Diese Allgemeinen Geschäftsbedingungen gelten für alle Geschäftsbeziehungen zwischen Charwa GmbH ("CHARWA", "wir", "uns") und unseren Geschäftskunden im Bereich des Exports von Nutzfahrzeugen.</p>
+
+            <h2 data-i18n="services_title">2. Leistungsbeschreibung</h2>
+            <p data-i18n="services_intro">CHARWA bietet folgende Dienstleistungen an:</p>
+            <ul>
+                <li data-i18n="services_1">Beschaffung europäischer Nutzfahrzeuge (DAF, MAN, VOLVO)</li>
+                <li data-i18n="services_2">Exportdokumentation (ATLAS, MRN, A.TR)</li>
+                <li data-i18n="services_3">Koordination des Transports in die Türkei und nach Zentralasien</li>
+                <li data-i18n="services_4">MwSt-konforme Abwicklung mit deutscher Rechnungsstellung</li>
+            </ul>
+
+            <h2 data-i18n="contract_title">3. Vertragsschluss</h2>
+            <p data-i18n="contract_text1">Unsere Angebote sind freibleibend und unverbindlich. Ein Vertrag kommt erst durch unsere schriftliche Auftragsbestätigung oder durch Lieferung der Ware zustande.</p>
+            <p data-i18n="contract_text2">Der Kunde ist an seine Bestellung für die Dauer von 14 Tagen gebunden.</p>
+
+            <h2 data-i18n="prices_title">4. Preise und Zahlung</h2>
+            <ul>
+                <li data-i18n="prices_1">Alle Preise verstehen sich netto zzgl. der gesetzlichen Mehrwertsteuer</li>
+                <li data-i18n="prices_2">Bei Exporten in Drittländer erfolgt die Rechnungsstellung gemäß den geltenden Exportvorschriften</li>
+                <li data-i18n="prices_3">Zahlungsbedingungen werden individuell vereinbart</li>
+                <li data-i18n="prices_4">Das Eigentum an der Ware geht erst nach vollständiger Bezahlung auf den Käufer über</li>
+            </ul>
+
+            <h2 data-i18n="delivery_title">5. Lieferung und Gefahrübergang</h2>
+            <ul>
+                <li data-i18n="delivery_1">Liefertermine sind nur verbindlich, wenn sie schriftlich bestätigt wurden</li>
+                <li data-i18n="delivery_2">Die Gefahr geht auf den Käufer über, sobald die Ware dem Spediteur übergeben wurde</li>
+                <li data-i18n="delivery_3">Teillieferungen sind zulässig</li>
+            </ul>
+
+            <h2 data-i18n="customs_title">6. Zoll und Export</h2>
+            <p data-i18n="customs_intro">Der Kunde ist verantwortlich für:</p>
+            <ul>
+                <li data-i18n="customs_1">Alle Zollabgaben und Einfuhrsteuern im Zielland</li>
+                <li data-i18n="customs_2">Einhaltung der Einfuhrvorschriften des Ziellandes</li>
+                <li data-i18n="customs_3">Bereitstellung aller erforderlichen Informationen für die Exportdokumentation</li>
+            </ul>
+
+            <h2 data-i18n="warranty_title">7. Gewährleistung</h2>
+            <p data-i18n="warranty_text1">Die Gewährleistungsfrist für Gebrauchtfahrzeuge beträgt 12 Monate ab Übergabe.</p>
+            <p data-i18n="warranty_text2">Die Gewährleistung umfasst keine Verschleißteile und keine Schäden, die durch unsachgemäße Behandlung entstanden sind.</p>
+
+            <h2 data-i18n="liability_title">8. Haftung</h2>
+            <ul>
+                <li data-i18n="liability_1">Unsere Haftung ist auf Vorsatz und grobe Fahrlässigkeit beschränkt</li>
+                <li data-i18n="liability_2">Die Haftung für Folgeschäden ist ausgeschlossen</li>
+                <li data-i18n="liability_3">Bei leichter Fahrlässigkeit ist die Haftung auf den vorhersehbaren, vertragstypischen Schaden begrenzt</li>
+            </ul>
+
+            <h2 data-i18n="data_title">9. Datenschutz</h2>
+            <p data-i18n="data_text">Wir verarbeiten personenbezogene Daten gemäß unserer <a href="/privacy.html">Datenschutzerklärung</a> und den geltenden Datenschutzgesetzen einschließlich der DSGVO.</p>
+
+            <h2 data-i18n="law_title">10. Anwendbares Recht und Gerichtsstand</h2>
+            <p data-i18n="law_text">Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts. Gerichtsstand für alle Streitigkeiten ist Berlin, Deutschland.</p>
+
+            <h2 data-i18n="severability_title">11. Salvatorische Klausel</h2>
+            <p data-i18n="severability_text">Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
+
+            <h2 data-i18n="contact_title">12. Kontakt</h2>
+            <p data-i18n="contact_text">Bei Fragen zu diesen AGB kontaktieren Sie uns:</p>
+            <div class="info-box">
+                <p><strong>Charwa GmbH</strong></p>
+                <p>Kolonnenstraße 8</p>
+                <p>10827 Berlin, Deutschland</p>
+                <p>E-Mail: info@charwa.de</p>
+                <p>Telefon: +49 160 4940999</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>© 2026 Charwa GmbH</p>
+            <div class="footer-links">
+                <a href="/impressum.html" data-i18n="footer_impressum">Impressum</a>
+                <a href="/privacy.html" data-i18n="footer_privacy">Datenschutz</a>
+                <a href="/terms.html" data-i18n="footer_terms">AGB</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            de: {
+                'back': 'Zurück zur Startseite',
+                'title': 'Allgemeine Geschäftsbedingungen',
+                'updated': 'Zuletzt aktualisiert: Januar 2026',
+                'scope_title': '1. Geltungsbereich',
+                'scope_text': 'Diese Allgemeinen Geschäftsbedingungen gelten für alle Geschäftsbeziehungen zwischen Charwa GmbH ("CHARWA", "wir", "uns") und unseren Geschäftskunden im Bereich des Exports von Nutzfahrzeugen.',
+                'services_title': '2. Leistungsbeschreibung',
+                'services_intro': 'CHARWA bietet folgende Dienstleistungen an:',
+                'services_1': 'Beschaffung europäischer Nutzfahrzeuge (DAF, MAN, VOLVO)',
+                'services_2': 'Exportdokumentation (ATLAS, MRN, A.TR)',
+                'services_3': 'Koordination des Transports in die Türkei und nach Zentralasien',
+                'services_4': 'MwSt-konforme Abwicklung mit deutscher Rechnungsstellung',
+                'contract_title': '3. Vertragsschluss',
+                'contract_text1': 'Unsere Angebote sind freibleibend und unverbindlich. Ein Vertrag kommt erst durch unsere schriftliche Auftragsbestätigung oder durch Lieferung der Ware zustande.',
+                'contract_text2': 'Der Kunde ist an seine Bestellung für die Dauer von 14 Tagen gebunden.',
+                'prices_title': '4. Preise und Zahlung',
+                'prices_1': 'Alle Preise verstehen sich netto zzgl. der gesetzlichen Mehrwertsteuer',
+                'prices_2': 'Bei Exporten in Drittländer erfolgt die Rechnungsstellung gemäß den geltenden Exportvorschriften',
+                'prices_3': 'Zahlungsbedingungen werden individuell vereinbart',
+                'prices_4': 'Das Eigentum an der Ware geht erst nach vollständiger Bezahlung auf den Käufer über',
+                'delivery_title': '5. Lieferung und Gefahrübergang',
+                'delivery_1': 'Liefertermine sind nur verbindlich, wenn sie schriftlich bestätigt wurden',
+                'delivery_2': 'Die Gefahr geht auf den Käufer über, sobald die Ware dem Spediteur übergeben wurde',
+                'delivery_3': 'Teillieferungen sind zulässig',
+                'customs_title': '6. Zoll und Export',
+                'customs_intro': 'Der Kunde ist verantwortlich für:',
+                'customs_1': 'Alle Zollabgaben und Einfuhrsteuern im Zielland',
+                'customs_2': 'Einhaltung der Einfuhrvorschriften des Ziellandes',
+                'customs_3': 'Bereitstellung aller erforderlichen Informationen für die Exportdokumentation',
+                'warranty_title': '7. Gewährleistung',
+                'warranty_text1': 'Die Gewährleistungsfrist für Gebrauchtfahrzeuge beträgt 12 Monate ab Übergabe.',
+                'warranty_text2': 'Die Gewährleistung umfasst keine Verschleißteile und keine Schäden, die durch unsachgemäße Behandlung entstanden sind.',
+                'liability_title': '8. Haftung',
+                'liability_1': 'Unsere Haftung ist auf Vorsatz und grobe Fahrlässigkeit beschränkt',
+                'liability_2': 'Die Haftung für Folgeschäden ist ausgeschlossen',
+                'liability_3': 'Bei leichter Fahrlässigkeit ist die Haftung auf den vorhersehbaren, vertragstypischen Schaden begrenzt',
+                'data_title': '9. Datenschutz',
+                'data_text': 'Wir verarbeiten personenbezogene Daten gemäß unserer <a href="/privacy.html">Datenschutzerklärung</a> und den geltenden Datenschutzgesetzen einschließlich der DSGVO.',
+                'law_title': '10. Anwendbares Recht und Gerichtsstand',
+                'law_text': 'Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts. Gerichtsstand für alle Streitigkeiten ist Berlin, Deutschland.',
+                'severability_title': '11. Salvatorische Klausel',
+                'severability_text': 'Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.',
+                'contact_title': '12. Kontakt',
+                'contact_text': 'Bei Fragen zu diesen AGB kontaktieren Sie uns:',
+                'footer_impressum': 'Impressum',
+                'footer_privacy': 'Datenschutz',
+                'footer_terms': 'AGB'
+            },
+            en: {
+                'back': 'Back to Homepage',
+                'title': 'Terms and Conditions',
+                'updated': 'Last updated: January 2026',
+                'scope_title': '1. Scope',
+                'scope_text': 'These General Terms and Conditions apply to all business relationships between Charwa GmbH ("CHARWA", "we", "us") and our business customers in the field of commercial vehicle export.',
+                'services_title': '2. Service Description',
+                'services_intro': 'CHARWA offers the following services:',
+                'services_1': 'Procurement of European commercial vehicles (DAF, MAN, VOLVO)',
+                'services_2': 'Export documentation (ATLAS, MRN, A.TR)',
+                'services_3': 'Coordination of transport to Turkey and Central Asia',
+                'services_4': 'VAT-compliant processing with German invoicing',
+                'contract_title': '3. Contract Formation',
+                'contract_text1': 'Our offers are non-binding. A contract is only formed upon our written order confirmation or delivery of the goods.',
+                'contract_text2': 'The customer is bound to their order for a period of 14 days.',
+                'prices_title': '4. Prices and Payment',
+                'prices_1': 'All prices are net plus statutory VAT',
+                'prices_2': 'For exports to third countries, invoicing is carried out according to applicable export regulations',
+                'prices_3': 'Payment terms are agreed individually',
+                'prices_4': 'Ownership of the goods only passes to the buyer upon full payment',
+                'delivery_title': '5. Delivery and Transfer of Risk',
+                'delivery_1': 'Delivery dates are only binding if confirmed in writing',
+                'delivery_2': 'Risk passes to the buyer as soon as the goods are handed over to the carrier',
+                'delivery_3': 'Partial deliveries are permitted',
+                'customs_title': '6. Customs and Export',
+                'customs_intro': 'The customer is responsible for:',
+                'customs_1': 'All customs duties and import taxes in the destination country',
+                'customs_2': 'Compliance with import regulations of the destination country',
+                'customs_3': 'Providing all required information for export documentation',
+                'warranty_title': '7. Warranty',
+                'warranty_text1': 'The warranty period for used vehicles is 12 months from handover.',
+                'warranty_text2': 'The warranty does not cover wear parts and damage caused by improper handling.',
+                'liability_title': '8. Liability',
+                'liability_1': 'Our liability is limited to intent and gross negligence',
+                'liability_2': 'Liability for consequential damages is excluded',
+                'liability_3': 'In cases of slight negligence, liability is limited to foreseeable, typical contract damage',
+                'data_title': '9. Data Protection',
+                'data_text': 'We process personal data in accordance with our <a href="/privacy.html">Privacy Policy</a> and applicable data protection laws including GDPR.',
+                'law_title': '10. Applicable Law and Jurisdiction',
+                'law_text': 'The law of the Federal Republic of Germany applies, excluding the UN Convention on Contracts for the International Sale of Goods. The place of jurisdiction for all disputes is Berlin, Germany.',
+                'severability_title': '11. Severability Clause',
+                'severability_text': 'Should individual provisions of these terms be or become invalid, the validity of the remaining provisions shall remain unaffected.',
+                'contact_title': '12. Contact',
+                'contact_text': 'For questions about these terms, contact us:',
+                'footer_impressum': 'Legal Notice',
+                'footer_privacy': 'Privacy Policy',
+                'footer_terms': 'Terms'
+            },
+            tr: {
+                'back': 'Ana Sayfaya Dön',
+                'title': 'Genel Şartlar ve Koşullar',
+                'updated': 'Son güncelleme: Ocak 2026',
+                'scope_title': '1. Kapsam',
+                'scope_text': 'Bu Genel Şartlar ve Koşullar, Charwa GmbH ("CHARWA", "biz") ile ticari araç ihracatı alanındaki iş müşterilerimiz arasındaki tüm iş ilişkileri için geçerlidir.',
+                'services_title': '2. Hizmet Açıklaması',
+                'services_intro': 'CHARWA aşağıdaki hizmetleri sunar:',
+                'services_1': 'Avrupa ticari araçlarının temini (DAF, MAN, VOLVO)',
+                'services_2': 'İhracat belgeleri (ATLAS, MRN, A.TR)',
+                'services_3': 'Türkiye ve Orta Asya\'ya nakliye koordinasyonu',
+                'services_4': 'Alman faturalama ile KDV uyumlu işlem',
+                'contract_title': '3. Sözleşme Oluşumu',
+                'contract_text1': 'Tekliflerimiz bağlayıcı değildir. Sözleşme yalnızca yazılı sipariş onayımız veya malların teslimi ile kurulur.',
+                'contract_text2': 'Müşteri 14 gün süreyle siparişine bağlıdır.',
+                'prices_title': '4. Fiyatlar ve Ödeme',
+                'prices_1': 'Tüm fiyatlar yasal KDV hariç net fiyatlardır',
+                'prices_2': 'Üçüncü ülkelere yapılan ihracatlarda faturalama geçerli ihracat düzenlemelerine göre yapılır',
+                'prices_3': 'Ödeme koşulları bireysel olarak kararlaştırılır',
+                'prices_4': 'Malların mülkiyeti yalnızca tam ödeme yapıldığında alıcıya geçer',
+                'delivery_title': '5. Teslimat ve Risk Transferi',
+                'delivery_1': 'Teslimat tarihleri yalnızca yazılı olarak onaylandığında bağlayıcıdır',
+                'delivery_2': 'Mallar taşıyıcıya teslim edilir edilmez risk alıcıya geçer',
+                'delivery_3': 'Kısmi teslimatlar izinlidir',
+                'customs_title': '6. Gümrük ve İhracat',
+                'customs_intro': 'Müşteri şunlardan sorumludur:',
+                'customs_1': 'Varış ülkesindeki tüm gümrük vergileri ve ithalat vergileri',
+                'customs_2': 'Varış ülkesinin ithalat düzenlemelerine uyum',
+                'customs_3': 'İhracat belgeleri için gerekli tüm bilgilerin sağlanması',
+                'warranty_title': '7. Garanti',
+                'warranty_text1': 'İkinci el araçlar için garanti süresi teslimden itibaren 12 aydır.',
+                'warranty_text2': 'Garanti, aşınma parçalarını ve uygunsuz kullanımdan kaynaklanan hasarları kapsamaz.',
+                'liability_title': '8. Sorumluluk',
+                'liability_1': 'Sorumluluğumuz kasıt ve ağır ihmal ile sınırlıdır',
+                'liability_2': 'Dolaylı zararlar için sorumluluk hariç tutulmuştur',
+                'liability_3': 'Hafif ihmal durumlarında sorumluluk öngörülebilir, sözleşmeye özgü zararla sınırlıdır',
+                'data_title': '9. Veri Koruma',
+                'data_text': '<a href="/privacy.html">Gizlilik Politikamıza</a> ve GDPR dahil geçerli veri koruma yasalarına uygun olarak kişisel verileri işliyoruz.',
+                'law_title': '10. Uygulanacak Hukuk ve Yargı Yetkisi',
+                'law_text': 'BM Satış Sözleşmeleri Sözleşmesi hariç olmak üzere Federal Almanya Cumhuriyeti hukuku geçerlidir. Tüm uyuşmazlıklar için yargı yeri Berlin, Almanya\'dır.',
+                'severability_title': '11. Ayrılabilirlik Maddesi',
+                'severability_text': 'Bu şartların bazı hükümleri geçersiz olursa veya geçersiz hale gelirse, kalan hükümlerin geçerliliği bundan etkilenmez.',
+                'contact_title': '12. İletişim',
+                'contact_text': 'Bu şartlarla ilgili sorularınız için bize ulaşın:',
+                'footer_impressum': 'Yasal Bilgiler',
+                'footer_privacy': 'Gizlilik Politikası',
+                'footer_terms': 'Şartlar'
+            }
+        };
+
+        function setLanguage(lang) {
+            localStorage.setItem('charwa_lang', lang);
+            document.documentElement.lang = lang;
+
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            document.querySelectorAll('.lang-selector button').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === lang.toUpperCase()) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Initialize
+        const savedLang = localStorage.getItem('charwa_lang') || 'de';
+        setLanguage(savedLang);
+    </script>
+</body>
+</html>

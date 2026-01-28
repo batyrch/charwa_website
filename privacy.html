@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datenschutz - CHARWA | Charwa GmbH</title>
+
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-card: #151514;
+            --border-color: #252523;
+            --border-light: #1f1f1d;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #6b6b6b;
+            --accent: #22c55e;
+            --accent-hover: #16a34a;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            background: var(--bg-primary);
+        }
+
+        .header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .content {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 48px;
+            margin: 32px auto;
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .updated {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 32px;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            margin-bottom: 16px;
+        }
+
+        ul {
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .info-box {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .info-box p {
+            margin-bottom: 8px;
+        }
+
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: var(--bg-primary);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        a {
+            color: var(--accent);
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        .footer {
+            background: var(--bg-primary);
+            color: var(--text-muted);
+            padding: 32px 0;
+            margin-top: 48px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .lang-selector {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .lang-selector button {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .lang-selector button:hover {
+            background: var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .lang-selector button.active {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        @media (max-width: 640px) {
+            .content {
+                padding: 24px;
+                margin: 16px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">CHARWA</a>
+            <a href="index.html" class="back-link">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                <span data-i18n="back">Zurück zur Startseite</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="content">
+            <div class="lang-selector">
+                <button onclick="setLanguage('de')" class="active">DE</button>
+                <button onclick="setLanguage('en')">EN</button>
+                <button onclick="setLanguage('tr')">TR</button>
+            </div>
+
+            <h1 data-i18n="title">Datenschutzerklärung</h1>
+            <p class="updated" data-i18n="updated">Zuletzt aktualisiert: Januar 2026</p>
+
+            <h2 data-i18n="controller_title">1. Verantwortlicher</h2>
+            <p data-i18n="controller_intro">Der Verantwortliche für die Verarbeitung Ihrer personenbezogenen Daten ist:</p>
+            <div class="info-box">
+                <p><strong>Charwa GmbH</strong></p>
+                <p>Kolonnenstraße 8</p>
+                <p>10827 Berlin, Deutschland</p>
+                <p>E-Mail: info@charwa.de</p>
+            </div>
+
+            <h2 data-i18n="data_title">2. Erhobene Daten</h2>
+            <p data-i18n="data_intro">Wir erheben und verarbeiten folgende personenbezogene Daten:</p>
+            <table>
+                <tr>
+                    <th data-i18n="data_type">Datenart</th>
+                    <th data-i18n="data_purpose">Zweck</th>
+                    <th data-i18n="data_basis">Rechtsgrundlage</th>
+                </tr>
+                <tr>
+                    <td data-i18n="data_name">Name</td>
+                    <td data-i18n="data_name_purpose">Geschäftskommunikation, Vertragsabwicklung</td>
+                    <td data-i18n="data_name_basis">Vertragserfüllung</td>
+                </tr>
+                <tr>
+                    <td data-i18n="data_email">E-Mail-Adresse</td>
+                    <td data-i18n="data_email_purpose">Kommunikation, Anfragebearbeitung</td>
+                    <td data-i18n="data_email_basis">Vertragserfüllung</td>
+                </tr>
+                <tr>
+                    <td data-i18n="data_phone">Telefonnummer</td>
+                    <td data-i18n="data_phone_purpose">Geschäftskommunikation</td>
+                    <td data-i18n="data_phone_basis">Vertragserfüllung</td>
+                </tr>
+                <tr>
+                    <td data-i18n="data_company">Unternehmensangaben</td>
+                    <td data-i18n="data_company_purpose">Vertragsabwicklung, Rechnungsstellung</td>
+                    <td data-i18n="data_company_basis">Vertragserfüllung, gesetzliche Pflicht</td>
+                </tr>
+            </table>
+
+            <h2 data-i18n="usage_title">3. Datenverwendung</h2>
+            <p data-i18n="usage_intro">Wir verwenden Ihre personenbezogenen Daten für:</p>
+            <ul>
+                <li data-i18n="usage_1">Bearbeitung Ihrer Fahrzeuganfragen</li>
+                <li data-i18n="usage_2">Abwicklung von Fahrzeugexporten</li>
+                <li data-i18n="usage_3">Erstellung von Exportdokumentationen</li>
+                <li data-i18n="usage_4">Kommunikation zu Ihren Anfragen</li>
+                <li data-i18n="usage_5">Erfüllung gesetzlicher Verpflichtungen</li>
+            </ul>
+
+            <h2 data-i18n="sharing_title">4. Datenweitergabe</h2>
+            <p data-i18n="sharing_intro">Wir geben Ihre Daten weiter an:</p>
+            <ul>
+                <li data-i18n="sharing_1"><strong>Logistikpartner</strong> - für den Fahrzeugtransport</li>
+                <li data-i18n="sharing_2"><strong>Zollbehörden</strong> - gemäß gesetzlicher Anforderungen</li>
+                <li data-i18n="sharing_3"><strong>Steuerberater</strong> - für die Buchhaltung</li>
+            </ul>
+            <p data-i18n="sharing_note">Wir verkaufen Ihre personenbezogenen Daten nicht an Dritte.</p>
+
+            <h2 data-i18n="retention_title">5. Datenspeicherung</h2>
+            <p data-i18n="retention_intro">Wir speichern Ihre personenbezogenen Daten für:</p>
+            <ul>
+                <li data-i18n="retention_1">Geschäftsunterlagen: 10 Jahre (gesetzliche Aufbewahrungspflicht)</li>
+                <li data-i18n="retention_2">Zolldokumente: 10 Jahre (gesetzliche Anforderung)</li>
+                <li data-i18n="retention_3">Kommunikationsdaten: 3 Jahre nach letztem Kontakt</li>
+            </ul>
+
+            <h2 data-i18n="rights_title">6. Ihre Rechte (DSGVO)</h2>
+            <p data-i18n="rights_intro">Nach der Datenschutz-Grundverordnung haben Sie das Recht auf:</p>
+            <ul>
+                <li data-i18n="rights_access"><strong>Auskunft</strong> - Anforderung einer Kopie Ihrer personenbezogenen Daten</li>
+                <li data-i18n="rights_rectification"><strong>Berichtigung</strong> - Korrektur unrichtiger Daten</li>
+                <li data-i18n="rights_erasure"><strong>Löschung</strong> - Anforderung der Löschung Ihrer Daten (sofern zutreffend)</li>
+                <li data-i18n="rights_restriction"><strong>Einschränkung</strong> - Einschränkung der Verarbeitung Ihrer Daten</li>
+                <li data-i18n="rights_portability"><strong>Datenübertragbarkeit</strong> - Erhalt Ihrer Daten in einem maschinenlesbaren Format</li>
+                <li data-i18n="rights_objection"><strong>Widerspruch</strong> - Widerspruch gegen bestimmte Verarbeitungen</li>
+            </ul>
+            <p data-i18n="rights_contact">Zur Ausübung dieser Rechte kontaktieren Sie uns unter info@charwa.de</p>
+
+            <h2 data-i18n="security_title">7. Datensicherheit</h2>
+            <p data-i18n="security_intro">Wir setzen angemessene technische und organisatorische Maßnahmen zum Schutz Ihrer personenbezogenen Daten ein, darunter:</p>
+            <ul>
+                <li data-i18n="security_1">Verschlüsselte Datenübertragung (HTTPS)</li>
+                <li data-i18n="security_2">Sichere Datenspeicherung</li>
+                <li data-i18n="security_3">Zugangskontrollen und Authentifizierung</li>
+            </ul>
+
+            <h2 data-i18n="cookies_title">8. Cookies</h2>
+            <p data-i18n="cookies_text">Unsere Website verwendet nur technisch notwendige Cookies für die Sprachauswahl. Wir verwenden keine Tracking- oder Werbe-Cookies.</p>
+
+            <h2 data-i18n="changes_title">9. Änderungen dieser Erklärung</h2>
+            <p data-i18n="changes_text">Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Über wesentliche Änderungen informieren wir Sie auf unserer Website.</p>
+
+            <h2 data-i18n="complaints_title">10. Beschwerden</h2>
+            <p data-i18n="complaints_intro">Bei Bedenken bezüglich unserer Datenverarbeitung können Sie eine Beschwerde bei der zuständigen Datenschutzbehörde einreichen:</p>
+            <div class="info-box">
+                <p>Die Landesbeauftragte für den Datenschutz und für das Recht auf Akteneinsicht Brandenburg</p>
+                <p>Stahnsdorfer Damm 77</p>
+                <p>14532 Kleinmachnow</p>
+                <p>Deutschland</p>
+            </div>
+
+            <h2 data-i18n="contact_title">11. Kontakt</h2>
+            <p data-i18n="contact_text">Bei datenschutzbezogenen Fragen kontaktieren Sie uns unter:</p>
+            <p>E-Mail: info@charwa.de</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>© 2026 Charwa GmbH</p>
+            <div class="footer-links">
+                <a href="/impressum.html" data-i18n="footer_impressum">Impressum</a>
+                <a href="/privacy.html" data-i18n="footer_privacy">Datenschutz</a>
+                <a href="/terms.html" data-i18n="footer_terms">AGB</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            de: {
+                'back': 'Zurück zur Startseite',
+                'title': 'Datenschutzerklärung',
+                'updated': 'Zuletzt aktualisiert: Januar 2026',
+                'controller_title': '1. Verantwortlicher',
+                'controller_intro': 'Der Verantwortliche für die Verarbeitung Ihrer personenbezogenen Daten ist:',
+                'data_title': '2. Erhobene Daten',
+                'data_intro': 'Wir erheben und verarbeiten folgende personenbezogene Daten:',
+                'data_type': 'Datenart',
+                'data_purpose': 'Zweck',
+                'data_basis': 'Rechtsgrundlage',
+                'data_name': 'Name',
+                'data_name_purpose': 'Geschäftskommunikation, Vertragsabwicklung',
+                'data_name_basis': 'Vertragserfüllung',
+                'data_email': 'E-Mail-Adresse',
+                'data_email_purpose': 'Kommunikation, Anfragebearbeitung',
+                'data_email_basis': 'Vertragserfüllung',
+                'data_phone': 'Telefonnummer',
+                'data_phone_purpose': 'Geschäftskommunikation',
+                'data_phone_basis': 'Vertragserfüllung',
+                'data_company': 'Unternehmensangaben',
+                'data_company_purpose': 'Vertragsabwicklung, Rechnungsstellung',
+                'data_company_basis': 'Vertragserfüllung, gesetzliche Pflicht',
+                'usage_title': '3. Datenverwendung',
+                'usage_intro': 'Wir verwenden Ihre personenbezogenen Daten für:',
+                'usage_1': 'Bearbeitung Ihrer Fahrzeuganfragen',
+                'usage_2': 'Abwicklung von Fahrzeugexporten',
+                'usage_3': 'Erstellung von Exportdokumentationen',
+                'usage_4': 'Kommunikation zu Ihren Anfragen',
+                'usage_5': 'Erfüllung gesetzlicher Verpflichtungen',
+                'sharing_title': '4. Datenweitergabe',
+                'sharing_intro': 'Wir geben Ihre Daten weiter an:',
+                'sharing_1': '<strong>Logistikpartner</strong> - für den Fahrzeugtransport',
+                'sharing_2': '<strong>Zollbehörden</strong> - gemäß gesetzlicher Anforderungen',
+                'sharing_3': '<strong>Steuerberater</strong> - für die Buchhaltung',
+                'sharing_note': 'Wir verkaufen Ihre personenbezogenen Daten nicht an Dritte.',
+                'retention_title': '5. Datenspeicherung',
+                'retention_intro': 'Wir speichern Ihre personenbezogenen Daten für:',
+                'retention_1': 'Geschäftsunterlagen: 10 Jahre (gesetzliche Aufbewahrungspflicht)',
+                'retention_2': 'Zolldokumente: 10 Jahre (gesetzliche Anforderung)',
+                'retention_3': 'Kommunikationsdaten: 3 Jahre nach letztem Kontakt',
+                'rights_title': '6. Ihre Rechte (DSGVO)',
+                'rights_intro': 'Nach der Datenschutz-Grundverordnung haben Sie das Recht auf:',
+                'rights_access': '<strong>Auskunft</strong> - Anforderung einer Kopie Ihrer personenbezogenen Daten',
+                'rights_rectification': '<strong>Berichtigung</strong> - Korrektur unrichtiger Daten',
+                'rights_erasure': '<strong>Löschung</strong> - Anforderung der Löschung Ihrer Daten (sofern zutreffend)',
+                'rights_restriction': '<strong>Einschränkung</strong> - Einschränkung der Verarbeitung Ihrer Daten',
+                'rights_portability': '<strong>Datenübertragbarkeit</strong> - Erhalt Ihrer Daten in einem maschinenlesbaren Format',
+                'rights_objection': '<strong>Widerspruch</strong> - Widerspruch gegen bestimmte Verarbeitungen',
+                'rights_contact': 'Zur Ausübung dieser Rechte kontaktieren Sie uns unter info@charwa.de',
+                'security_title': '7. Datensicherheit',
+                'security_intro': 'Wir setzen angemessene technische und organisatorische Maßnahmen zum Schutz Ihrer personenbezogenen Daten ein, darunter:',
+                'security_1': 'Verschlüsselte Datenübertragung (HTTPS)',
+                'security_2': 'Sichere Datenspeicherung',
+                'security_3': 'Zugangskontrollen und Authentifizierung',
+                'cookies_title': '8. Cookies',
+                'cookies_text': 'Unsere Website verwendet nur technisch notwendige Cookies für die Sprachauswahl. Wir verwenden keine Tracking- oder Werbe-Cookies.',
+                'changes_title': '9. Änderungen dieser Erklärung',
+                'changes_text': 'Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Über wesentliche Änderungen informieren wir Sie auf unserer Website.',
+                'complaints_title': '10. Beschwerden',
+                'complaints_intro': 'Bei Bedenken bezüglich unserer Datenverarbeitung können Sie eine Beschwerde bei der zuständigen Datenschutzbehörde einreichen:',
+                'contact_title': '11. Kontakt',
+                'contact_text': 'Bei datenschutzbezogenen Fragen kontaktieren Sie uns unter:',
+                'footer_impressum': 'Impressum',
+                'footer_privacy': 'Datenschutz',
+                'footer_terms': 'AGB'
+            },
+            en: {
+                'back': 'Back to Homepage',
+                'title': 'Privacy Policy',
+                'updated': 'Last updated: January 2026',
+                'controller_title': '1. Data Controller',
+                'controller_intro': 'The data controller responsible for your personal data is:',
+                'data_title': '2. Data We Collect',
+                'data_intro': 'We collect and process the following personal data:',
+                'data_type': 'Data Type',
+                'data_purpose': 'Purpose',
+                'data_basis': 'Legal Basis',
+                'data_name': 'Name',
+                'data_name_purpose': 'Business communication, contract execution',
+                'data_name_basis': 'Contract performance',
+                'data_email': 'Email Address',
+                'data_email_purpose': 'Communication, inquiry processing',
+                'data_email_basis': 'Contract performance',
+                'data_phone': 'Phone Number',
+                'data_phone_purpose': 'Business communication',
+                'data_phone_basis': 'Contract performance',
+                'data_company': 'Company Information',
+                'data_company_purpose': 'Contract execution, invoicing',
+                'data_company_basis': 'Contract performance, legal obligation',
+                'usage_title': '3. How We Use Your Data',
+                'usage_intro': 'We use your personal data for:',
+                'usage_1': 'Processing your vehicle inquiries',
+                'usage_2': 'Handling vehicle exports',
+                'usage_3': 'Creating export documentation',
+                'usage_4': 'Communicating about your inquiries',
+                'usage_5': 'Fulfilling legal obligations',
+                'sharing_title': '4. Data Sharing',
+                'sharing_intro': 'We share your data with:',
+                'sharing_1': '<strong>Logistics partners</strong> - for vehicle transport',
+                'sharing_2': '<strong>Customs authorities</strong> - as required by law',
+                'sharing_3': '<strong>Tax advisors</strong> - for accounting purposes',
+                'sharing_note': 'We do not sell your personal data to third parties.',
+                'retention_title': '5. Data Retention',
+                'retention_intro': 'We retain your personal data for:',
+                'retention_1': 'Business records: 10 years (legal retention requirement)',
+                'retention_2': 'Customs documents: 10 years (legal requirement)',
+                'retention_3': 'Communication data: 3 years after last contact',
+                'rights_title': '6. Your Rights (GDPR)',
+                'rights_intro': 'Under the General Data Protection Regulation, you have the right to:',
+                'rights_access': '<strong>Access</strong> - Request a copy of your personal data',
+                'rights_rectification': '<strong>Rectification</strong> - Correct inaccurate data',
+                'rights_erasure': '<strong>Erasure</strong> - Request deletion of your data (where applicable)',
+                'rights_restriction': '<strong>Restriction</strong> - Limit how we use your data',
+                'rights_portability': '<strong>Portability</strong> - Receive your data in a machine-readable format',
+                'rights_objection': '<strong>Objection</strong> - Object to certain processing',
+                'rights_contact': 'To exercise these rights, contact us at info@charwa.de',
+                'security_title': '7. Data Security',
+                'security_intro': 'We implement appropriate technical and organizational measures to protect your personal data, including:',
+                'security_1': 'Encrypted data transmission (HTTPS)',
+                'security_2': 'Secure data storage',
+                'security_3': 'Access controls and authentication',
+                'cookies_title': '8. Cookies',
+                'cookies_text': 'Our website uses only essential cookies for language selection. We do not use tracking or advertising cookies.',
+                'changes_title': '9. Changes to This Policy',
+                'changes_text': 'We may update this privacy policy from time to time. We will notify you of significant changes on our website.',
+                'complaints_title': '10. Complaints',
+                'complaints_intro': 'If you have concerns about how we handle your data, you may lodge a complaint with the relevant data protection authority:',
+                'contact_title': '11. Contact',
+                'contact_text': 'For privacy-related questions, contact us at:',
+                'footer_impressum': 'Legal Notice',
+                'footer_privacy': 'Privacy Policy',
+                'footer_terms': 'Terms'
+            },
+            tr: {
+                'back': 'Ana Sayfaya Dön',
+                'title': 'Gizlilik Politikası',
+                'updated': 'Son güncelleme: Ocak 2026',
+                'controller_title': '1. Veri Sorumlusu',
+                'controller_intro': 'Kişisel verilerinizden sorumlu veri sorumlusu:',
+                'data_title': '2. Topladığımız Veriler',
+                'data_intro': 'Aşağıdaki kişisel verileri topluyoruz ve işliyoruz:',
+                'data_type': 'Veri Türü',
+                'data_purpose': 'Amaç',
+                'data_basis': 'Yasal Dayanak',
+                'data_name': 'İsim',
+                'data_name_purpose': 'İş iletişimi, sözleşme yürütme',
+                'data_name_basis': 'Sözleşme ifası',
+                'data_email': 'E-posta Adresi',
+                'data_email_purpose': 'İletişim, talep işleme',
+                'data_email_basis': 'Sözleşme ifası',
+                'data_phone': 'Telefon Numarası',
+                'data_phone_purpose': 'İş iletişimi',
+                'data_phone_basis': 'Sözleşme ifası',
+                'data_company': 'Şirket Bilgileri',
+                'data_company_purpose': 'Sözleşme yürütme, faturalama',
+                'data_company_basis': 'Sözleşme ifası, yasal yükümlülük',
+                'usage_title': '3. Verilerinizi Nasıl Kullanıyoruz',
+                'usage_intro': 'Kişisel verilerinizi şunlar için kullanıyoruz:',
+                'usage_1': 'Araç taleplerinizi işlemek',
+                'usage_2': 'Araç ihracatını yönetmek',
+                'usage_3': 'İhracat belgelerini oluşturmak',
+                'usage_4': 'Talepleriniz hakkında iletişim kurmak',
+                'usage_5': 'Yasal yükümlülükleri yerine getirmek',
+                'sharing_title': '4. Veri Paylaşımı',
+                'sharing_intro': 'Verilerinizi şunlarla paylaşıyoruz:',
+                'sharing_1': '<strong>Lojistik ortakları</strong> - araç nakliyesi için',
+                'sharing_2': '<strong>Gümrük yetkilileri</strong> - yasal gereklilik',
+                'sharing_3': '<strong>Mali müşavirler</strong> - muhasebe amaçları için',
+                'sharing_note': 'Kişisel verilerinizi üçüncü taraflara satmıyoruz.',
+                'retention_title': '5. Veri Saklama',
+                'retention_intro': 'Kişisel verilerinizi şu sürelerde saklıyoruz:',
+                'retention_1': 'İş kayıtları: 10 yıl (yasal saklama zorunluluğu)',
+                'retention_2': 'Gümrük belgeleri: 10 yıl (yasal gereklilik)',
+                'retention_3': 'İletişim verileri: Son temastan 3 yıl sonra',
+                'rights_title': '6. Haklarınız (GDPR)',
+                'rights_intro': 'Genel Veri Koruma Yönetmeliği kapsamında şu haklara sahipsiniz:',
+                'rights_access': '<strong>Erişim</strong> - Kişisel verilerinizin bir kopyasını talep edin',
+                'rights_rectification': '<strong>Düzeltme</strong> - Yanlış verileri düzeltin',
+                'rights_erasure': '<strong>Silme</strong> - Verilerinizin silinmesini talep edin (uygun olduğunda)',
+                'rights_restriction': '<strong>Kısıtlama</strong> - Verilerinizi nasıl kullandığımızı sınırlayın',
+                'rights_portability': '<strong>Taşınabilirlik</strong> - Verilerinizi makine tarafından okunabilir formatta alın',
+                'rights_objection': '<strong>İtiraz</strong> - Belirli işlemlere itiraz edin',
+                'rights_contact': 'Bu hakları kullanmak için info@charwa.de adresinden bize ulaşın',
+                'security_title': '7. Veri Güvenliği',
+                'security_intro': 'Kişisel verilerinizi korumak için uygun teknik ve organizasyonel önlemler uyguluyoruz:',
+                'security_1': 'Şifreli veri iletimi (HTTPS)',
+                'security_2': 'Güvenli veri depolama',
+                'security_3': 'Erişim kontrolleri ve kimlik doğrulama',
+                'cookies_title': '8. Çerezler',
+                'cookies_text': 'Web sitemiz yalnızca dil seçimi için gerekli çerezleri kullanır. İzleme veya reklam çerezleri kullanmıyoruz.',
+                'changes_title': '9. Bu Politikadaki Değişiklikler',
+                'changes_text': 'Bu gizlilik politikasını zaman zaman güncelleyebiliriz. Önemli değişiklikleri web sitemizde bildireceğiz.',
+                'complaints_title': '10. Şikayetler',
+                'complaints_intro': 'Verilerinizi nasıl işlediğimiz konusunda endişeleriniz varsa, ilgili veri koruma otoritesine şikayette bulunabilirsiniz:',
+                'contact_title': '11. İletişim',
+                'contact_text': 'Gizlilikle ilgili sorularınız için bize ulaşın:',
+                'footer_impressum': 'Yasal Bilgiler',
+                'footer_privacy': 'Gizlilik Politikası',
+                'footer_terms': 'Şartlar'
+            }
+        };
+
+        function setLanguage(lang) {
+            localStorage.setItem('charwa_lang', lang);
+            document.documentElement.lang = lang;
+
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            document.querySelectorAll('.lang-selector button').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === lang.toUpperCase()) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Initialize
+        const savedLang = localStorage.getItem('charwa_lang') || 'de';
+        setLanguage(savedLang);
+    </script>
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum - CHARWA | Charwa GmbH</title>
+
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-card: #151514;
+            --border-color: #252523;
+            --border-light: #1f1f1d;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #6b6b6b;
+            --accent: #22c55e;
+            --accent-hover: #16a34a;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            background: var(--bg-primary);
+        }
+
+        .header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        .content {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 48px;
+            margin: 32px auto;
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .updated {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 32px;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            margin-bottom: 16px;
+        }
+
+        .company-info {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .company-info p {
+            margin-bottom: 8px;
+        }
+
+        .company-info p:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-label {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .info-value {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        a {
+            color: var(--accent);
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        .footer {
+            background: var(--bg-primary);
+            color: var(--text-muted);
+            padding: 32px 0;
+            margin-top: 48px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .lang-selector {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .lang-selector button {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .lang-selector button:hover {
+            background: var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .lang-selector button.active {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        @media (max-width: 640px) {
+            .content {
+                padding: 24px;
+                margin: 16px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">CHARWA</a>
+            <a href="index.html" class="back-link">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                <span data-i18n="back">Zurück zur Startseite</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="content">
+            <div class="lang-selector">
+                <button onclick="setLanguage('de')" class="active">DE</button>
+                <button onclick="setLanguage('en')">EN</button>
+                <button onclick="setLanguage('tr')">TR</button>
+            </div>
+
+            <h1 data-i18n="title">Impressum</h1>
+            <p class="updated" data-i18n="legal_notice">Angaben gemäß § 5 TMG</p>
+
+            <div class="company-info">
+                <p>
+                    <span class="info-label" data-i18n="company">Unternehmen:</span><br>
+                    <span class="info-value">Charwa GmbH</span>
+                </p>
+                <p>
+                    <span class="info-label" data-i18n="address">Anschrift:</span><br>
+                    <span class="info-value">Kolonnenstraße 8<br>10827 Berlin (Schöneberg)<br>Deutschland</span>
+                </p>
+            </div>
+
+            <h2 data-i18n="registration">Handelsregister</h2>
+            <div class="company-info">
+                <p>
+                    <span class="info-label" data-i18n="court">Registergericht:</span><br>
+                    <span class="info-value">Amtsgericht Charlottenburg, Berlin</span>
+                </p>
+                <p>
+                    <span class="info-label" data-i18n="hrb">Registernummer:</span><br>
+                    <span class="info-value">HRB 282995 B</span>
+                </p>
+                <p>
+                    <span class="info-label" data-i18n="register_type">Registerart:</span><br>
+                    <span class="info-value">Handelsregister B</span>
+                </p>
+            </div>
+
+            <h2 data-i18n="contact">Kontakt</h2>
+            <div class="company-info">
+                <p>
+                    <span class="info-label" data-i18n="phone">Telefon:</span><br>
+                    <span class="info-value">+49 160 4940999</span>
+                </p>
+                <p>
+                    <span class="info-label" data-i18n="email">E-Mail:</span><br>
+                    <span class="info-value"><a href="mailto:info@charwa.de">info@charwa.de</a></span>
+                </p>
+            </div>
+
+            <h2 data-i18n="dispute_resolution">Streitschlichtung</h2>
+            <p data-i18n="dispute_text">Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a></p>
+            <p data-i18n="dispute_text2">Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+            <h2 data-i18n="liability_content">Haftung für Inhalte</h2>
+            <p data-i18n="liability_content_text">Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+
+            <h2 data-i18n="liability_links">Haftung für Links</h2>
+            <p data-i18n="liability_links_text">Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+
+            <h2 data-i18n="copyright">Urheberrecht</h2>
+            <p data-i18n="copyright_text">Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>© 2026 Charwa GmbH</p>
+            <div class="footer-links">
+                <a href="/impressum.html" data-i18n="impressum">Impressum</a>
+                <a href="/privacy.html" data-i18n="privacy">Datenschutz</a>
+                <a href="/terms.html" data-i18n="terms">AGB</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            de: {
+                'back': 'Zurück zur Startseite',
+                'title': 'Impressum',
+                'legal_notice': 'Angaben gemäß § 5 TMG',
+                'company': 'Unternehmen:',
+                'address': 'Anschrift:',
+                'registration': 'Handelsregister',
+                'court': 'Registergericht:',
+                'hrb': 'Registernummer:',
+                'vat': 'USt-IdNr.:',
+                'represented': 'Vertreten durch',
+                'director_title': 'Geschäftsführer:',
+                'contact': 'Kontakt',
+                'phone': 'Telefon:',
+                'email': 'E-Mail:',
+                'dispute_resolution': 'Streitschlichtung',
+                'dispute_text': 'Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a>',
+                'dispute_text2': 'Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.',
+                'liability_content': 'Haftung für Inhalte',
+                'liability_content_text': 'Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.',
+                'liability_links': 'Haftung für Links',
+                'liability_links_text': 'Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.',
+                'copyright': 'Urheberrecht',
+                'copyright_text': 'Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.',
+                'impressum': 'Impressum',
+                'privacy': 'Datenschutz',
+                'terms': 'AGB'
+            },
+            en: {
+                'back': 'Back to Homepage',
+                'title': 'Legal Notice',
+                'legal_notice': 'Information according to § 5 TMG',
+                'company': 'Company:',
+                'address': 'Address:',
+                'registration': 'Commercial Register',
+                'court': 'Registry Court:',
+                'hrb': 'Registration Number:',
+                'vat': 'VAT ID:',
+                'represented': 'Represented by',
+                'director_title': 'Managing Director:',
+                'contact': 'Contact',
+                'phone': 'Phone:',
+                'email': 'Email:',
+                'dispute_resolution': 'Dispute Resolution',
+                'dispute_text': 'The European Commission provides a platform for online dispute resolution (OS): <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a>',
+                'dispute_text2': 'We are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.',
+                'liability_content': 'Liability for Content',
+                'liability_content_text': 'As a service provider, we are responsible for our own content on these pages according to general laws pursuant to § 7 para.1 TMG. According to §§ 8 to 10 TMG, however, we are not obligated to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity.',
+                'liability_links': 'Liability for Links',
+                'liability_links_text': 'Our offer contains links to external third-party websites over whose content we have no influence. Therefore, we cannot assume any liability for this third-party content. The respective provider or operator of the pages is always responsible for the content of the linked pages.',
+                'copyright': 'Copyright',
+                'copyright_text': 'The content and works created by the site operators on these pages are subject to German copyright law. Duplication, processing, distribution, and any kind of exploitation outside the limits of copyright require the written consent of the respective author or creator.',
+                'impressum': 'Legal Notice',
+                'privacy': 'Privacy Policy',
+                'terms': 'Terms'
+            },
+            tr: {
+                'back': 'Ana Sayfaya Dön',
+                'title': 'Yasal Bilgiler',
+                'legal_notice': '§ 5 TMG\'ye göre bilgiler',
+                'company': 'Şirket:',
+                'address': 'Adres:',
+                'registration': 'Ticaret Sicili',
+                'court': 'Sicil Mahkemesi:',
+                'hrb': 'Sicil Numarası:',
+                'vat': 'KDV No:',
+                'represented': 'Temsil Eden',
+                'director_title': 'Genel Müdür:',
+                'contact': 'İletişim',
+                'phone': 'Telefon:',
+                'email': 'E-posta:',
+                'dispute_resolution': 'Uyuşmazlık Çözümü',
+                'dispute_text': 'Avrupa Komisyonu çevrimiçi uyuşmazlık çözümü (OS) için bir platform sağlamaktadır: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a>',
+                'dispute_text2': 'Bir tüketici tahkim kurulu önündeki uyuşmazlık çözüm süreçlerine katılmaya istekli veya mecbur değiliz.',
+                'liability_content': 'İçerik Sorumluluğu',
+                'liability_content_text': 'Hizmet sağlayıcı olarak, § 7 para.1 TMG uyarınca bu sayfalardaki kendi içeriğimizden genel yasalara göre sorumluyuz. Ancak §§ 8 ila 10 TMG uyarınca, iletilen veya depolanan üçüncü taraf bilgilerini izlemek veya yasadışı faaliyeti gösteren koşulları araştırmakla yükümlü değiliz.',
+                'liability_links': 'Bağlantılar için Sorumluluk',
+                'liability_links_text': 'Teklifimiz, içerikleri üzerinde hiçbir etkimiz olmayan harici üçüncü taraf web sitelerine bağlantılar içermektedir. Bu nedenle, bu üçüncü taraf içeriği için herhangi bir sorumluluk kabul edemeyiz. Bağlantılı sayfaların içeriğinden her zaman ilgili sağlayıcı veya operatör sorumludur.',
+                'copyright': 'Telif Hakkı',
+                'copyright_text': 'Site operatörleri tarafından bu sayfalarda oluşturulan içerik ve eserler Alman telif hakkı yasasına tabidir. Telif hakkı sınırları dışında çoğaltma, işleme, dağıtım ve her türlü kullanım, ilgili yazarın veya yaratıcının yazılı iznini gerektirir.',
+                'impressum': 'Yasal Bilgiler',
+                'privacy': 'Gizlilik Politikası',
+                'terms': 'Şartlar'
+            }
+        };
+
+        function setLanguage(lang) {
+            localStorage.setItem('charwa_lang', lang);
+            document.documentElement.lang = lang;
+
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            document.querySelectorAll('.lang-selector button').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === lang.toUpperCase()) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Initialize
+        const savedLang = localStorage.getItem('charwa_lang') || 'de';
+        setLanguage(savedLang);
+    </script>
+</body>
+</html>

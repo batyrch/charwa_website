@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrierung erfolgreich - CHARWA</title>
+
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-card: #151514;
+            --border-color: #252523;
+            --border-light: #1f1f1d;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #6b6b6b;
+            --accent: #22c55e;
+            --accent-hover: #16a34a;
+            --accent-bg: #052e16;
+            --accent-border: #166534;
+            --warning-bg: #2d2005;
+            --warning-border: #854d0e;
+            --warning-text: #fbbf24;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-family);
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+        }
+
+        .card {
+            background: var(--bg-card);
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            display: block;
+            margin-bottom: 24px;
+        }
+
+        .success-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--accent-bg);
+            border: 1px solid var(--accent-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .success-icon svg {
+            width: 32px;
+            height: 32px;
+            color: var(--accent);
+        }
+
+        .success-header h1 {
+            color: var(--accent);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .success-header p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .customer-id {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: monospace;
+            text-align: center;
+            padding: 24px;
+            background: var(--accent-bg);
+            border: 1px solid var(--accent-border);
+            border-radius: 8px;
+            margin: 24px 0;
+            word-break: break-all;
+        }
+
+        .address-box {
+            background: var(--bg-primary);
+            padding: 24px;
+            margin: 24px 0;
+            border: 2px dashed var(--accent);
+            position: relative;
+            border-radius: 8px;
+        }
+
+        .address-box h3 {
+            margin: 0 0 8px;
+            color: var(--text-primary);
+            font-size: 16px;
+        }
+
+        .hub-label {
+            display: inline-block;
+            padding: 4px 10px;
+            background: var(--accent-bg);
+            color: var(--accent);
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 8px;
+            font-weight: 500;
+        }
+
+        .address-content {
+            background: var(--bg-card);
+            padding: 16px;
+            border-radius: 4px;
+            margin-top: 12px;
+            font-family: monospace;
+            white-space: pre-line;
+            line-height: 1.6;
+            font-size: 14px;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            padding: 8px 16px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        .copy-btn.copied {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+        }
+
+        .next-steps {
+            background: var(--bg-primary);
+            padding: 24px;
+            border-radius: 8px;
+            margin-top: 24px;
+            border: 1px solid var(--border-color);
+        }
+
+        .next-steps h3 {
+            margin: 0 0 16px;
+            color: var(--text-primary);
+            font-size: 18px;
+        }
+
+        .next-steps ol {
+            padding-left: 20px;
+            color: var(--text-secondary);
+        }
+
+        .next-steps li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .next-steps li strong {
+            color: var(--text-primary);
+        }
+
+        .warning {
+            background: var(--warning-bg);
+            border-left: 4px solid var(--warning-text);
+            padding: 16px;
+            margin-top: 24px;
+            border-radius: 0 8px 8px 0;
+            font-size: 14px;
+        }
+
+        .warning strong {
+            color: var(--warning-text);
+        }
+
+        a {
+            color: var(--accent);
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        .print-btn {
+            display: block;
+            width: 100%;
+            margin-top: 24px;
+            padding: 14px;
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .print-btn:hover {
+            background: var(--border-color);
+        }
+
+        .lang-selector {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .lang-selector button {
+            padding: 6px 12px;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .lang-selector button:hover {
+            background: var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .lang-selector button.active {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        @media print {
+            .copy-btn, .print-btn, .next-steps, .lang-selector, .back-link {
+                display: none;
+            }
+            body { background: white; color: black; }
+            .card { box-shadow: none; background: white; border: none; }
+            .customer-id { background: #f0f0f0; border: none; color: #059669; }
+            .address-box { background: #f0f0f0; }
+            .address-content { background: white; color: black; }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        <span data-i18n="back">Zurück zur Startseite</span>
+    </a>
+
+    <div class="card">
+        <a href="index.html" class="logo">CHARWA</a>
+
+        <div class="lang-selector">
+            <button onclick="setLanguage('de')" class="active">DE</button>
+            <button onclick="setLanguage('en')">EN</button>
+            <button onclick="setLanguage('tr')">TR</button>
+        </div>
+
+        <div class="success-header">
+            <div class="success-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+            </div>
+            <h1 data-i18n="title">Registrierung erfolgreich!</h1>
+            <p data-i18n="subtitle">Ihre CHARWA Kunden-ID lautet:</p>
+        </div>
+
+        <div class="customer-id" id="customerId">Loading...</div>
+
+        <div class="address-box">
+            <h3 data-i18n="address_title">Versandadresse <span class="hub-label">Berlin Hub</span></h3>
+            <button class="copy-btn" onclick="copyAddress('berlin')" data-i18n="copy">Kopieren</button>
+            <div class="address-content" id="berlinAddress">Loading...</div>
+        </div>
+
+        <div class="next-steps">
+            <h3 data-i18n="next_title">Nächste Schritte</h3>
+            <ol>
+                <li data-i18n="step_1"><strong>Speichern Sie Ihre Kunden-ID</strong> - Sie benötigen diese für alle Sendungen</li>
+                <li data-i18n="step_2"><strong>Verwenden Sie die obige Versandadresse</strong> bei Bestellungen</li>
+                <li data-i18n="step_3"><strong>Kontaktieren Sie uns</strong> bei Fragen per WhatsApp oder E-Mail</li>
+            </ol>
+        </div>
+
+        <div class="warning">
+            <strong data-i18n="warning_title">Wichtig:</strong>
+            <span data-i18n="warning_text">Geben Sie immer Ihre Kunden-ID in der Adresse an. Ohne diese können wir Ihre Pakete nicht zuordnen.</span>
+        </div>
+
+        <button class="print-btn" onclick="window.print()" data-i18n="print">Diese Seite drucken</button>
+    </div>
+
+    <script>
+        const translations = {
+            de: {
+                back: 'Zurück zur Startseite',
+                title: 'Registrierung erfolgreich!',
+                subtitle: 'Ihre CHARWA Kunden-ID lautet:',
+                address_title: 'Versandadresse',
+                copy: 'Kopieren',
+                copied: 'Kopiert!',
+                next_title: 'Nächste Schritte',
+                step_1: '<strong>Speichern Sie Ihre Kunden-ID</strong> - Sie benötigen diese für alle Sendungen',
+                step_2: '<strong>Verwenden Sie die obige Versandadresse</strong> bei Bestellungen',
+                step_3: '<strong>Kontaktieren Sie uns</strong> bei Fragen per WhatsApp oder E-Mail',
+                warning_title: 'Wichtig:',
+                warning_text: 'Geben Sie immer Ihre Kunden-ID in der Adresse an. Ohne diese können wir Ihre Pakete nicht zuordnen.',
+                print: 'Diese Seite drucken'
+            },
+            en: {
+                back: 'Back to Homepage',
+                title: 'Registration Complete!',
+                subtitle: 'Your CHARWA Customer ID is:',
+                address_title: 'Shipping Address',
+                copy: 'Copy',
+                copied: 'Copied!',
+                next_title: 'Next Steps',
+                step_1: '<strong>Save your Customer ID</strong> - You will need it for all shipments',
+                step_2: '<strong>Use the shipping address above</strong> when placing orders',
+                step_3: '<strong>Contact us</strong> via WhatsApp or email with any questions',
+                warning_title: 'Important:',
+                warning_text: 'Always include your Customer ID in the address. Without it, we cannot identify your packages.',
+                print: 'Print this page'
+            },
+            tr: {
+                back: 'Ana Sayfaya Dön',
+                title: 'Kayıt Tamamlandı!',
+                subtitle: 'CHARWA Müşteri ID\'niz:',
+                address_title: 'Gönderim Adresi',
+                copy: 'Kopyala',
+                copied: 'Kopyalandı!',
+                next_title: 'Sonraki Adımlar',
+                step_1: '<strong>Müşteri ID\'nizi kaydedin</strong> - Tüm gönderiler için buna ihtiyacınız olacak',
+                step_2: '<strong>Sipariş verirken yukarıdaki gönderim adresini kullanın</strong>',
+                step_3: 'Sorularınız için <strong>WhatsApp veya e-posta ile bize ulaşın</strong>',
+                warning_title: 'Önemli:',
+                warning_text: 'Müşteri ID\'nizi her zaman adrese ekleyin. Bu olmadan paketlerinizi tanımlayamayız.',
+                print: 'Bu sayfayı yazdır'
+            }
+        };
+
+        let currentLang = 'de';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('charwa_lang', lang);
+            document.documentElement.lang = lang;
+            const t = translations[lang];
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) {
+                    el.innerHTML = t[key];
+                }
+            });
+
+            document.querySelectorAll('.lang-selector button').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === lang.toUpperCase()) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update copy button text
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                if (!btn.classList.contains('copied')) {
+                    btn.textContent = t.copy;
+                }
+            });
+        }
+
+        // Get customer ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const customerId = urlParams.get('id') || 'ERROR';
+        const customerName = decodeURIComponent(urlParams.get('name') || 'Customer');
+
+        // Display customer ID
+        document.getElementById('customerId').textContent = customerId;
+
+        // Generate Berlin address
+        const berlinAddress = `${customerName}
+${customerId}
+c/o Charwa GmbH
+Kolonnenstraße 8
+10827 Berlin
+Germany`;
+
+        document.getElementById('berlinAddress').textContent = berlinAddress;
+
+        // Copy to clipboard function
+        function copyAddress(hub) {
+            const address = document.getElementById('berlinAddress').textContent;
+            const t = translations[currentLang];
+
+            navigator.clipboard.writeText(address).then(() => {
+                const btn = event.target;
+                btn.textContent = t.copied;
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = t.copy;
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = address;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+
+                const btn = event.target;
+                btn.textContent = t.copied;
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = t.copy;
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // Update page title with customer ID
+        document.title = `ID: ${customerId} - CHARWA`;
+
+        // Initialize language
+        const savedLang = localStorage.getItem('charwa_lang') || 'de';
+        setLanguage(savedLang);
+    </script>
+</body>
+</html>
