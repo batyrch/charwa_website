@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charwa Trading - Gebrauchte LKW aus Europa</title>
+    <meta name="description" content="Gebrauchte LKW und Nutzfahrzeuge aus Europa. DAF, MAN, VOLVO für den Export in die Türkei und Zentralasien.">
+
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS Variables - Design System (Dark Theme with Green Accents) */
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #151514;
+            --bg-card: #151514;
+            --bg-card-hover: #1a1a19;
+            --border-color: #252523;
+            --border-light: #1f1f1d;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #6b6b6b;
+            --accent: #22c55e;
+            --accent-hover: #16a34a;
+            --accent-glow: rgba(34, 197, 94, 0.25);
+            --whatsapp: #25d366;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-family);
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            background: var(--bg-primary);
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4 { color: var(--text-primary); letter-spacing: -0.02em; }
+        h1 { font-size: 36px; font-weight: 700; }
+        h2 { font-size: 28px; font-weight: 600; }
+        h3 { font-size: 20px; font-weight: 600; }
+        h4 { font-size: 16px; font-weight: 600; }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+        .btn-primary:hover { background: var(--accent-hover); }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+        .btn-secondary:hover { background: var(--border-color); }
+
+        .btn-whatsapp {
+            background: var(--whatsapp);
+            color: var(--bg-primary);
+        }
+        .btn-whatsapp:hover { background: #20bd5a; }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 13px;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .logo span { color: var(--accent); }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+
+        .lang-selector {
+            display: flex;
+            gap: 4px;
+        }
+
+        .lang-selector button {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 4px 8px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .lang-selector button:hover { color: var(--text-secondary); }
+        .lang-selector button.active { color: var(--accent); }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .mobile-menu-btn svg {
+            width: 24px;
+            height: 24px;
+            color: var(--text-secondary);
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 48px 0;
+            text-align: center;
+        }
+
+        .hero-banner h1 {
+            margin-bottom: 8px;
+        }
+
+        .hero-banner p {
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        /* Main Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 32px;
+            padding: 32px 0;
+        }
+
+        /* Filter Sidebar */
+        .filter-sidebar {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            height: fit-content;
+            position: sticky;
+            top: 104px;
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .filter-header h3 { font-size: 16px; }
+
+        .filter-reset {
+            color: var(--text-muted);
+            font-size: 13px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .filter-reset:hover { color: var(--accent); }
+
+        .filter-group {
+            margin-bottom: 24px;
+        }
+
+        .filter-group:last-child { margin-bottom: 0; }
+
+        .filter-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .filter-select,
+        .filter-input {
+            width: 100%;
+            padding: 10px 12px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .filter-select:focus,
+        .filter-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .filter-range {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .filter-apply {
+            width: 100%;
+            margin-top: 16px;
+        }
+
+        /* Toolbar */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .results-count {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .toolbar-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .sort-select {
+            padding: 8px 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 13px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 4px;
+        }
+
+        .view-toggle button {
+            padding: 8px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+        .view-toggle button.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg-primary);
+        }
+        .view-toggle button svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Truck Grid */
+        .trucks-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        /* Truck Card */
+        .truck-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .truck-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .truck-card-image {
+            position: relative;
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            background: var(--bg-primary);
+        }
+
+        .truck-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .truck-card:hover .truck-card-image img {
+            transform: scale(1.05);
+        }
+
+        .truck-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-featured {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+        .badge-sold {
+            background: var(--danger);
+            color: white;
+        }
+        .badge-reserved {
+            background: var(--warning);
+            color: var(--bg-primary);
+        }
+
+        .truck-image-count {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .truck-image-count svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .truck-card-body {
+            padding: 16px;
+        }
+
+        .truck-card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .truck-card-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .truck-card-specs span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .truck-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .truck-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .truck-price-info {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .truck-card-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .truck-card-actions button {
+            padding: 8px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+        .truck-card-actions button:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .truck-card-actions button svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .pagination button {
+            padding: 10px 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .pagination button:hover:not(:disabled) {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .pagination button.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        .pagination-info {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin: 0 16px;
+        }
+
+        /* Loading & Empty States */
+        .loading-state,
+        .empty-state {
+            text-align: center;
+            padding: 64px 24px;
+            color: var(--text-muted);
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .empty-state svg {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 64px 0 32px;
+            margin-top: 64px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand .logo {
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .footer-brand .tagline {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .footer-contact p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .footer h4 {
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li { margin-bottom: 8px; }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--accent); }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 24px;
+        }
+        .footer-legal a {
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+        .footer-legal a:hover { color: var(--accent); }
+
+        /* Mobile Filter Drawer */
+        .filter-drawer-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1001;
+        }
+        .filter-drawer-overlay.active { display: block; }
+
+        .filter-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 300px;
+            background: var(--bg-secondary);
+            transform: translateX(-100%);
+            transition: transform 0.3s;
+            z-index: 1002;
+            overflow-y: auto;
+            padding: 24px;
+        }
+        .filter-drawer.active { transform: translateX(0); }
+
+        .filter-drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .filter-drawer-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-filter-btn {
+            display: none;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 72px;
+            left: 0;
+            right: 0;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px;
+            z-index: 999;
+        }
+        .mobile-nav.active { display: block; }
+
+        .mobile-nav-links {
+            list-style: none;
+            margin-bottom: 16px;
+        }
+        .mobile-nav-links li {
+            border-bottom: 1px solid var(--border-light);
+        }
+        .mobile-nav-links a {
+            display: block;
+            padding: 12px 0;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .mobile-lang-selector {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+        .mobile-lang-selector button {
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 4px;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .mobile-lang-selector button.active {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .trucks-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 968px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-sidebar {
+                display: none;
+            }
+
+            .mobile-filter-btn {
+                display: flex;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-banner {
+                padding: 32px 0;
+            }
+            .hero-banner h1 { font-size: 28px; }
+            .hero-banner p { font-size: 16px; }
+
+            .trucks-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .toolbar-actions {
+                justify-content: space-between;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">CHARWA <span>Trading</span></a>
+
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" data-i18n="nav.trucks">Fahrzeuge</a></li>
+                    <li><a href="https://charwa.de/#about" data-i18n="nav.about">Über uns</a></li>
+                    <li><a href="https://charwa.de/#contact" data-i18n="nav.contact">Kontakt</a></li>
+                </ul>
+
+                <div class="lang-selector">
+                    <button onclick="setLanguage('de')" class="active">DE</button>
+                    <button onclick="setLanguage('en')">EN</button>
+                    <button onclick="setLanguage('tr')">TR</button>
+                </div>
+            </nav>
+
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav" id="mobileNav">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html" onclick="toggleMobileMenu()" data-i18n="nav.trucks">Fahrzeuge</a></li>
+                <li><a href="https://charwa.de/#about" data-i18n="nav.about">Über uns</a></li>
+                <li><a href="https://charwa.de/#contact" data-i18n="nav.contact">Kontakt</a></li>
+            </ul>
+            <div class="mobile-lang-selector">
+                <button onclick="setLanguage('de')" class="active">DE</button>
+                <button onclick="setLanguage('en')">EN</button>
+                <button onclick="setLanguage('tr')">TR</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div class="container">
+            <h1 data-i18n="hero.title">Gebrauchte LKW aus Europa</h1>
+            <p data-i18n="hero.subtitle">Qualitätsfahrzeuge für den Export in die Türkei und Zentralasien</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="main-layout">
+            <!-- Filter Sidebar -->
+            <aside class="filter-sidebar" id="filterSidebar">
+                <div class="filter-header">
+                    <h3 data-i18n="filter.title">Filter</h3>
+                    <span class="filter-reset" onclick="resetFilters()" data-i18n="filter.reset">Zurücksetzen</span>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label" data-i18n="filter.brand">Marke</label>
+                    <select class="filter-select" id="filterBrand">
+                        <option value="" data-i18n="filter.brand.all">Alle Marken</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label" data-i18n="filter.price">Preis (EUR)</label>
+                    <div class="filter-range">
+                        <input type="number" class="filter-input" id="filterPriceMin" placeholder="Min" data-i18n-placeholder="filter.price.min">
+                        <input type="number" class="filter-input" id="filterPriceMax" placeholder="Max" data-i18n-placeholder="filter.price.max">
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label" data-i18n="filter.year">Baujahr</label>
+                    <div class="filter-range">
+                        <input type="number" class="filter-input" id="filterYearFrom" placeholder="Von" data-i18n-placeholder="filter.year.from">
+                        <input type="number" class="filter-input" id="filterYearTo" placeholder="Bis" data-i18n-placeholder="filter.year.to">
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label" data-i18n="filter.mileage">Kilometerstand</label>
+                    <input type="number" class="filter-input" id="filterMileageMax" placeholder="Max. km" data-i18n-placeholder="filter.mileage.max">
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label" data-i18n="filter.transmission">Getriebe</label>
+                    <select class="filter-select" id="filterTransmission">
+                        <option value="" data-i18n="filter.transmission.all">Alle</option>
+                        <option value="automatic" data-i18n="filter.transmission.automatic">Automatik</option>
+                        <option value="manual" data-i18n="filter.transmission.manual">Schaltgetriebe</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label" data-i18n="filter.emission">Emissionsklasse</label>
+                    <select class="filter-select" id="filterEmission">
+                        <option value="" data-i18n="filter.emission.all">Alle</option>
+                        <option value="euro6">Euro 6</option>
+                        <option value="euro5">Euro 5</option>
+                        <option value="euro4">Euro 4</option>
+                        <option value="euro3">Euro 3</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-primary filter-apply" onclick="applyFilters()" data-i18n="filter.apply">Filter anwenden</button>
+            </aside>
+
+            <!-- Main Content Area -->
+            <div class="content-area">
+                <!-- Toolbar -->
+                <div class="toolbar">
+                    <div class="results-count" id="resultsCount">
+                        <span data-i18n="status.loading">Laden...</span>
+                    </div>
+
+                    <div class="toolbar-actions">
+                        <button class="btn btn-secondary btn-sm mobile-filter-btn" onclick="openFilterDrawer()">
+                            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
+                            </svg>
+                            <span data-i18n="filter.title">Filter</span>
+                        </button>
+
+                        <select class="sort-select" id="sortSelect" onchange="applyFilters()">
+                            <option value="newest" data-i18n="sort.newest">Neueste zuerst</option>
+                            <option value="oldest" data-i18n="sort.oldest">Älteste zuerst</option>
+                            <option value="price_asc" data-i18n="sort.price_asc">Preis aufsteigend</option>
+                            <option value="price_desc" data-i18n="sort.price_desc">Preis absteigend</option>
+                            <option value="mileage_asc" data-i18n="sort.mileage_asc">Kilometerstand aufsteigend</option>
+                            <option value="year_desc" data-i18n="sort.year_desc">Baujahr absteigend</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Truck Grid -->
+                <div class="trucks-grid" id="trucksGrid">
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <p data-i18n="status.loading">Laden...</p>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination" id="pagination" style="display: none;">
+                    <button id="prevPage" onclick="prevPage()" data-i18n="pagination.prev">Zurück</button>
+                    <span class="pagination-info" id="pageInfo"></span>
+                    <button id="nextPage" onclick="nextPage()" data-i18n="pagination.next">Weiter</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Filter Drawer -->
+    <div class="filter-drawer-overlay" id="filterOverlay" onclick="closeFilterDrawer()"></div>
+    <div class="filter-drawer" id="filterDrawer">
+        <div class="filter-drawer-header">
+            <h3 data-i18n="filter.title">Filter</h3>
+            <button class="filter-drawer-close" onclick="closeFilterDrawer()">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+        <!-- Filter content will be cloned here -->
+        <div id="mobileFilterContent"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">CHARWA <span>Trading</span></a>
+                    <p class="tagline" data-i18n="footer.tagline">Nutzfahrzeuge für den Export</p>
+                    <div class="footer-contact">
+                        <p>Charwa GmbH</p>
+                        <p>Kolonnenstraße 8</p>
+                        <p>10827 Berlin, Germany</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 data-i18n="nav.contact">Kontakt</h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:+491604940999">+49 160 4940999</a></li>
+                        <li><a href="mailto:info@charwa.de">info@charwa.de</a></li>
+                        <li><a href="https://wa.me/491604940999" target="_blank">WhatsApp</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 data-i18n="footer.company">Unternehmen</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://charwa.de/#about" data-i18n="nav.about">Über uns</a></li>
+                        <li><a href="https://charwa.de/#services" data-i18n="nav.services">Leistungen</a></li>
+                        <li><a href="https://charwa.de" data-i18n="nav.home">Hauptseite</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 data-i18n="footer.legal">Rechtliches</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://charwa.de/impressum.html" data-i18n="footer.impressum">Impressum</a></li>
+                        <li><a href="https://charwa.de/privacy.html" data-i18n="footer.privacy">Datenschutz</a></li>
+                        <li><a href="https://charwa.de/terms.html" data-i18n="footer.terms">AGB</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p data-i18n="footer.copyright">© 2026 Charwa GmbH. Alle Rechte vorbehalten.</p>
+                <div class="footer-legal">
+                    <a href="https://charwa.de/impressum.html" data-i18n="footer.impressum">Impressum</a>
+                    <a href="https://charwa.de/privacy.html" data-i18n="footer.privacy">Datenschutz</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/api.js"></script>
+    <script>
+        // State
+        let currentPage = 1;
+        let totalPages = 1;
+        let totalResults = 0;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initLanguage();
+            loadBrands();
+            loadFiltersFromURL();
+            loadTrucks();
+        });
+
+        // Language functions
+        function initLanguage() {
+            const lang = localStorage.getItem('charwa_lang') || 'de';
+            setLanguage(lang, false);
+        }
+
+        function setLanguage(lang, reload = true) {
+            localStorage.setItem('charwa_lang', lang);
+            i18n.setLanguage(lang);
+            updateLangButtons(lang);
+            if (reload) {
+                i18n.updateDOM();
+            }
+        }
+
+        function updateLangButtons(lang) {
+            document.querySelectorAll('.lang-selector button, .mobile-lang-selector button').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === lang.toUpperCase()) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Mobile menu
+        function toggleMobileMenu() {
+            document.getElementById('mobileNav').classList.toggle('active');
+        }
+
+        // Filter drawer
+        function openFilterDrawer() {
+            document.getElementById('filterOverlay').classList.add('active');
+            document.getElementById('filterDrawer').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeFilterDrawer() {
+            document.getElementById('filterOverlay').classList.remove('active');
+            document.getElementById('filterDrawer').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Load brands for filter dropdown
+        async function loadBrands() {
+            try {
+                const brands = await api.getBrands();
+                const select = document.getElementById('filterBrand');
+                brands.forEach(brand => {
+                    const option = document.createElement('option');
+                    option.value = brand;
+                    option.textContent = brand;
+                    select.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Failed to load brands:', error);
+            }
+        }
+
+        // Get current filters
+        function getFilters() {
+            return {
+                brand: document.getElementById('filterBrand').value,
+                priceMin: document.getElementById('filterPriceMin').value,
+                priceMax: document.getElementById('filterPriceMax').value,
+                yearFrom: document.getElementById('filterYearFrom').value,
+                yearTo: document.getElementById('filterYearTo').value,
+                mileageMax: document.getElementById('filterMileageMax').value,
+                transmission: document.getElementById('filterTransmission').value,
+                emissionClass: document.getElementById('filterEmission').value,
+                sort: document.getElementById('sortSelect').value
+            };
+        }
+
+        // Apply filters
+        function applyFilters() {
+            currentPage = 1;
+            saveFiltersToURL();
+            loadTrucks();
+            closeFilterDrawer();
+        }
+
+        // Reset filters
+        function resetFilters() {
+            document.getElementById('filterBrand').value = '';
+            document.getElementById('filterPriceMin').value = '';
+            document.getElementById('filterPriceMax').value = '';
+            document.getElementById('filterYearFrom').value = '';
+            document.getElementById('filterYearTo').value = '';
+            document.getElementById('filterMileageMax').value = '';
+            document.getElementById('filterTransmission').value = '';
+            document.getElementById('filterEmission').value = '';
+            document.getElementById('sortSelect').value = 'newest';
+            applyFilters();
+        }
+
+        // URL state management
+        function saveFiltersToURL() {
+            const filters = getFilters();
+            const params = new URLSearchParams();
+
+            Object.entries(filters).forEach(([key, value]) => {
+                if (value) params.set(key, value);
+            });
+
+            if (currentPage > 1) params.set('page', currentPage);
+
+            const newURL = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
+            window.history.replaceState({}, '', newURL);
+        }
+
+        function loadFiltersFromURL() {
+            const params = new URLSearchParams(window.location.search);
+
+            if (params.get('brand')) document.getElementById('filterBrand').value = params.get('brand');
+            if (params.get('priceMin')) document.getElementById('filterPriceMin').value = params.get('priceMin');
+            if (params.get('priceMax')) document.getElementById('filterPriceMax').value = params.get('priceMax');
+            if (params.get('yearFrom')) document.getElementById('filterYearFrom').value = params.get('yearFrom');
+            if (params.get('yearTo')) document.getElementById('filterYearTo').value = params.get('yearTo');
+            if (params.get('mileageMax')) document.getElementById('filterMileageMax').value = params.get('mileageMax');
+            if (params.get('transmission')) document.getElementById('filterTransmission').value = params.get('transmission');
+            if (params.get('emissionClass')) document.getElementById('filterEmission').value = params.get('emissionClass');
+            if (params.get('sort')) document.getElementById('sortSelect').value = params.get('sort');
+            if (params.get('page')) currentPage = parseInt(params.get('page'));
+        }
+
+        // Load trucks
+        async function loadTrucks() {
+            const grid = document.getElementById('trucksGrid');
+            grid.innerHTML = `
+                <div class="loading-state" style="grid-column: 1 / -1;">
+                    <div class="loading-spinner"></div>
+                    <p>${i18n.t('status.loading')}</p>
+                </div>
+            `;
+
+            try {
+                const filters = getFilters();
+                const { data: trucks, count } = await api.getTrucks(filters, { page: currentPage });
+
+                totalResults = count || trucks.length;
+                totalPages = Math.ceil(totalResults / CONFIG.ITEMS_PER_PAGE);
+
+                if (trucks.length === 0) {
+                    grid.innerHTML = `
+                        <div class="empty-state" style="grid-column: 1 / -1;">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <h3>${i18n.t('status.no_results')}</h3>
+                        </div>
+                    `;
+                } else {
+                    grid.innerHTML = trucks.map(truck => createTruckCard(truck)).join('');
+                }
+
+                updateResultsCount();
+                updatePagination();
+
+            } catch (error) {
+                console.error('Failed to load trucks:', error);
+                grid.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1 / -1;">
+                        <h3>${i18n.t('status.error')}</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Create truck card HTML
+        function createTruckCard(truck) {
+            const title = i18n.getLocalizedField(truck, 'title') || `${truck.brand} ${truck.model}`;
+            const images = truck.images || [];
+            const mainImage = images[0] || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250"%3E%3Crect fill="%23151514" width="400" height="250"/%3E%3Ctext fill="%236b6b6b" x="200" y="125" text-anchor="middle" dy=".3em"%3ENo Image%3C/text%3E%3C/svg%3E';
+
+            const priceDisplay = truck.price
+                ? `€${truck.price.toLocaleString()}`
+                : i18n.t('truck.price_on_request');
+
+            let vatInfo = '';
+            if (truck.vat_status === 'margin') vatInfo = i18n.t('truck.vat_margin');
+            else if (truck.vat_status === 'included') vatInfo = i18n.t('truck.vat_included');
+            else if (truck.vat_status === 'excluded') vatInfo = i18n.t('truck.vat_excluded');
+
+            if (truck.price_type === 'negotiable') {
+                vatInfo += vatInfo ? ` • ${i18n.t('truck.negotiable')}` : i18n.t('truck.negotiable');
+            }
+
+            let badge = '';
+            if (truck.status === 'sold') {
+                badge = `<span class="truck-badge badge-sold">${i18n.t('truck.sold')}</span>`;
+            } else if (truck.status === 'reserved') {
+                badge = `<span class="truck-badge badge-reserved">${i18n.t('truck.reserved')}</span>`;
+            } else if (truck.featured) {
+                badge = `<span class="truck-badge badge-featured">${i18n.t('truck.featured')}</span>`;
+            }
+
+            return `
+                <a href="truck.html?slug=${truck.slug}" class="truck-card">
+                    <div class="truck-card-image">
+                        <img src="${mainImage}" alt="${title}" loading="lazy">
+                        ${badge}
+                        ${images.length > 1 ? `
+                            <span class="truck-image-count">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                                ${images.length}
+                            </span>
+                        ` : ''}
+                    </div>
+                    <div class="truck-card-body">
+                        <h3 class="truck-card-title">${title}</h3>
+                        <div class="truck-card-specs">
+                            <span>${truck.year}</span>
+                            ${truck.mileage ? `<span>${truck.mileage.toLocaleString()} ${i18n.t('truck.mileage')}</span>` : ''}
+                            ${truck.engine_power ? `<span>${truck.engine_power} ${i18n.t('truck.power')}</span>` : ''}
+                            ${truck.emission_class ? `<span>${truck.emission_class.toUpperCase()}</span>` : ''}
+                        </div>
+                        <div class="truck-card-footer">
+                            <div>
+                                <div class="truck-price">${priceDisplay}</div>
+                                ${vatInfo ? `<div class="truck-price-info">${vatInfo}</div>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            `;
+        }
+
+        // Update results count
+        function updateResultsCount() {
+            const start = (currentPage - 1) * CONFIG.ITEMS_PER_PAGE + 1;
+            const end = Math.min(currentPage * CONFIG.ITEMS_PER_PAGE, totalResults);
+            document.getElementById('resultsCount').innerHTML = `
+                ${i18n.t('pagination.showing')} ${start}-${end} ${i18n.t('pagination.of')} ${totalResults} ${i18n.t('pagination.results')}
+            `;
+        }
+
+        // Update pagination
+        function updatePagination() {
+            const pagination = document.getElementById('pagination');
+            const pageInfo = document.getElementById('pageInfo');
+            const prevBtn = document.getElementById('prevPage');
+            const nextBtn = document.getElementById('nextPage');
+
+            if (totalPages <= 1) {
+                pagination.style.display = 'none';
+                return;
+            }
+
+            pagination.style.display = 'flex';
+            pageInfo.textContent = `${currentPage} ${i18n.t('pagination.of')} ${totalPages}`;
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+        }
+
+        // Pagination controls
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                saveFiltersToURL();
+                loadTrucks();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                saveFiltersToURL();
+                loadTrucks();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

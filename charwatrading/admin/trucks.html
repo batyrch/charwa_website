@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truck Management - Charwa Trading Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #151514;
+            --bg-card: #151514;
+            --border-color: #252523;
+            --border-light: #1f1f1d;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #6b6b6b;
+            --accent: #22c55e;
+            --accent-hover: #16a34a;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left { display: flex; align-items: center; gap: 24px; }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .logo span { color: var(--accent); }
+
+        .header-nav { display: flex; gap: 8px; }
+        .header-nav a {
+            padding: 8px 16px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .header-nav a:hover { background: var(--bg-primary); color: var(--text-primary); }
+        .header-nav a.active { background: var(--accent); color: var(--bg-primary); }
+
+        .header-right { display: flex; align-items: center; gap: 16px; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            text-decoration: none;
+        }
+        .btn-primary { background: var(--accent); color: var(--bg-primary); }
+        .btn-primary:hover { background: var(--accent-hover); }
+        .btn-secondary { background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary); }
+        .btn-secondary:hover { background: var(--border-color); }
+        .btn-danger { background: var(--danger); color: white; }
+        .btn-danger:hover { background: #dc2626; }
+        .btn-sm { padding: 6px 12px; font-size: 13px; }
+        .btn svg { width: 18px; height: 18px; }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 24px; }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .page-title { font-size: 24px; color: var(--text-primary); }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .stat-label { font-size: 13px; color: var(--text-muted); margin-bottom: 4px; }
+        .stat-value { font-size: 28px; font-weight: 700; color: var(--text-primary); }
+        .stat-value.accent { color: var(--accent); }
+        .stat-value.warning { color: var(--warning); }
+        .stat-value.danger { color: var(--danger); }
+
+        .toolbar {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-family: inherit;
+        }
+        .search-input:focus { outline: none; border-color: var(--accent); }
+        .search-input::placeholder { color: var(--text-muted); }
+
+        .filter-select {
+            padding: 10px 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .table-container {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        th {
+            background: var(--bg-primary);
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        tr:hover { background: rgba(255, 255, 255, 0.02); }
+        tr:last-child td { border-bottom: none; }
+
+        .truck-cell { display: flex; align-items: center; gap: 12px; }
+        .truck-thumb {
+            width: 60px;
+            height: 40px;
+            border-radius: 4px;
+            object-fit: cover;
+            background: var(--bg-primary);
+        }
+        .truck-info h4 { color: var(--text-primary); font-size: 14px; margin-bottom: 2px; }
+        .truck-info p { font-size: 12px; color: var(--text-muted); }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .status-active { background: rgba(34, 197, 94, 0.15); color: var(--accent); }
+        .status-draft { background: rgba(107, 107, 107, 0.15); color: var(--text-muted); }
+        .status-sold { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+        .status-reserved { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+
+        .actions-cell { display: flex; gap: 8px; }
+
+        .icon-btn {
+            padding: 6px;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .icon-btn.danger:hover { border-color: var(--danger); color: var(--danger); }
+        .icon-btn svg { width: 16px; height: 16px; display: block; }
+
+        .empty-state {
+            text-align: center;
+            padding: 64px 24px;
+            color: var(--text-muted);
+        }
+        .empty-state svg { width: 48px; height: 48px; margin-bottom: 16px; opacity: 0.5; }
+
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .loading-overlay.active { display: flex; }
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 400px;
+            width: 90%;
+        }
+        .modal-title { font-size: 18px; color: var(--text-primary); margin-bottom: 12px; }
+        .modal-text { color: var(--text-secondary); margin-bottom: 24px; }
+        .modal-actions { display: flex; gap: 12px; justify-content: flex-end; }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px 20px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            z-index: 1001;
+            animation: slideIn 0.3s ease;
+        }
+        .toast.active { display: flex; }
+        .toast.success { border-color: var(--accent); }
+        .toast.error { border-color: var(--danger); }
+        .toast-icon { width: 20px; height: 20px; }
+        .toast.success .toast-icon { color: var(--accent); }
+        .toast.error .toast-icon { color: var(--danger); }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+        @media (max-width: 768px) {
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .header-nav { display: none; }
+            table { font-size: 13px; }
+            th, td { padding: 10px 12px; }
+            .truck-thumb { width: 50px; height: 35px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <a href="../index.html" class="logo">CHARWA <span>Trading</span></a>
+            <nav class="header-nav">
+                <a href="trucks.html" class="active">Trucks</a>
+            </nav>
+        </div>
+        <div class="header-right">
+            <a href="../index.html" class="btn btn-secondary btn-sm" target="_blank">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                </svg>
+                View Site
+            </a>
+            <button class="btn btn-secondary btn-sm" onclick="logout()">Logout</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="page-header">
+            <h1 class="page-title">Truck Management</h1>
+            <a href="truck-edit.html" class="btn btn-primary">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                </svg>
+                Add Truck
+            </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-label">Total Trucks</div>
+                <div class="stat-value" id="statTotal">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Active Listings</div>
+                <div class="stat-value accent" id="statActive">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Sold</div>
+                <div class="stat-value danger" id="statSold">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Drafts</div>
+                <div class="stat-value" id="statDrafts">-</div>
+            </div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search trucks..." oninput="filterTrucks()">
+            <select class="filter-select" id="statusFilter" onchange="filterTrucks()">
+                <option value="">All Status</option>
+                <option value="active">Active</option>
+                <option value="draft">Draft</option>
+                <option value="sold">Sold</option>
+                <option value="reserved">Reserved</option>
+            </select>
+            <select class="filter-select" id="brandFilter" onchange="filterTrucks()">
+                <option value="">All Brands</option>
+            </select>
+        </div>
+
+        <!-- Table -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Truck</th>
+                        <th>Price</th>
+                        <th>Year</th>
+                        <th>Mileage</th>
+                        <th>Status</th>
+                        <th>Views</th>
+                        <th>Created</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="trucksTable">
+                    <tr>
+                        <td colspan="8">
+                            <div class="empty-state">
+                                <div class="loading-spinner"></div>
+                                <p>Loading trucks...</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-content">
+            <h3 class="modal-title">Delete Truck</h3>
+            <p class="modal-text">Are you sure you want to delete this truck? This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+                <button class="btn btn-danger" onclick="confirmDelete()">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <svg class="toast-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+        </svg>
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/api.js"></script>
+    <script>
+        // Check auth
+        if (!sessionStorage.getItem('charwa_admin_auth')) {
+            window.location.href = 'index.html';
+        }
+
+        // State
+        let allTrucks = [];
+        let deleteId = null;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTrucks();
+        });
+
+        function logout() {
+            sessionStorage.removeItem('charwa_admin_auth');
+            sessionStorage.removeItem('charwa_admin_time');
+            window.location.href = 'index.html';
+        }
+
+        async function loadTrucks() {
+            try {
+                const { data: trucks } = await api.getAllTrucks();
+                allTrucks = trucks || [];
+                updateStats();
+                populateBrandFilter();
+                renderTrucks();
+            } catch (error) {
+                console.error('Failed to load trucks:', error);
+                showToast('Failed to load trucks', 'error');
+            }
+        }
+
+        function updateStats() {
+            document.getElementById('statTotal').textContent = allTrucks.length;
+            document.getElementById('statActive').textContent = allTrucks.filter(t => t.status === 'active').length;
+            document.getElementById('statSold').textContent = allTrucks.filter(t => t.status === 'sold').length;
+            document.getElementById('statDrafts').textContent = allTrucks.filter(t => t.status === 'draft').length;
+        }
+
+        function populateBrandFilter() {
+            const brands = [...new Set(allTrucks.map(t => t.brand))].sort();
+            const select = document.getElementById('brandFilter');
+            select.innerHTML = '<option value="">All Brands</option>' +
+                brands.map(b => `<option value="${b}">${b}</option>`).join('');
+        }
+
+        function filterTrucks() {
+            renderTrucks();
+        }
+
+        function renderTrucks() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            const brandFilter = document.getElementById('brandFilter').value;
+
+            let filtered = allTrucks;
+
+            if (search) {
+                filtered = filtered.filter(t =>
+                    t.brand?.toLowerCase().includes(search) ||
+                    t.model?.toLowerCase().includes(search) ||
+                    t.title_de?.toLowerCase().includes(search) ||
+                    t.title_en?.toLowerCase().includes(search)
+                );
+            }
+
+            if (statusFilter) {
+                filtered = filtered.filter(t => t.status === statusFilter);
+            }
+
+            if (brandFilter) {
+                filtered = filtered.filter(t => t.brand === brandFilter);
+            }
+
+            const tbody = document.getElementById('trucksTable');
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8">
+                            <div class="empty-state">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <p>No trucks found</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(truck => {
+                const title = truck.title_de || `${truck.brand} ${truck.model}`;
+                const image = truck.images?.[0] || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"%3E%3Crect fill="%23151514" width="60" height="40"/%3E%3C/svg%3E';
+                const price = truck.price ? `€${truck.price.toLocaleString()}` : '-';
+                const mileage = truck.mileage ? `${truck.mileage.toLocaleString()} km` : '-';
+                const createdDate = truck.created_at ? new Date(truck.created_at).toLocaleDateString() : '-';
+
+                return `
+                    <tr>
+                        <td>
+                            <div class="truck-cell">
+                                <img src="${image}" alt="${title}" class="truck-thumb">
+                                <div class="truck-info">
+                                    <h4>${title}</h4>
+                                    <p>${truck.brand} ${truck.model}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>${price}</td>
+                        <td>${truck.year || '-'}</td>
+                        <td>${mileage}</td>
+                        <td>
+                            <span class="status-badge status-${truck.status}">${truck.status}</span>
+                        </td>
+                        <td>${truck.view_count || 0}</td>
+                        <td>${createdDate}</td>
+                        <td>
+                            <div class="actions-cell">
+                                <a href="../truck.html?slug=${truck.slug}" target="_blank" class="icon-btn" title="View">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                    </svg>
+                                </a>
+                                <a href="truck-edit.html?id=${truck.id}" class="icon-btn" title="Edit">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                    </svg>
+                                </a>
+                                <button class="icon-btn" title="Toggle Status" onclick="toggleStatus('${truck.id}', '${truck.status}')">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                                    </svg>
+                                </button>
+                                <button class="icon-btn danger" title="Delete" onclick="openDeleteModal('${truck.id}')">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        async function toggleStatus(id, currentStatus) {
+            const statusOrder = ['draft', 'active', 'reserved', 'sold'];
+            const currentIndex = statusOrder.indexOf(currentStatus);
+            const newStatus = statusOrder[(currentIndex + 1) % statusOrder.length];
+
+            showLoading();
+            try {
+                await api.updateTruckStatus(id, newStatus);
+                await loadTrucks();
+                showToast(`Status changed to ${newStatus}`, 'success');
+            } catch (error) {
+                showToast('Failed to update status', 'error');
+            }
+            hideLoading();
+        }
+
+        function openDeleteModal(id) {
+            deleteId = id;
+            document.getElementById('deleteModal').classList.add('active');
+        }
+
+        function closeDeleteModal() {
+            deleteId = null;
+            document.getElementById('deleteModal').classList.remove('active');
+        }
+
+        async function confirmDelete() {
+            if (!deleteId) return;
+
+            closeDeleteModal();
+            showLoading();
+
+            try {
+                await api.deleteTruck(deleteId);
+                await loadTrucks();
+                showToast('Truck deleted successfully', 'success');
+            } catch (error) {
+                showToast('Failed to delete truck', 'error');
+            }
+
+            hideLoading();
+        }
+
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('active');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('active');
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+
+            toast.className = `toast active ${type}`;
+            toastMessage.textContent = message;
+
+            setTimeout(() => {
+                toast.classList.remove('active');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

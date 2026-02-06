@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truck Details - Charwa Trading</title>
+    <meta name="description" content="Gebrauchter LKW zum Verkauf bei Charwa Trading">
+
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #151514;
+            --bg-card: #151514;
+            --border-color: #252523;
+            --border-light: #1f1f1d;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #6b6b6b;
+            --accent: #22c55e;
+            --accent-hover: #16a34a;
+            --accent-glow: rgba(34, 197, 94, 0.25);
+            --whatsapp: #25d366;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-family);
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            background: var(--bg-primary);
+        }
+
+        h1, h2, h3, h4 { color: var(--text-primary); letter-spacing: -0.02em; }
+        a { color: inherit; text-decoration: none; }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 16px; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary { background: var(--accent); color: var(--bg-primary); }
+        .btn-primary:hover { background: var(--accent-hover); }
+        .btn-secondary { background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary); }
+        .btn-secondary:hover { background: var(--border-color); }
+        .btn-whatsapp { background: var(--whatsapp); color: var(--bg-primary); }
+        .btn-whatsapp:hover { background: #20bd5a; }
+        .btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-primary); }
+        .btn-outline:hover { background: var(--bg-secondary); }
+        .btn svg { width: 20px; height: 20px; }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+        .logo { font-size: 24px; font-weight: 700; color: var(--text-primary); }
+        .logo span { color: var(--accent); }
+        .nav { display: flex; align-items: center; gap: 32px; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: var(--text-secondary); font-size: 14px; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .lang-selector { display: flex; gap: 4px; }
+        .lang-selector button { background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 4px 8px; font-size: 13px; font-weight: 500; }
+        .lang-selector button:hover { color: var(--text-secondary); }
+        .lang-selector button.active { color: var(--accent); }
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .mobile-menu-btn svg { width: 24px; height: 24px; color: var(--text-secondary); }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 16px 0;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .breadcrumb a { color: var(--text-secondary); transition: color 0.2s; }
+        .breadcrumb a:hover { color: var(--accent); }
+        .breadcrumb span { margin: 0 8px; }
+
+        /* Main Layout */
+        .detail-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 32px;
+            padding-bottom: 64px;
+        }
+
+        /* Gallery */
+        .gallery { margin-bottom: 32px; }
+        .gallery-main {
+            position: relative;
+            aspect-ratio: 16/10;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+        .gallery-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            cursor: zoom-in;
+        }
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        .gallery-nav:hover { background: rgba(0, 0, 0, 0.9); }
+        .gallery-nav.prev { left: 16px; }
+        .gallery-nav.next { right: 16px; }
+        .gallery-nav svg { width: 24px; height: 24px; }
+
+        .gallery-thumbs {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+        .gallery-thumb {
+            flex-shrink: 0;
+            width: 80px;
+            height: 60px;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+        .gallery-thumb.active { border-color: var(--accent); }
+        .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+        .gallery-counter {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        /* Video Button */
+        .video-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+        }
+
+        /* Truck Info */
+        .truck-header { margin-bottom: 32px; }
+        .truck-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .status-sold { background: var(--danger); color: white; }
+        .status-reserved { background: var(--warning); color: var(--bg-primary); }
+        .status-featured { background: var(--accent); color: var(--bg-primary); }
+
+        .truck-title { font-size: 28px; margin-bottom: 8px; }
+        .truck-subtitle { font-size: 16px; color: var(--text-muted); }
+
+        /* Tabs */
+        .tabs { margin-bottom: 32px; }
+        .tabs-nav {
+            display: flex;
+            gap: 4px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 24px;
+        }
+        .tab-btn {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s;
+        }
+        .tab-btn:hover { color: var(--text-secondary); }
+        .tab-btn.active { color: var(--text-primary); }
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent);
+        }
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+
+        /* Description */
+        .description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
+
+        /* Specs Table */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--border-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: var(--bg-secondary);
+        }
+        .spec-label { color: var(--text-muted); font-size: 14px; }
+        .spec-value { color: var(--text-primary); font-size: 14px; font-weight: 500; }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .feature-item svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; }
+
+        /* Sidebar */
+        .sidebar { position: sticky; top: 104px; }
+        .price-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+        .price-main { font-size: 32px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+        .price-info { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+        .price-card .btn { width: 100%; margin-bottom: 8px; }
+        .price-card .btn:last-child { margin-bottom: 0; }
+
+        .contact-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+        .contact-card h4 { margin-bottom: 16px; font-size: 16px; }
+        .contact-info { margin-bottom: 16px; }
+        .contact-info p { font-size: 14px; color: var(--text-secondary); margin-bottom: 4px; }
+        .contact-card .btn { width: 100%; margin-bottom: 8px; }
+
+        .share-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        .share-actions { display: flex; gap: 8px; }
+        .share-actions .btn { flex: 1; }
+
+        /* Related Trucks */
+        .related-section {
+            margin-top: 64px;
+            padding-top: 48px;
+            border-top: 1px solid var(--border-color);
+        }
+        .related-section h2 { margin-bottom: 24px; font-size: 24px; }
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .related-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card-image { aspect-ratio: 16/10; background: var(--bg-primary); overflow: hidden; }
+        .related-card-image img { width: 100%; height: 100%; object-fit: cover; }
+        .related-card-body { padding: 14px; }
+        .related-card-title { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+        .related-card-specs { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+        .related-card-price { font-size: 16px; font-weight: 700; color: var(--accent); }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox-content { max-width: 90vw; max-height: 90vh; position: relative; }
+        .lightbox-content img { max-width: 100%; max-height: 90vh; object-fit: contain; }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-nav:hover { background: rgba(255, 255, 255, 0.2); }
+        .lightbox-nav.prev { left: 20px; }
+        .lightbox-nav.next { right: 20px; }
+        .lightbox-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 14px;
+        }
+
+        /* Video Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        .video-modal.active { display: flex; }
+        .video-modal-content { width: 90vw; max-width: 900px; aspect-ratio: 16/9; }
+        .video-modal-content iframe { width: 100%; height: 100%; border: none; }
+        .video-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* Loading */
+        .loading-state { text-align: center; padding: 100px 24px; color: var(--text-muted); }
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Footer */
+        .footer { background: var(--bg-secondary); border-top: 1px solid var(--border-color); padding: 32px 0; margin-top: 64px; }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--text-muted); }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { color: var(--text-muted); transition: color 0.2s; }
+        .footer-links a:hover { color: var(--accent); }
+
+        /* Mobile */
+        .mobile-nav { display: none; position: fixed; top: 72px; left: 0; right: 0; background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 16px; z-index: 999; }
+        .mobile-nav.active { display: block; }
+        .mobile-nav-links { list-style: none; margin-bottom: 16px; }
+        .mobile-nav-links li { border-bottom: 1px solid var(--border-light); }
+        .mobile-nav-links a { display: block; padding: 12px 0; color: var(--text-secondary); font-weight: 500; }
+        .mobile-lang-selector { display: flex; justify-content: center; gap: 16px; }
+        .mobile-lang-selector button { background: none; border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 4px; color: var(--text-muted); cursor: pointer; font-weight: 500; }
+        .mobile-lang-selector button.active { background: var(--accent); color: var(--bg-primary); border-color: var(--accent); }
+
+        @media (max-width: 1200px) {
+            .related-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 968px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .detail-layout { grid-template-columns: 1fr; }
+            .sidebar { position: static; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 640px) {
+            .truck-title { font-size: 22px; }
+            .price-main { font-size: 26px; }
+            .specs-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .related-grid { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">CHARWA <span>Trading</span></a>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" data-i18n="nav.trucks">Fahrzeuge</a></li>
+                    <li><a href="https://charwa.de/#about" data-i18n="nav.about">Über uns</a></li>
+                    <li><a href="https://charwa.de/#contact" data-i18n="nav.contact">Kontakt</a></li>
+                </ul>
+                <div class="lang-selector">
+                    <button onclick="setLanguage('de')" class="active">DE</button>
+                    <button onclick="setLanguage('en')">EN</button>
+                    <button onclick="setLanguage('tr')">TR</button>
+                </div>
+            </nav>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+        <nav class="mobile-nav" id="mobileNav">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html" onclick="toggleMobileMenu()" data-i18n="nav.trucks">Fahrzeuge</a></li>
+                <li><a href="https://charwa.de/#about" data-i18n="nav.about">Über uns</a></li>
+                <li><a href="https://charwa.de/#contact" data-i18n="nav.contact">Kontakt</a></li>
+            </ul>
+            <div class="mobile-lang-selector">
+                <button onclick="setLanguage('de')" class="active">DE</button>
+                <button onclick="setLanguage('en')">EN</button>
+                <button onclick="setLanguage('tr')">TR</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="index.html" data-i18n="nav.trucks">Fahrzeuge</a>
+            <span>›</span>
+            <span id="breadcrumbTitle">...</span>
+        </nav>
+
+        <!-- Content -->
+        <div id="truckContent">
+            <div class="loading-state">
+                <div class="loading-spinner"></div>
+                <p data-i18n="status.loading">Laden...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <button class="lightbox-close" onclick="closeLightbox()">
+            <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+        <button class="lightbox-nav prev" onclick="lightboxPrev(event)">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+        </button>
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="">
+        </div>
+        <button class="lightbox-nav next" onclick="lightboxNext(event)">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+        </button>
+        <div class="lightbox-counter" id="lightboxCounter"></div>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal" onclick="closeVideoModal(event)">
+        <button class="video-modal-close" onclick="closeVideoModal()">
+            <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+        <div class="video-modal-content">
+            <iframe id="videoFrame" src="" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p data-i18n="footer.copyright">© 2026 Charwa GmbH</p>
+            <div class="footer-links">
+                <a href="https://charwa.de/impressum.html" data-i18n="footer.impressum">Impressum</a>
+                <a href="https://charwa.de/privacy.html" data-i18n="footer.privacy">Datenschutz</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/api.js"></script>
+    <script>
+        // State
+        let truck = null;
+        let currentImageIndex = 0;
+        let images = [];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initLanguage();
+            loadTruck();
+        });
+
+        function initLanguage() {
+            const lang = localStorage.getItem('charwa_lang') || 'de';
+            setLanguage(lang, false);
+        }
+
+        function setLanguage(lang, reload = true) {
+            localStorage.setItem('charwa_lang', lang);
+            i18n.setLanguage(lang);
+            updateLangButtons(lang);
+            if (reload && truck) {
+                renderTruck();
+            }
+        }
+
+        function updateLangButtons(lang) {
+            document.querySelectorAll('.lang-selector button, .mobile-lang-selector button').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === lang.toUpperCase()) btn.classList.add('active');
+            });
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobileNav').classList.toggle('active');
+        }
+
+        // Load truck data
+        async function loadTruck() {
+            const params = new URLSearchParams(window.location.search);
+            const slug = params.get('slug');
+
+            if (!slug) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            try {
+                truck = await api.getTruckBySlug(slug);
+
+                if (!truck) {
+                    document.getElementById('truckContent').innerHTML = `
+                        <div class="loading-state">
+                            <h2>${i18n.t('status.error')}</h2>
+                            <p>Truck not found</p>
+                            <a href="index.html" class="btn btn-primary" style="margin-top: 20px;">${i18n.t('detail.back')}</a>
+                        </div>
+                    `;
+                    return;
+                }
+
+                images = truck.images || [];
+                renderTruck();
+
+                // Update page title
+                const title = i18n.getLocalizedField(truck, 'title') || `${truck.brand} ${truck.model}`;
+                document.title = `${title} - Charwa Trading`;
+
+                // Increment view count
+                api.incrementViewCount(truck.id);
+
+                // Load related trucks
+                loadRelatedTrucks();
+
+            } catch (error) {
+                console.error('Failed to load truck:', error);
+                document.getElementById('truckContent').innerHTML = `
+                    <div class="loading-state">
+                        <h2>${i18n.t('status.error')}</h2>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function renderTruck() {
+            const title = i18n.getLocalizedField(truck, 'title') || `${truck.brand} ${truck.model}`;
+            const description = i18n.getLocalizedField(truck, 'description') || '';
+
+            document.getElementById('breadcrumbTitle').textContent = title;
+
+            const priceDisplay = truck.price
+                ? `€${truck.price.toLocaleString()}`
+                : i18n.t('truck.price_on_request');
+
+            let vatInfo = '';
+            if (truck.vat_status === 'margin') vatInfo = i18n.t('truck.vat_margin');
+            else if (truck.vat_status === 'included') vatInfo = i18n.t('truck.vat_included');
+            else if (truck.vat_status === 'excluded') vatInfo = i18n.t('truck.vat_excluded');
+            if (truck.price_type === 'negotiable') vatInfo += vatInfo ? ` • ${i18n.t('truck.negotiable')}` : i18n.t('truck.negotiable');
+
+            let statusBadge = '';
+            if (truck.status === 'sold') statusBadge = `<span class="truck-status status-sold">${i18n.t('truck.sold')}</span>`;
+            else if (truck.status === 'reserved') statusBadge = `<span class="truck-status status-reserved">${i18n.t('truck.reserved')}</span>`;
+            else if (truck.featured) statusBadge = `<span class="truck-status status-featured">${i18n.t('truck.featured')}</span>`;
+
+            const whatsappMessage = encodeURIComponent(`${i18n.t('whatsapp.inquiry')}${title} (${window.location.href})`);
+
+            const mainImage = images[0] || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500"%3E%3Crect fill="%23151514" width="800" height="500"/%3E%3Ctext fill="%236b6b6b" x="400" y="250" text-anchor="middle" dy=".3em" font-size="24"%3ENo Image%3C/text%3E%3C/svg%3E';
+
+            document.getElementById('truckContent').innerHTML = `
+                <div class="detail-layout">
+                    <div class="main-content">
+                        <!-- Gallery -->
+                        <div class="gallery">
+                            <div class="gallery-main">
+                                <img src="${mainImage}" alt="${title}" id="galleryMain" onclick="openLightbox()">
+                                ${images.length > 1 ? `
+                                    <button class="gallery-nav prev" onclick="galleryPrev()">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                        </svg>
+                                    </button>
+                                    <button class="gallery-nav next" onclick="galleryNext()">
+                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                        </svg>
+                                    </button>
+                                    <span class="gallery-counter" id="galleryCounter">1 / ${images.length}</span>
+                                ` : ''}
+                                ${truck.video_url ? `
+                                    <button class="btn btn-secondary video-btn" onclick="openVideoModal()">
+                                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z"/>
+                                        </svg>
+                                        ${i18n.t('detail.video')}
+                                    </button>
+                                ` : ''}
+                            </div>
+                            ${images.length > 1 ? `
+                                <div class="gallery-thumbs">
+                                    ${images.map((img, idx) => `
+                                        <div class="gallery-thumb ${idx === 0 ? 'active' : ''}" onclick="setGalleryImage(${idx})">
+                                            <img src="${img}" alt="Thumbnail ${idx + 1}">
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+                        </div>
+
+                        <!-- Truck Header -->
+                        <div class="truck-header">
+                            ${statusBadge}
+                            <h1 class="truck-title">${title}</h1>
+                            <p class="truck-subtitle">${truck.year} • ${truck.mileage ? truck.mileage.toLocaleString() + ' km' : ''} • ${truck.location_city || ''}</p>
+                        </div>
+
+                        <!-- Tabs -->
+                        <div class="tabs">
+                            <div class="tabs-nav">
+                                <button class="tab-btn active" onclick="switchTab('description')" data-i18n="detail.description">Beschreibung</button>
+                                <button class="tab-btn" onclick="switchTab('specs')" data-i18n="detail.specs">Technische Daten</button>
+                                <button class="tab-btn" onclick="switchTab('features')" data-i18n="detail.features">Ausstattung</button>
+                            </div>
+
+                            <div class="tab-panel active" id="tab-description">
+                                <div class="description">${description || 'Keine Beschreibung verfügbar.'}</div>
+                            </div>
+
+                            <div class="tab-panel" id="tab-specs">
+                                <div class="specs-grid">
+                                    ${renderSpec('spec.brand', truck.brand)}
+                                    ${renderSpec('spec.model', truck.model)}
+                                    ${renderSpec('spec.year', truck.year)}
+                                    ${renderSpec('spec.mileage', truck.mileage ? truck.mileage.toLocaleString() + ' km' : '-')}
+                                    ${renderSpec('spec.power', truck.engine_power ? truck.engine_power + ' PS' : '-')}
+                                    ${renderSpec('spec.emission', truck.emission_class ? truck.emission_class.toUpperCase() : '-')}
+                                    ${renderSpec('spec.transmission', truck.transmission ? (truck.transmission === 'automatic' ? i18n.t('filter.transmission.automatic') : i18n.t('filter.transmission.manual')) : '-')}
+                                    ${renderSpec('spec.cab', truck.cab_type || '-')}
+                                    ${renderSpec('spec.axles', truck.axle_config || '-')}
+                                    ${renderSpec('spec.fuel_tank', truck.fuel_tank_capacity ? truck.fuel_tank_capacity + ' L' : '-')}
+                                    ${renderSpec('spec.condition', truck.condition || '-')}
+                                </div>
+                            </div>
+
+                            <div class="tab-panel" id="tab-features">
+                                <div class="features-grid">
+                                    ${renderFeatures(truck.features || [])}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <aside class="sidebar">
+                        <div class="price-card">
+                            <div class="price-main">${priceDisplay}</div>
+                            <div class="price-info">${vatInfo}</div>
+                            <a href="https://wa.me/${CONFIG.CONTACT.WHATSAPP}?text=${whatsappMessage}" class="btn btn-whatsapp" target="_blank">
+                                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                ${i18n.t('detail.whatsapp')}
+                            </a>
+                            <a href="tel:${CONFIG.CONTACT.PHONE}" class="btn btn-primary">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                                ${i18n.t('detail.call')}
+                            </a>
+                            <a href="mailto:${CONFIG.CONTACT.EMAIL}?subject=${encodeURIComponent(title)}" class="btn btn-outline">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                                ${i18n.t('detail.email')}
+                            </a>
+                        </div>
+
+                        <div class="contact-card">
+                            <h4 data-i18n="detail.contact">Kontakt</h4>
+                            <div class="contact-info">
+                                <p><strong>${CONFIG.CONTACT.COMPANY}</strong></p>
+                                <p>${CONFIG.CONTACT.ADDRESS}</p>
+                            </div>
+                            <p style="font-size: 13px; color: var(--text-muted);" data-i18n="contact.hours">Geschäftszeiten: Mo-Fr 09:00-18:00 MEZ</p>
+                        </div>
+
+                        <div class="share-card">
+                            <div class="share-actions">
+                                <button class="btn btn-secondary" onclick="shareLink()">
+                                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                                    </svg>
+                                    ${i18n.t('detail.share')}
+                                </button>
+                                <button class="btn btn-secondary" onclick="window.print()">
+                                    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+                                    </svg>
+                                    ${i18n.t('detail.print')}
+                                </button>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+
+                <!-- Related Trucks -->
+                <section class="related-section" id="relatedSection" style="display: none;">
+                    <h2 data-i18n="detail.related">Ähnliche Fahrzeuge</h2>
+                    <div class="related-grid" id="relatedGrid"></div>
+                </section>
+            `;
+
+            i18n.updateDOM();
+        }
+
+        function renderSpec(labelKey, value) {
+            return `
+                <div class="spec-item">
+                    <span class="spec-label" data-i18n="${labelKey}">${i18n.t(labelKey)}</span>
+                    <span class="spec-value">${value || '-'}</span>
+                </div>
+            `;
+        }
+
+        function renderFeatures(features) {
+            if (!features.length) return '<p style="color: var(--text-muted);">Keine Ausstattungsmerkmale angegeben.</p>';
+
+            return features.map(feature => `
+                <div class="feature-item">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    <span data-i18n="feature.${feature}">${i18n.t('feature.' + feature) || feature}</span>
+                </div>
+            `).join('');
+        }
+
+        // Gallery functions
+        function setGalleryImage(index) {
+            currentImageIndex = index;
+            document.getElementById('galleryMain').src = images[index];
+            document.getElementById('galleryCounter').textContent = `${index + 1} / ${images.length}`;
+
+            document.querySelectorAll('.gallery-thumb').forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === index);
+            });
+        }
+
+        function galleryNext() {
+            if (currentImageIndex < images.length - 1) {
+                setGalleryImage(currentImageIndex + 1);
+            } else {
+                setGalleryImage(0);
+            }
+        }
+
+        function galleryPrev() {
+            if (currentImageIndex > 0) {
+                setGalleryImage(currentImageIndex - 1);
+            } else {
+                setGalleryImage(images.length - 1);
+            }
+        }
+
+        // Lightbox
+        function openLightbox() {
+            document.getElementById('lightbox').classList.add('active');
+            document.getElementById('lightboxImage').src = images[currentImageIndex];
+            updateLightboxCounter();
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(event) {
+            if (event && event.target !== event.currentTarget && !event.target.closest('.lightbox-close')) return;
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function lightboxNext(event) {
+            event.stopPropagation();
+            if (currentImageIndex < images.length - 1) currentImageIndex++;
+            else currentImageIndex = 0;
+            document.getElementById('lightboxImage').src = images[currentImageIndex];
+            updateLightboxCounter();
+        }
+
+        function lightboxPrev(event) {
+            event.stopPropagation();
+            if (currentImageIndex > 0) currentImageIndex--;
+            else currentImageIndex = images.length - 1;
+            document.getElementById('lightboxImage').src = images[currentImageIndex];
+            updateLightboxCounter();
+        }
+
+        function updateLightboxCounter() {
+            document.getElementById('lightboxCounter').textContent = `${currentImageIndex + 1} / ${images.length}`;
+        }
+
+        // Video modal
+        function openVideoModal() {
+            const videoUrl = truck.video_url;
+            let embedUrl = '';
+
+            if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
+                const videoId = videoUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/)?.[1];
+                if (videoId) embedUrl = `https://www.youtube.com/embed/${videoId}`;
+            } else if (videoUrl.includes('vimeo.com')) {
+                const videoId = videoUrl.match(/vimeo\.com\/(\d+)/)?.[1];
+                if (videoId) embedUrl = `https://player.vimeo.com/video/${videoId}`;
+            }
+
+            if (embedUrl) {
+                document.getElementById('videoFrame').src = embedUrl;
+                document.getElementById('videoModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeVideoModal(event) {
+            if (event && event.target !== event.currentTarget && !event.target.closest('.video-modal-close')) return;
+            document.getElementById('videoModal').classList.remove('active');
+            document.getElementById('videoFrame').src = '';
+            document.body.style.overflow = '';
+        }
+
+        // Tabs
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+
+            document.querySelector(`[onclick="switchTab('${tabName}')"]`).classList.add('active');
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+        }
+
+        // Share
+        async function shareLink() {
+            const title = i18n.getLocalizedField(truck, 'title') || `${truck.brand} ${truck.model}`;
+            const url = window.location.href;
+
+            if (navigator.share) {
+                try {
+                    await navigator.share({ title, url });
+                } catch (err) {
+                    copyToClipboard(url);
+                }
+            } else {
+                copyToClipboard(url);
+            }
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Link copied to clipboard!');
+            });
+        }
+
+        // Related trucks
+        async function loadRelatedTrucks() {
+            try {
+                const related = await api.getRelatedTrucks(truck, 4);
+
+                if (related.length > 0) {
+                    document.getElementById('relatedSection').style.display = 'block';
+                    document.getElementById('relatedGrid').innerHTML = related.map(t => {
+                        const title = i18n.getLocalizedField(t, 'title') || `${t.brand} ${t.model}`;
+                        const image = t.images?.[0] || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250"%3E%3Crect fill="%23151514" width="400" height="250"/%3E%3C/svg%3E';
+                        const price = t.price ? `€${t.price.toLocaleString()}` : i18n.t('truck.price_on_request');
+
+                        return `
+                            <a href="truck.html?slug=${t.slug}" class="related-card">
+                                <div class="related-card-image">
+                                    <img src="${image}" alt="${title}" loading="lazy">
+                                </div>
+                                <div class="related-card-body">
+                                    <h3 class="related-card-title">${title}</h3>
+                                    <p class="related-card-specs">${t.year} • ${t.mileage ? t.mileage.toLocaleString() + ' km' : ''}</p>
+                                    <p class="related-card-price">${price}</p>
+                                </div>
+                            </a>
+                        `;
+                    }).join('');
+                }
+            } catch (error) {
+                console.error('Failed to load related trucks:', error);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('lightbox').classList.contains('active')) {
+                if (e.key === 'ArrowRight') lightboxNext(e);
+                else if (e.key === 'ArrowLeft') lightboxPrev(e);
+                else if (e.key === 'Escape') closeLightbox();
+            }
+            if (document.getElementById('videoModal').classList.contains('active') && e.key === 'Escape') {
+                closeVideoModal();
+            }
+        });
+    </script>
+</body>
+</html>
