@@ -5,6 +5,12 @@ class TrucksAPI {
         this.supabaseUrl = CONFIG.SUPABASE_URL;
         this.supabaseKey = CONFIG.SUPABASE_ANON_KEY;
         this.baseUrl = `${this.supabaseUrl}/rest/v1`;
+        this.demoMode = this.supabaseUrl.includes('YOUR_PROJECT');
+    }
+
+    // Check if running in demo mode
+    isDemoMode() {
+        return this.demoMode;
     }
 
     // Helper for fetch requests
@@ -41,6 +47,11 @@ class TrucksAPI {
 
     // Get all trucks with filters
     async getTrucks(filters = {}, options = {}) {
+        // Demo mode - use local data
+        if (this.demoMode) {
+            return this.getDemoTrucks(filters, options);
+        }
+
         const params = new URLSearchParams();
 
         // Only show active trucks on public pages
@@ -105,6 +116,9 @@ class TrucksAPI {
 
     // Get single truck by slug
     async getTruckBySlug(slug) {
+        if (this.demoMode) {
+            return this.getDemoTruckBySlug(slug);
+        }
         const endpoint = `/trucks?slug=eq.${encodeURIComponent(slug)}`;
         const { data } = await this.request(endpoint);
         return data[0] || null;
@@ -112,6 +126,9 @@ class TrucksAPI {
 
     // Get single truck by ID
     async getTruckById(id) {
+        if (this.demoMode) {
+            return this.getDemoTruckById(id);
+        }
         const endpoint = `/trucks?id=eq.${encodeURIComponent(id)}`;
         const { data } = await this.request(endpoint);
         return data[0] || null;
@@ -119,6 +136,9 @@ class TrucksAPI {
 
     // Get related trucks (same brand, similar price range)
     async getRelatedTrucks(truck, limit = 4) {
+        if (this.demoMode) {
+            return this.getDemoRelatedTrucks(truck, limit);
+        }
         const priceRange = truck.price * 0.3; // 30% price range
         const params = new URLSearchParams({
             'status': 'eq.active',
@@ -135,6 +155,9 @@ class TrucksAPI {
 
     // Get unique brands for filter dropdown
     async getBrands() {
+        if (this.demoMode) {
+            return this.getDemoBrands();
+        }
         const endpoint = '/trucks?select=brand&status=eq.active';
         const { data } = await this.request(endpoint);
         const brands = [...new Set(data.map(t => t.brand))].sort();
@@ -164,11 +187,17 @@ class TrucksAPI {
 
     // Admin: Get all trucks including drafts
     async getAllTrucks(options = {}) {
+        if (this.demoMode) {
+            return this.getDemoTrucks({}, { ...options, includeAll: true });
+        }
         return this.getTrucks({}, { ...options, includeAll: true });
     }
 
     // Admin: Create truck
     async createTruck(truckData) {
+        if (this.demoMode) {
+            return this.demoCreateTruck(truckData);
+        }
         const slug = this.generateSlug(truckData);
         const endpoint = '/trucks';
 
@@ -185,6 +214,9 @@ class TrucksAPI {
 
     // Admin: Update truck
     async updateTruck(id, truckData) {
+        if (this.demoMode) {
+            return this.demoUpdateTruck(id, truckData);
+        }
         const endpoint = `/trucks?id=eq.${id}`;
 
         return this.request(endpoint, {
@@ -198,6 +230,9 @@ class TrucksAPI {
 
     // Admin: Delete truck
     async deleteTruck(id) {
+        if (this.demoMode) {
+            return this.demoDeleteTruck(id);
+        }
         const endpoint = `/trucks?id=eq.${id}`;
 
         return this.request(endpoint, {
@@ -208,6 +243,43 @@ class TrucksAPI {
     // Admin: Update truck status
     async updateTruckStatus(id, status) {
         return this.updateTruck(id, { status });
+    }
+
+    // Demo: Create truck (in-memory)
+    demoCreateTruck(truckData) {
+        const newTruck = {
+            ...truckData,
+            id: Date.now().toString(),
+            slug: this.generateSlug(truckData),
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+            view_count: 0
+        };
+        DEMO_TRUCKS.unshift(newTruck);
+        console.log('Demo: Created truck', newTruck);
+        return { data: [newTruck] };
+    }
+
+    // Demo: Update truck (in-memory)
+    demoUpdateTruck(id, truckData) {
+        const index = DEMO_TRUCKS.findIndex(t => t.id === id);
+        if (index !== -1) {
+            DEMO_TRUCKS[index] = { ...DEMO_TRUCKS[index], ...truckData, updated_at: new Date().toISOString() };
+            console.log('Demo: Updated truck', DEMO_TRUCKS[index]);
+            return { data: [DEMO_TRUCKS[index]] };
+        }
+        throw new Error('Truck not found');
+    }
+
+    // Demo: Delete truck (in-memory)
+    demoDeleteTruck(id) {
+        const index = DEMO_TRUCKS.findIndex(t => t.id === id);
+        if (index !== -1) {
+            const deleted = DEMO_TRUCKS.splice(index, 1);
+            console.log('Demo: Deleted truck', deleted[0]);
+            return { data: deleted };
+        }
+        throw new Error('Truck not found');
     }
 
     // Generate URL-friendly slug
@@ -227,6 +299,89 @@ class TrucksAPI {
         // Add random suffix for uniqueness
         const suffix = Math.random().toString(36).substring(2, 8);
         return `${slug}-${suffix}`;
+    }
+
+    // ==================
+    // Demo Mode Methods
+    // ==================
+
+    getDemoTrucks(filters = {}, options = {}) {
+        let trucks = [...DEMO_TRUCKS];
+
+        // Filter by status
+        if (!options.includeAll) {
+            trucks = trucks.filter(t => t.status === 'active');
+        }
+
+        // Apply filters
+        if (filters.brand) {
+            trucks = trucks.filter(t => t.brand === filters.brand);
+        }
+        if (filters.priceMin) {
+            trucks = trucks.filter(t => t.price >= parseInt(filters.priceMin));
+        }
+        if (filters.priceMax) {
+            trucks = trucks.filter(t => t.price <= parseInt(filters.priceMax));
+        }
+        if (filters.yearFrom) {
+            trucks = trucks.filter(t => t.year >= parseInt(filters.yearFrom));
+        }
+        if (filters.yearTo) {
+            trucks = trucks.filter(t => t.year <= parseInt(filters.yearTo));
+        }
+        if (filters.mileageMax) {
+            trucks = trucks.filter(t => t.mileage <= parseInt(filters.mileageMax));
+        }
+        if (filters.transmission) {
+            trucks = trucks.filter(t => t.transmission === filters.transmission);
+        }
+        if (filters.emissionClass) {
+            trucks = trucks.filter(t => t.emission_class === filters.emissionClass);
+        }
+
+        // Sorting
+        const sortFns = {
+            'newest': (a, b) => new Date(b.created_at) - new Date(a.created_at),
+            'oldest': (a, b) => new Date(a.created_at) - new Date(b.created_at),
+            'price_asc': (a, b) => a.price - b.price,
+            'price_desc': (a, b) => b.price - a.price,
+            'mileage_asc': (a, b) => a.mileage - b.mileage,
+            'year_desc': (a, b) => b.year - a.year
+        };
+
+        // Featured first, then sort
+        trucks.sort((a, b) => {
+            if (a.featured && !b.featured) return -1;
+            if (!a.featured && b.featured) return 1;
+            return (sortFns[filters.sort] || sortFns['newest'])(a, b);
+        });
+
+        // Pagination
+        const page = options.page || 1;
+        const limit = options.limit || CONFIG.ITEMS_PER_PAGE;
+        const start = (page - 1) * limit;
+        const paginatedTrucks = trucks.slice(start, start + limit);
+
+        return { data: paginatedTrucks, count: trucks.length };
+    }
+
+    getDemoTruckBySlug(slug) {
+        return DEMO_TRUCKS.find(t => t.slug === slug) || null;
+    }
+
+    getDemoTruckById(id) {
+        return DEMO_TRUCKS.find(t => t.id === id) || null;
+    }
+
+    getDemoBrands() {
+        const brands = [...new Set(DEMO_TRUCKS.filter(t => t.status === 'active').map(t => t.brand))];
+        return brands.sort();
+    }
+
+    getDemoRelatedTrucks(truck, limit = 4) {
+        return DEMO_TRUCKS
+            .filter(t => t.id !== truck.id && t.status === 'active' && t.brand === truck.brand)
+            .slice(0, limit);
     }
 }
 

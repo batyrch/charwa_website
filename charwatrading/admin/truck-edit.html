@@ -743,6 +743,7 @@
     </div>
 
     <script src="../js/config.js"></script>
+    <script src="../js/demo-data.js"></script>
     <script src="../js/api.js"></script>
     <script>
         // Check auth
@@ -901,6 +902,17 @@
         }
 
         async function uploadToCloudinary(file) {
+            // Demo mode - use local object URL or placeholder
+            if (CONFIG.CLOUDINARY_CLOUD_NAME === 'YOUR_CLOUD_NAME') {
+                console.log('Demo mode: Using local image preview');
+                // Create a data URL for demo purposes
+                return new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result);
+                    reader.readAsDataURL(file);
+                });
+            }
+
             const formData = new FormData();
             formData.append('file', file);
             formData.append('upload_preset', CONFIG.CLOUDINARY_UPLOAD_PRESET);
