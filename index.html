@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,6 +40,43 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+        }
+
+        /* Language selector */
+        .lang-selector {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            display: flex;
+            gap: 4px;
+            z-index: 100;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 4px;
+        }
+
+        .lang-selector button {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: inherit;
+            border-radius: 6px;
+            transition: all 0.2s;
+            letter-spacing: 0.02em;
+        }
+
+        .lang-selector button:hover {
+            color: var(--text-secondary);
+        }
+
+        .lang-selector button.active {
+            background: var(--accent);
+            color: var(--bg-primary);
         }
 
         /* Main layout: split into left accent + right content */
@@ -338,6 +375,11 @@
         }
 
         @media (max-width: 640px) {
+            .lang-selector {
+                top: 16px;
+                right: 16px;
+            }
+
             .accent-content {
                 padding: 36px 20px;
             }
@@ -373,6 +415,13 @@
 </head>
 <body>
 
+    <!-- Language Selector -->
+    <div class="lang-selector">
+        <button onclick="setLanguage('en')" class="active">EN</button>
+        <button onclick="setLanguage('de')">DE</button>
+        <button onclick="setLanguage('tr')">TR</button>
+    </div>
+
     <div class="page">
         <!-- Left accent panel -->
         <div class="accent-panel">
@@ -383,11 +432,11 @@
             </div>
             <div class="accent-content">
                 <div class="accent-badge">Coming Soon</div>
-                <h1 class="accent-heading">
-                    Wir bauen<br>etwas <span>Neues.</span>
+                <h1 class="accent-heading" data-i18n="heading">
+                    We're building<br>something <span>New.</span>
                 </h1>
-                <p class="accent-desc">
-                    Charwa GmbH wird bald mit einer neuen Website online gehen. Wir arbeiten an etwas Besonderem f&uuml;r Sie.
+                <p class="accent-desc" data-i18n="desc">
+                    Charwa GmbH will soon be launching a new website. We're working on something special for you.
                 </p>
             </div>
         </div>
@@ -397,10 +446,10 @@
             <div class="content-inner">
                 <div class="logo">CHARWA</div>
 
-                <p class="coming-soon-label">Kontakt</p>
-                <h2 class="coming-soon-title">Erreichen Sie uns jetzt</h2>
-                <p class="coming-soon-text">
-                    Haben Sie Fragen oder m&ouml;chten Sie ein Angebot? Kontaktieren Sie uns direkt &mdash; wir sind f&uuml;r Sie da.
+                <p class="coming-soon-label" data-i18n="contact_label">Contact</p>
+                <h2 class="coming-soon-title" data-i18n="contact_title">Get in touch</h2>
+                <p class="coming-soon-text" data-i18n="contact_text">
+                    Have questions or need a quote? Reach out to us directly &mdash; we're here for you.
                 </p>
 
                 <div class="contact-grid">
@@ -411,7 +460,7 @@
                             </svg>
                         </div>
                         <div>
-                            <div class="contact-label">E-Mail</div>
+                            <div class="contact-label" data-i18n="email_label">Email</div>
                             <div class="contact-value">info@charwa.de</div>
                         </div>
                     </a>
@@ -423,7 +472,7 @@
                             </svg>
                         </div>
                         <div>
-                            <div class="contact-label">Telefon</div>
+                            <div class="contact-label" data-i18n="phone_label">Phone</div>
                             <div class="contact-value">+49 160 4940999</div>
                         </div>
                     </a>
@@ -435,7 +484,7 @@
                             </svg>
                         </div>
                         <div>
-                            <div class="contact-label">USt-IdNr.</div>
+                            <div class="contact-label" data-i18n="vat_label">VAT ID</div>
                             <div class="contact-value">DE 459922747</div>
                         </div>
                     </div>
@@ -453,12 +502,77 @@
 
     <!-- Bottom bar -->
     <div class="bottom-bar">
-        <span>&copy; 2026 Charwa GmbH. Alle Rechte vorbehalten.</span>
+        <span data-i18n="copyright">&copy; 2026 Charwa GmbH. All rights reserved.</span>
         <div class="bottom-links">
-            <a href="/impressum.html">Impressum</a>
-            <a href="/privacy.html">Datenschutz</a>
+            <a href="/impressum.html" data-i18n="impressum">Legal Notice</a>
+            <a href="/privacy.html" data-i18n="privacy">Privacy Policy</a>
         </div>
     </div>
+
+    <script>
+        const translations = {
+            en: {
+                heading: 'We\'re building<br>something <span>New.</span>',
+                desc: 'Charwa GmbH will soon be launching a new website. We\'re working on something special for you.',
+                contact_label: 'Contact',
+                contact_title: 'Get in touch',
+                contact_text: 'Have questions or need a quote? Reach out to us directly \u2014 we\'re here for you.',
+                email_label: 'Email',
+                phone_label: 'Phone',
+                vat_label: 'VAT ID',
+                copyright: '\u00A9 2026 Charwa GmbH. All rights reserved.',
+                impressum: 'Legal Notice',
+                privacy: 'Privacy Policy'
+            },
+            de: {
+                heading: 'Wir bauen<br>etwas <span>Neues.</span>',
+                desc: 'Charwa GmbH wird bald mit einer neuen Website online gehen. Wir arbeiten an etwas Besonderem f\u00FCr Sie.',
+                contact_label: 'Kontakt',
+                contact_title: 'Erreichen Sie uns jetzt',
+                contact_text: 'Haben Sie Fragen oder m\u00F6chten Sie ein Angebot? Kontaktieren Sie uns direkt \u2014 wir sind f\u00FCr Sie da.',
+                email_label: 'E-Mail',
+                phone_label: 'Telefon',
+                vat_label: 'USt-IdNr.',
+                copyright: '\u00A9 2026 Charwa GmbH. Alle Rechte vorbehalten.',
+                impressum: 'Impressum',
+                privacy: 'Datenschutz'
+            },
+            tr: {
+                heading: 'Yeni bir \u015Fey<br>in\u015Fa ediyoruz.<span></span>',
+                desc: 'Charwa GmbH yak\u0131nda yeni bir web sitesiyle yay\u0131na girecek. Sizin i\u00E7in \u00F6zel bir \u015Fey haz\u0131rl\u0131yoruz.',
+                contact_label: '\u0130leti\u015Fim',
+                contact_title: 'Bize ula\u015F\u0131n',
+                contact_text: 'Sorular\u0131n\u0131z m\u0131 var veya teklif mi istiyorsunuz? Bize do\u011Frudan ula\u015F\u0131n \u2014 sizin i\u00E7in buraday\u0131z.',
+                email_label: 'E-posta',
+                phone_label: 'Telefon',
+                vat_label: 'Vergi No',
+                copyright: '\u00A9 2026 Charwa GmbH. T\u00FCm haklar\u0131 sakl\u0131d\u0131r.',
+                impressum: 'Yasal Bilgiler',
+                privacy: 'Gizlilik Politikas\u0131'
+            }
+        };
+
+        function setLanguage(lang) {
+            localStorage.setItem('charwa_lang', lang);
+            document.documentElement.lang = lang;
+
+            // Update all translatable elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Update active button
+            document.querySelectorAll('.lang-selector button').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+            });
+        }
+
+        // Initialize with saved language or default to English
+        setLanguage(localStorage.getItem('charwa_lang') || 'en');
+    </script>
 
 </body>
 </html>
