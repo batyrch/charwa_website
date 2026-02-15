@@ -148,26 +148,44 @@
 
             <form id="loginForm" onsubmit="handleLogin(event)">
                 <div class="form-group">
+                    <label class="form-label" for="email">Email</label>
+                    <input type="email" id="email" class="form-input" placeholder="admin@charwa.de" required autofocus>
+                </div>
+
+                <div class="form-group">
                     <label class="form-label" for="password">Password</label>
-                    <input type="password" id="password" class="form-input" placeholder="Enter admin password" required autofocus>
+                    <input type="password" id="password" class="form-input" placeholder="Enter password" required>
                 </div>
 
                 <button type="submit" class="btn" id="submitBtn">Sign In</button>
             </form>
 
-            <a href="../index.html" class="back-link">← Back to website</a>
+            <a href="../index.html" class="back-link">&larr; Back to website</a>
         </div>
     </div>
 
+    <script src="../js/config.js"></script>
+    <script src="../js/i18n.js"></script>
+    <script src="../js/auth.js"></script>
     <script>
         // Check if already logged in
-        if (sessionStorage.getItem('charwa_admin_auth')) {
-            window.location.href = 'trucks.html';
-        }
+        document.addEventListener('DOMContentLoaded', async () => {
+            await auth.init();
+            if (auth.isAuthenticated()) {
+                // Check if user has admin role (via profile or metadata)
+                const profile = await auth.getProfile();
+                if (profile) {
+                    sessionStorage.setItem('charwa_admin_auth', 'true');
+                    sessionStorage.setItem('charwa_admin_time', Date.now().toString());
+                    window.location.href = 'trucks.html';
+                }
+            }
+        });
 
         async function handleLogin(event) {
             event.preventDefault();
 
+            const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const submitBtn = document.getElementById('submitBtn');
             const errorMessage = document.getElementById('errorMessage');
@@ -177,20 +195,14 @@
             errorMessage.classList.remove('show');
 
             try {
-                // Simple password check - in production, use Supabase Auth or a secure method
-                // The password hash should be stored in Supabase and verified server-side
-                const correctPassword = 'charwa2024'; // Change this to your admin password
+                await auth.signIn(email, password);
 
-                if (password === correctPassword) {
-                    // Store auth token in session storage
-                    sessionStorage.setItem('charwa_admin_auth', 'true');
-                    sessionStorage.setItem('charwa_admin_time', Date.now().toString());
-                    window.location.href = 'trucks.html';
-                } else {
-                    throw new Error('Invalid password');
-                }
+                // Store admin auth in session storage for admin pages
+                sessionStorage.setItem('charwa_admin_auth', 'true');
+                sessionStorage.setItem('charwa_admin_time', Date.now().toString());
+                window.location.href = 'trucks.html';
             } catch (error) {
-                errorMessage.textContent = 'Invalid password. Please try again.';
+                errorMessage.textContent = error.message || 'Invalid credentials. Please try again.';
                 errorMessage.classList.add('show');
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Sign In';

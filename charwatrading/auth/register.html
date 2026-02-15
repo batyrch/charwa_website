@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Charwa Trading</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #151514;
+            --border-color: #252523;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #6b6b6b;
+            --accent: #22c55e;
+            --accent-hover: #16a34a;
+            --danger: #ef4444;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-family);
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .auth-container { width: 100%; max-width: 420px; padding: 20px; }
+        .auth-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px;
+        }
+        .logo { text-align: center; margin-bottom: 32px; }
+        .logo h1 { font-size: 24px; color: var(--text-primary); }
+        .logo h1 span { color: var(--accent); }
+        .logo p { font-size: 14px; color: var(--text-muted); margin-top: 8px; }
+        .form-group { margin-bottom: 20px; }
+        .form-label {
+            display: block; font-size: 14px; font-weight: 500;
+            color: var(--text-secondary); margin-bottom: 8px;
+        }
+        .form-input {
+            width: 100%; padding: 12px 16px;
+            background: var(--bg-primary); border: 1px solid var(--border-color);
+            border-radius: 6px; color: var(--text-primary);
+            font-size: 14px; font-family: inherit; transition: border-color 0.2s;
+        }
+        .form-input:focus { outline: none; border-color: var(--accent); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .btn {
+            width: 100%; padding: 14px 24px;
+            background: var(--accent); border: none; border-radius: 6px;
+            color: var(--bg-primary); font-size: 14px; font-weight: 600;
+            font-family: inherit; cursor: pointer; transition: background 0.2s;
+        }
+        .btn:hover { background: var(--accent-hover); }
+        .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .error-message {
+            background: rgba(239, 68, 68, 0.1); border: 1px solid var(--danger);
+            color: var(--danger); padding: 12px; border-radius: 6px;
+            font-size: 14px; margin-bottom: 20px; display: none;
+        }
+        .error-message.show { display: block; }
+        .auth-links {
+            margin-top: 24px; text-align: center;
+            font-size: 14px; color: var(--text-muted);
+        }
+        .auth-links a {
+            color: var(--accent); text-decoration: none;
+        }
+        .auth-links a:hover { opacity: 0.8; }
+        .back-link {
+            display: block; text-align: center; margin-top: 24px;
+            color: var(--text-muted); font-size: 14px; text-decoration: none;
+        }
+        .back-link:hover { color: var(--accent); }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="logo">
+                <h1>CHARWA <span>Trading</span></h1>
+                <p data-i18n="auth.register_subtitle">Konto erstellen</p>
+            </div>
+
+            <div class="error-message" id="errorMessage"></div>
+
+            <form id="registerForm" onsubmit="handleRegister(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="fullName" data-i18n="auth.full_name">Vollst&auml;ndiger Name</label>
+                        <input type="text" id="fullName" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="companyName" data-i18n="auth.company">Firma</label>
+                        <input type="text" id="companyName" class="form-input">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="email" data-i18n="auth.email">E-Mail</label>
+                    <input type="email" id="email" class="form-input" placeholder="name@company.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password" data-i18n="auth.password">Passwort</label>
+                    <input type="password" id="password" class="form-input" placeholder="Min. 6 Zeichen" required minlength="6">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="passwordConfirm" data-i18n="auth.password_confirm">Passwort best&auml;tigen</label>
+                    <input type="password" id="passwordConfirm" class="form-input" required minlength="6">
+                </div>
+
+                <button type="submit" class="btn" id="submitBtn" data-i18n="auth.create_account">Konto erstellen</button>
+            </form>
+
+            <div class="auth-links">
+                <span data-i18n="auth.has_account">Bereits ein Konto?</span>
+                <a href="login.html" data-i18n="auth.sign_in_link">Anmelden</a>
+            </div>
+
+            <a href="../index.html" class="back-link" data-i18n="auth.back_to_site">&larr; Zur&uuml;ck zur Website</a>
+        </div>
+    </div>
+
+    <script src="../js/config.js"></script>
+    <script src="../js/i18n.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            i18n.setLanguage(localStorage.getItem('charwa_lang') || 'de');
+            i18n.updateDOM();
+            await auth.init();
+
+            if (auth.isAuthenticated()) {
+                window.location.href = '../dashboard.html';
+            }
+        });
+
+        async function handleRegister(event) {
+            event.preventDefault();
+            const fullName = document.getElementById('fullName').value;
+            const companyName = document.getElementById('companyName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const passwordConfirm = document.getElementById('passwordConfirm').value;
+            const submitBtn = document.getElementById('submitBtn');
+
+            hideError();
+
+            if (password !== passwordConfirm) {
+                showError(i18n.t('auth.passwords_mismatch'));
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = '...';
+
+            try {
+                await auth.signUp(email, password, {
+                    full_name: fullName,
+                    company_name: companyName
+                });
+                window.location.href = 'login.html?registered=1';
+            } catch (error) {
+                showError(error.message || i18n.t('auth.register_error'));
+                submitBtn.disabled = false;
+                submitBtn.textContent = i18n.t('auth.create_account');
+            }
+        }
+
+        function showError(msg) {
+            const el = document.getElementById('errorMessage');
+            el.textContent = msg;
+            el.classList.add('show');
+        }
+
+        function hideError() {
+            document.getElementById('errorMessage').classList.remove('show');
+        }
+    </script>
+</body>
+</html>

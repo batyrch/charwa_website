@@ -474,8 +474,9 @@
             <nav class="nav">
                 <ul class="nav-links">
                     <li><a href="index.html" data-i18n="nav.trucks">Fahrzeuge</a></li>
+                    <li><a href="browse.html" data-i18n="nav.marketplace">Marktplatz</a></li>
                     <li><a href="https://charwa.de/#about" data-i18n="nav.about">Über uns</a></li>
-                    <li><a href="https://charwa.de/#contact" data-i18n="nav.contact">Kontakt</a></li>
+                    <li><a href="auth/login.html" class="auth-nav-link" data-i18n="nav.login">Anmelden</a></li>
                 </ul>
                 <div class="lang-selector">
                     <button onclick="setLanguage('de')" class="active">DE</button>
@@ -492,8 +493,9 @@
         <nav class="mobile-nav" id="mobileNav">
             <ul class="mobile-nav-links">
                 <li><a href="index.html" onclick="toggleMobileMenu()" data-i18n="nav.trucks">Fahrzeuge</a></li>
+                <li><a href="browse.html" onclick="toggleMobileMenu()" data-i18n="nav.marketplace">Marktplatz</a></li>
                 <li><a href="https://charwa.de/#about" data-i18n="nav.about">Über uns</a></li>
-                <li><a href="https://charwa.de/#contact" data-i18n="nav.contact">Kontakt</a></li>
+                <li><a href="auth/login.html" class="mobile-auth-nav-link" data-i18n="nav.login">Anmelden</a></li>
             </ul>
             <div class="mobile-lang-selector">
                 <button onclick="setLanguage('de')" class="active">DE</button>
@@ -570,6 +572,7 @@
     <script src="js/i18n.js"></script>
     <script src="js/demo-data.js"></script>
     <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
     <script>
         // State
         let truck = null;
@@ -577,8 +580,10 @@
         let images = [];
 
         // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
             initLanguage();
+            await auth.init();
+            updateAuthNav();
             loadTruck();
         });
 

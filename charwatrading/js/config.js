@@ -23,6 +23,9 @@ const CONFIG = {
         ADDRESS: 'Kolonnenstraße 8, 10827 Berlin, Germany'
     },
 
+    // Stripe Configuration
+    STRIPE_PUBLISHABLE_KEY: 'pk_test_YOUR_STRIPE_KEY',
+
     // Main site URL
     MAIN_SITE_URL: 'https://charwa.de'
 };
