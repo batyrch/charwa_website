@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charwa GmbH — Unternehmensprofil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            color: #1a1a1a;
+            background: #f0f0f0;
+            line-height: 1.5;
+            font-size: 10.5pt;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 20px auto;
+            background: white;
+            padding: 18mm 22mm 15mm 22mm;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: relative;
+            page-break-after: always;
+        }
+
+        @media print {
+            body { background: white; }
+            .page {
+                margin: 0;
+                box-shadow: none;
+                padding: 18mm 22mm 15mm 22mm;
+            }
+            .no-print { display: none; }
+        }
+
+        .header {
+            margin: -18mm -22mm 8mm -22mm;
+            padding: 12mm 22mm 10mm 22mm;
+            background: #1e3a5f;
+        }
+
+        .logo-text {
+            font-size: 28pt;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 4px;
+            margin-bottom: 2px;
+        }
+
+        .logo-subtitle {
+            font-size: 11pt;
+            color: rgba(255,255,255,0.6);
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-size: 12pt;
+            color: #1e3a5f;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 5mm;
+            margin-bottom: 2.5mm;
+            padding-bottom: 1.5mm;
+            border-bottom: 1.5px solid #e0e0e0;
+        }
+
+        h3 {
+            font-size: 10.5pt;
+            color: #1e3a5f;
+            margin-bottom: 1mm;
+        }
+
+        p {
+            margin-bottom: 2mm;
+            text-align: justify;
+        }
+
+        .intro {
+            font-size: 11pt;
+            color: #333;
+            margin-bottom: 2.5mm;
+        }
+
+        .team-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5mm;
+        }
+
+        .team-member {
+            display: flex;
+            gap: 4mm;
+            align-items: flex-start;
+        }
+
+        .team-badge {
+            flex-shrink: 0;
+            width: 8mm;
+            height: 8mm;
+            background: #1e3a5f;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 9pt;
+            margin-top: 0.5mm;
+        }
+
+        .team-info { flex: 1; }
+
+        .team-name {
+            font-weight: 700;
+            color: #1e3a5f;
+            font-size: 10.5pt;
+        }
+
+        .team-role {
+            font-size: 9pt;
+            color: #666;
+            font-style: italic;
+        }
+
+        .team-desc {
+            font-size: 9.5pt;
+            margin-top: 0.5mm;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5mm;
+            margin: 1.5mm 0;
+        }
+
+        .tag {
+            background: #eef3f9;
+            color: #1e3a5f;
+            padding: 1mm 3mm;
+            border-radius: 2px;
+            font-size: 9pt;
+            font-weight: 600;
+        }
+
+        .process {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5mm;
+        }
+
+        .step {
+            display: flex;
+            gap: 3mm;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            flex-shrink: 0;
+            width: 6mm;
+            height: 6mm;
+            background: #1e3a5f;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8pt;
+            font-weight: 700;
+            margin-top: 0.5mm;
+        }
+
+        .step-content { flex: 1; }
+
+        .step-title {
+            font-weight: 700;
+            font-size: 10pt;
+        }
+
+        .step-desc {
+            font-size: 9.5pt;
+            color: #444;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5mm;
+            margin-top: 2mm;
+        }
+
+        .tech-item {
+            background: #f7f9fc;
+            border-left: 3px solid #1e3a5f;
+            padding: 2mm 3mm;
+        }
+
+        .tech-item strong {
+            font-size: 9.5pt;
+            color: #1e3a5f;
+        }
+
+        .tech-item span {
+            display: block;
+            font-size: 8.5pt;
+            color: #555;
+        }
+
+        .market-highlight {
+            background: #f7f9fc;
+            border-radius: 3px;
+            padding: 4mm;
+            margin-top: 2mm;
+        }
+
+        .market-highlight h3 { margin-bottom: 2mm; }
+
+        .market-stat {
+            display: flex;
+            gap: 4mm;
+            margin-top: 2mm;
+        }
+
+        .stat-box {
+            flex: 1;
+            text-align: center;
+            padding: 3mm 2mm;
+            background: white;
+            border-radius: 3px;
+            border: 1px solid #dde4ed;
+        }
+
+        .stat-num {
+            font-size: 18pt;
+            font-weight: 800;
+            color: #1e3a5f;
+            line-height: 1.1;
+        }
+
+        .stat-label {
+            font-size: 7.5pt;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 1mm;
+        }
+
+        .contact-bar {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2mm;
+            margin-top: 5mm;
+            padding-top: 4mm;
+            border-top: 2px solid #1e3a5f;
+            font-size: 9pt;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5mm;
+        }
+
+        .contact-label {
+            font-weight: 700;
+            color: #1e3a5f;
+        }
+
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2mm;
+            font-size: 9.5pt;
+        }
+
+        .details-table td {
+            padding: 1.5mm 2mm;
+            border-bottom: 1px solid #eee;
+        }
+
+        .details-table td:first-child {
+            font-weight: 700;
+            color: #1e3a5f;
+            width: 35%;
+        }
+
+        .print-bar {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .print-bar button {
+            padding: 10px 30px;
+            background: #1e3a5f;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .print-bar button:hover {
+            background: #2a4f7f;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 8mm;
+            right: 22mm;
+            font-size: 8pt;
+            color: #999;
+        }
+
+        .section-label {
+            font-size: 8.5pt;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 3mm;
+            margin-bottom: 1.5mm;
+        }
+    </style>
+</head>
+<body>
+
+<div class="print-bar no-print">
+    <button onclick="window.print()">Drucken / Als PDF speichern</button>
+</div>
+
+<!-- SEITE 1 -->
+<div class="page">
+    <div class="header">
+        <div class="logo-text">CHARWA</div>
+        <div class="logo-subtitle">Trading & Logistics</div>
+    </div>
+
+    <h2>&Uuml;ber uns</h2>
+    <p class="intro">
+        Die Charwa GmbH ist ein Berliner Handelsunternehmen f&uuml;r Nutzfahrzeuge, spezialisiert auf die Beschaffung
+        hochwertiger gebrauchter Lkw und Auflieger aus der gesamten Europ&auml;ischen Union f&uuml;r Exportm&auml;rkte.
+        Wir verbinden tiefgreifende Automobil-Expertise mit propriet&auml;rer Technologie f&uuml;r eine schnelle,
+        transparente und zuverl&auml;ssige Fahrzeugbeschaffung.
+    </p>
+    <p>
+        Mit einer schlanken, effizienten Struktur wird Charwa von einer engagierten Gesch&auml;ftsf&uuml;hrerin geleitet,
+        unterst&uuml;tzt von spezialisierten Beratern &mdash; eine Kombination aus Automobil-Expertise,
+        modernster Technologie und direktem Zugang zu einem der gr&ouml;&szlig;ten Exporteur-Netzwerke in Europa.
+    </p>
+
+    <h2>Unser Team</h2>
+    <div class="team-grid">
+        <div class="team-member">
+            <div class="team-badge">AP</div>
+            <div class="team-info">
+                <div class="team-name">Aygul Porsyyeva <a href="https://www.linkedin.com/in/aygul-a/" target="_blank" style="text-decoration: none; vertical-align: middle; display: inline-block; margin-left: 1mm;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#0077b5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+                <div class="team-role">Gesch&auml;ftsf&uuml;hrerin & Gr&uuml;nderin</div>
+                <div class="team-desc">
+                    Absolventin der University of North Texas (USA). Flie&szlig;end in Englisch, Deutsch und Turkmenisch.
+                    Leitet den gesamten Gesch&auml;ftsbetrieb, Kundenbeziehungen und institutionelle Kommunikation.
+                </div>
+            </div>
+        </div>
+
+        <div class="section-label">Berater & Mitgr&uuml;nder</div>
+
+        <div class="team-member">
+            <div class="team-badge">B</div>
+            <div class="team-info">
+                <div class="team-name">Batyr <a href="https://www.linkedin.com/in/batirch/" target="_blank" style="text-decoration: none; vertical-align: middle; display: inline-block; margin-left: 1mm;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#0077b5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+                <div class="team-role">Mitgr&uuml;nder & Technologie-Berater</div>
+                <div class="team-desc">
+                    &Uuml;ber 10 Jahre Erfahrung in der Automobilbranche, davon 5 Jahre bei AutoScout24 &mdash; Europas gr&ouml;&szlig;tem
+                    Automobil-Marktplatz &mdash; mit Schwerpunkt auf gro&szlig;en Daten- und Plattformsystemen.
+                    Entwickelt Charwas propriet&auml;re Sourcing-Tools, KI-Integrationen und die interne Betriebsplattform.
+                </div>
+            </div>
+        </div>
+
+        <div class="team-member">
+            <div class="team-badge">P</div>
+            <div class="team-info">
+                <div class="team-name">Palvan</div>
+                <div class="team-role">Mitgr&uuml;nder & Berater Gesch&auml;ftsentwicklung</div>
+                <div class="team-desc">
+                    Vernetzt mit einem der gr&ouml;&szlig;ten turkmenischen Exporteur-Netzwerke in Europa.
+                    Verf&uuml;gt &uuml;ber eine bedeutende digitale Pr&auml;senz mit &uuml;ber 40.000 Followern und 450.000+ Aufrufen
+                    bei Nutzfahrzeug-Inhalten und bringt qualifizierte K&auml;ufer und Exportchancen zu Charwa.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2>Was wir tun</h2>
+    <p>
+        Wir beschaffen, bewerten und exportieren gebrauchte Nutzfahrzeuge aus der gesamten EU in wachstumsstarke M&auml;rkte
+        in Zentralasien. Wir begleiten unsere Exportkunden durch den gesamten Prozess &mdash; von der Fahrzeugidentifikation
+        bis zur EU-Ausfuhrabwicklung.
+    </p>
+
+    <p style="font-size: 9pt; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1mm; margin-top: 3mm;">Lkw</p>
+    <div class="tags">
+        <span class="tag">DAF</span>
+        <span class="tag">MAN</span>
+        <span class="tag">Volvo</span>
+        <span class="tag">Renault</span>
+    </div>
+
+    <p style="font-size: 9pt; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1mm; margin-top: 2mm;">Auflieger & K&uuml;hlauflieger</p>
+    <div class="tags">
+        <span class="tag">Krone</span>
+        <span class="tag">Schmitz Cargobull</span>
+        <span class="tag">Fliegl</span>
+        <span class="tag">K&ouml;gel</span>
+        <span class="tag">Wielton</span>
+        <span class="tag">Schwarzm&uuml;ller</span>
+        <span class="tag">Kassb&ouml;hrer</span>
+    </div>
+
+    <p style="margin-top: 3mm;">
+        Beschaffung aus <strong>Polen, Niederlande, Deutschland, Spanien, Frankreich, Lettland, Litauen, Rum&auml;nien, Tschechien</strong>
+        und weiteren EU-M&auml;rkten &mdash; unsere Systeme durchsuchen t&auml;glich 13 europ&auml;ische Marktpl&auml;tze,
+        um die besten Fahrzeuge zu wettbewerbsf&auml;higen Preisen zu finden.
+    </p>
+
+    <h2>Warum Turkmenistan &mdash; ein Markt in Bewegung</h2>
+    <div class="market-highlight">
+        <p>
+            Turkmenistan &mdash; ein Binnenstaat in Zentralasien &mdash; verzeichnet in den letzten Jahren einen
+            sprunghaften Anstieg der Nutzfahrzeugimporte um mehrere hundert Prozent, angetrieben durch:
+        </p>
+        <p style="margin-top: 2mm;">
+            <strong>Belt and Road Initiative</strong> &mdash; Der Landtransport aus China dauert nur noch zwei Wochen und macht Turkmenistan zu einem wichtigen Transitkorridor zwischen Ostasien und Europa.
+        </p>
+        <p style="margin-top: 2mm;">
+            <strong>Petrochemisches Wachstum</strong> &mdash; Eines der weltweit gr&ouml;&szlig;ten Erdgasvorkommen mit rasant wachsender Verarbeitungskapazit&auml;t, die schwere Nutzfahrzeuge erfordert.
+        </p>
+        <p style="margin-top: 2mm;">
+            <strong>Landwirtschaftliche Expansion</strong> &mdash; Staatliche Investitionen in Gew&auml;chsh&auml;user und Landwirtschaft treiben die Nachfrage nach K&uuml;hl-Lkw f&uuml;r Exporte nach Usbekistan und dar&uuml;ber hinaus.
+        </p>
+
+        <div class="market-stat">
+            <div class="stat-box">
+                <div class="stat-num">13</div>
+                <div class="stat-label">EU-Marktpl&auml;tze</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num">15+</div>
+                <div class="stat-label">Fahrzeuge gehandelt</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num">40K+</div>
+                <div class="stat-label">Online-Follower</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num">450K+</div>
+                <div class="stat-label">Content-Aufrufe</div>
+            </div>
+        </div>
+    </div>
+
+    <h2>Partner in Turkmenistan</h2>
+    <p>
+        Charwa arbeitet mit etablierten Unternehmen vor Ort in Turkmenistan zusammen und gew&auml;hrleistet
+        zuverl&auml;ssigen End-to-End-Service vom EU-Kauf bis zur Endlieferung.
+    </p>
+    <div class="tech-grid" style="grid-template-columns: 1fr;">
+        <div class="tech-item">
+            <strong>Hazar Logistik</strong> &mdash; hazarlogistik.com
+            <span>Transport- und Logistikanbieter mit Sitz in Mary, Turkmenistan. Betreibt Container-, Stra&szlig;en-, Schienen-, See- und Luftfracht in Turkmenistan, Usbekistan, T&uuml;rkei, Georgien, VAE, China und Kasachstan.</span>
+        </div>
+        <div class="tech-item">
+            <strong>Eminli Logistics</strong> &mdash; eminli.com.tm
+            <span>Internationales Speditions- und Frachttransportunternehmen mit Sitz in Turkmenistan. Spezialisiert auf Lkw-Transport in ganz Europa mit globalem Partnernetzwerk.</span>
+        </div>
+        <div class="tech-item">
+            <strong>Rowshen Group</strong> &mdash; rowshen.com
+            <span>Diversifizierter turkmenischer Konzern, gegr&uuml;ndet 1992, t&auml;tig in Fertigung, Bau, Landwirtschaft und Lebensmittelproduktion in Aschgabat und Mary.</span>
+        </div>
+    </div>
+    <p style="font-size: 9pt; color: #666; margin-top: 2mm; font-style: italic;">
+        Weitere Partnerschaften in Entwicklung.
+    </p>
+
+    <div style="margin-top: 6mm; padding: 3mm 4mm; background: #1e3a5f; border-radius: 3px; border-left: 4px solid #4a90d9;">
+        <p style="margin: 0; color: white; font-size: 9.5pt; text-align: left;">
+            &bdquo;Charwa&ldquo; bedeutet <em>Nomade</em> auf Turkmenisch &mdash; ein Name, der unsere Wurzeln und unsere Mission widerspiegelt: M&auml;rkte &uuml;ber Kontinente verbinden und G&uuml;ter entlang der modernen Handelsrouten zwischen Europa und Zentralasien bewegen.
+        </p>
+    </div>
+    <div class="page-number">Seite 1 von 2</div>
+</div>
+
+<!-- SEITE 2 -->
+<div class="page">
+    <div class="header">
+        <div class="logo-text">CHARWA</div>
+        <div class="logo-subtitle">Trading & Logistics</div>
+    </div>
+
+    <h2>Wie wir arbeiten</h2>
+    <div class="process">
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+                <span class="step-title">Beschaffung</span>
+                <span class="step-desc">
+                    Propriet&auml;re Bots durchsuchen rund um die Uhr &uuml;ber 13 europ&auml;ische Marktpl&auml;tze.
+                    Die besten Treffer werden sofort per automatisierte Benachrichtigungen an unser Team gesendet.
+                </span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+                <span class="step-title">Bewertung & Kauf</span>
+                <span class="step-desc">
+                    Jedes Fahrzeug wird gegen K&auml;uferanforderungen gepr&uuml;ft. Wir &uuml;bernehmen Preisverhandlungen
+                    und koordinieren Inspektionen in mehreren EU-L&auml;ndern.
+                </span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+                <span class="step-title">Dokumentation</span>
+                <span class="step-desc">
+                    Halbautomatisierte Systeme erstellen Rechnungen, Kaufvertr&auml;ge, Proforma-Rechnungen
+                    und Vollmachten &mdash; Fehler werden reduziert, die Bearbeitungszeit auf Minuten verk&uuml;rzt.
+                </span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+                <span class="step-title">Logistik</span>
+                <span class="step-desc">
+                    Wir verbinden K&auml;ufer mit zuverl&auml;ssigen Logistikpartnern und unabh&auml;ngigen Fahrern
+                    f&uuml;r Fahrzeugtransport und EU-Ausfuhrabwicklung.
+                </span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+                <span class="step-title">Export & Lieferung</span>
+                <span class="step-desc">
+                    Volle Unterst&uuml;tzung vom Kauf bis zum Moment, in dem das Fahrzeug die EU verl&auml;sst,
+                    mit transparenter Kommunikation bei jedem Schritt.
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <h2>Unser Technologievorsprung</h2>
+    <p>
+        Anders als die meisten Wettbewerber im Nutzfahrzeughandel betreibt Charwa eine propriet&auml;re
+        Technologieplattform, die vollst&auml;ndig intern entwickelt wurde &mdash; so kann ein schlankes Team
+        mit der Geschwindigkeit und Skalierung viel gr&ouml;&szlig;erer Organisationen arbeiten.
+    </p>
+    <div class="tech-grid">
+        <div class="tech-item">
+            <strong>KI-gest&uuml;tzte Beschaffung</strong>
+            <span>Automatisiertes Scannen von 13 EU-Marktpl&auml;tzen mit intelligentem Deal-Matching</span>
+        </div>
+        <div class="tech-item">
+            <strong>Dokumentenautomatisierung</strong>
+            <span>Vertr&auml;ge, Rechnungen und Exportdokumente in Sekunden erstellt</span>
+        </div>
+        <div class="tech-item">
+            <strong>Marktintelligenz</strong>
+            <span>Datengest&uuml;tzte Berichte &uuml;ber Preistrends, Verf&uuml;gbarkeit und Marktbedingungen</span>
+        </div>
+        <div class="tech-item">
+            <strong>Deal-Pipeline</strong>
+            <span>Volle Transparenz &uuml;ber jede Transaktion vom Erstkontakt bis zum Exportabschluss</span>
+        </div>
+    </div>
+
+    <h2>Digitale Pr&auml;senz</h2>
+    <p>
+        Charwa pflegt eine aktive digitale Pr&auml;senz, um K&auml;ufer, Exporteure und Branchenpartner
+        in Europa und Zentralasien zu erreichen.
+    </p>
+    <div class="tech-grid">
+        <div class="tech-item">
+            <strong>Website</strong>
+            <span>charwa.de</span>
+        </div>
+        <div class="tech-item">
+            <strong>LinkedIn</strong>
+            <span>linkedin.com/company/charwa-gmbh</span>
+        </div>
+        <div class="tech-item">
+            <strong>TikTok</strong>
+            <span>@charwa_palvan &mdash; 40K+ Follower, 450K+ Aufrufe</span>
+        </div>
+        <div class="tech-item">
+            <strong>E-Mail</strong>
+            <span>info@charwa.de</span>
+        </div>
+    </div>
+
+    <h2>Unternehmensdaten</h2>
+    <table class="details-table">
+        <tr><td>Unternehmen</td><td>Charwa GmbH</td></tr>
+        <tr><td>Rechtsform</td><td>Gesellschaft mit beschr&auml;nkter Haftung (GmbH)</td></tr>
+        <tr><td>Registriert</td><td>Amtsgericht Charlottenburg, HRB 282995 B</td></tr>
+        <tr><td>USt-IdNr.</td><td>DE459922747</td></tr>
+        <tr><td>Gesch&auml;ftsf&uuml;hrerin</td><td>Aygul Porsyyeva</td></tr>
+        <tr><td>Standort</td><td>Berlin, Deutschland</td></tr>
+    </table>
+
+    <div class="contact-bar">
+        <div class="contact-item">
+            <span class="contact-label">Web:</span> charwa.de
+        </div>
+        <div class="contact-item">
+            <span class="contact-label">E-Mail:</span> info@charwa.de
+        </div>
+        <div class="contact-item">
+            <span class="contact-label">Registernr.:</span> HRB 282995 B
+        </div>
+    </div>
+    <div class="page-number">Seite 2 von 2</div>
+</div>
+
+</body>
+</html>

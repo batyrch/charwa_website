@@ -186,6 +186,25 @@
             max-width: 320px;
         }
 
+        .profile-btn {
+            display: inline-block;
+            margin-top: 28px;
+            padding: 12px 24px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: inherit;
+            border-radius: 8px;
+            transition: background 0.2s;
+            letter-spacing: 0.01em;
+        }
+
+        .profile-btn:hover {
+            background: var(--accent-dark);
+        }
+
         /* Right content area */
         .content-panel {
             flex: 1;
@@ -438,6 +457,9 @@
                 <p class="accent-desc" data-i18n="desc">
                     Charwa GmbH will soon be launching a new website. We're working on something special for you.
                 </p>
+                <a href="company-profile-en.html" class="profile-btn" data-i18n-attr="profile_btn_text">
+                    View Company Profile &rarr;
+                </a>
             </div>
         </div>
 
@@ -520,6 +542,8 @@
                 email_label: 'Email',
                 phone_label: 'Phone',
                 vat_label: 'VAT ID',
+                profile_btn: 'View Company Profile \u2192',
+                profile_href: 'company-profile-en.html',
                 copyright: '\u00A9 2026 Charwa GmbH. All rights reserved.',
                 impressum: 'Legal Notice',
                 privacy: 'Privacy Policy'
@@ -533,6 +557,8 @@
                 email_label: 'E-Mail',
                 phone_label: 'Telefon',
                 vat_label: 'USt-IdNr.',
+                profile_btn: 'Unternehmensprofil ansehen \u2192',
+                profile_href: 'company-profile-de.html',
                 copyright: '\u00A9 2026 Charwa GmbH. Alle Rechte vorbehalten.',
                 impressum: 'Impressum',
                 privacy: 'Datenschutz'
@@ -546,6 +572,8 @@
                 email_label: 'E-posta',
                 phone_label: 'Telefon',
                 vat_label: 'Vergi No',
+                profile_btn: '\u015Eirket Profilini G\u00F6r\u00FCnt\u00FCle \u2192',
+                profile_href: 'company-profile-tr.html',
                 copyright: '\u00A9 2026 Charwa GmbH. T\u00FCm haklar\u0131 sakl\u0131d\u0131r.',
                 impressum: 'Yasal Bilgiler',
                 privacy: 'Gizlilik Politikas\u0131'
@@ -563,6 +591,13 @@
                     el.innerHTML = translations[lang][key];
                 }
             });
+
+            // Update profile button
+            const profileBtn = document.querySelector('.profile-btn');
+            if (profileBtn && translations[lang]) {
+                profileBtn.innerHTML = translations[lang].profile_btn;
+                profileBtn.href = translations[lang].profile_href;
+            }
 
             // Update active button
             document.querySelectorAll('.lang-selector button').forEach(btn => {
