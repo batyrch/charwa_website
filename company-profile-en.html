@@ -37,23 +37,66 @@
             padding: 18mm 22mm 15mm 22mm;
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             position: relative;
-            page-break-after: always;
+            overflow: hidden;
         }
 
         @media print {
-            body { background: white; }
+            @page { size: A4; margin: 0; }
+            body { background: white; margin: 0; }
             .page {
                 margin: 0;
                 box-shadow: none;
-                padding: 18mm 22mm 15mm 22mm;
+                padding: 10mm 16mm 10mm 16mm;
+                page-break-inside: avoid;
+            }
+            .page:first-of-type {
+                page-break-after: always;
+            }
+            .page:last-of-type {
+                page-break-after: auto;
             }
             .no-print { display: none; }
+            .header {
+                margin: -10mm -16mm 4mm -16mm;
+                padding: 7mm 16mm 6mm 16mm;
+            }
+            .logo-text { font-size: 20pt; }
+            .logo-subtitle { font-size: 8.5pt; }
+            h2 { margin-top: 3mm; margin-bottom: 1.5mm; font-size: 9.5pt; }
+            p { margin-bottom: 1mm; font-size: 8.5pt; line-height: 1.4; }
+            .intro { font-size: 9pt; margin-bottom: 1.5mm; }
+            .team-grid { gap: 1.5mm; }
+            .team-badge { width: 6mm; height: 6mm; font-size: 7pt; }
+            .team-desc { font-size: 7.5pt; line-height: 1.35; }
+            .team-name { font-size: 9pt; }
+            .team-role { font-size: 7.5pt; }
+            .section-label { margin-top: 1.5mm; margin-bottom: 1mm; font-size: 7pt; }
+            .tags { gap: 1mm; margin: 1mm 0; }
+            .tag { font-size: 7pt; padding: 0.5mm 2mm; }
+            .market-highlight { padding: 2.5mm; margin-top: 1mm; }
+            .market-highlight p { font-size: 8pt; }
+            .market-stat { gap: 2mm; margin-top: 1.5mm; }
+            .stat-num { font-size: 12pt; }
+            .stat-label { font-size: 5.5pt; }
+            .stat-box { padding: 1.5mm 1mm; }
+            .tech-grid { gap: 1.5mm; margin-top: 1.5mm; }
+            .tech-item { padding: 1.5mm 2mm; }
+            .tech-item strong { font-size: 7.5pt; }
+            .tech-item span { font-size: 6.5pt; }
+            .process { gap: 1.5mm; }
+            .step-num { width: 5mm; height: 5mm; font-size: 7pt; }
+            .step-desc { font-size: 7.5pt; }
+            .step-title { font-size: 8.5pt; }
+            .details-table { font-size: 8pt; }
+            .details-table td { padding: 1mm 2mm; }
+            .contact-bar { margin-top: 2mm; padding-top: 2mm; font-size: 7.5pt; }
+            .page-number { bottom: 5mm; right: 16mm; font-size: 7pt; }
         }
 
         /* Header / Logo */
         .header {
-            margin: -18mm -22mm 8mm -22mm;
-            padding: 12mm 22mm 10mm 22mm;
+            margin: -18mm -50mm 8mm -50mm;
+            padding: 12mm 50mm 10mm 50mm;
             background: #1e3a5f;
         }
 
@@ -361,7 +404,7 @@
 <body>
 
 <div class="print-bar no-print">
-    <button onclick="window.print()">Print / Save as PDF</button>
+    <button onclick="var w=window.open('company-profile-en-print.html','_blank');w.onload=function(){w.print();}">Print / Save as PDF</button>
 </div>
 
 <!-- PAGE 1 -->
@@ -495,6 +538,16 @@
         </div>
     </div>
 
+    <div class="page-number">Page 1 of 2</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+    <div class="header">
+        <div class="logo-text">CHARWA</div>
+        <div class="logo-subtitle">Trading & Logistics</div>
+    </div>
+
     <h2>Partners in Turkmenistan</h2>
     <p>
         Charwa works with established companies on the ground in Turkmenistan, ensuring reliable
@@ -517,21 +570,6 @@
     <p style="font-size: 9pt; color: #666; margin-top: 2mm; font-style: italic;">
         Additional partnerships currently in development.
     </p>
-
-    <div style="margin-top: 6mm; padding: 3mm 4mm; background: #1e3a5f; border-radius: 3px; border-left: 4px solid #4a90d9;">
-        <p style="margin: 0; color: white; font-size: 9.5pt; text-align: left;">
-            "Charwa" means <em>Nomad</em> in Turkmen — a name that reflects our roots and our mission: connecting markets across continents, moving goods along the modern trade routes between Europe and Central Asia.
-        </p>
-    </div>
-    <div class="page-number">Page 1 of 2</div>
-</div>
-
-<!-- PAGE 2 -->
-<div class="page">
-    <div class="header">
-        <div class="logo-text">CHARWA</div>
-        <div class="logo-subtitle">Trading & Logistics</div>
-    </div>
 
     <h2>How We Work</h2>
     <div class="process">
@@ -656,6 +694,12 @@
         <div class="contact-item">
             <span class="contact-label">Registry:</span> HRB 282995 B
         </div>
+    </div>
+
+    <div style="margin-top: 5mm; padding: 3mm 4mm; background: #1e3a5f; border-radius: 3px; border-left: 4px solid #4a90d9;">
+        <p style="margin: 0; color: white; font-size: 9.5pt; text-align: left;">
+            "Charwa" means <em>Nomad</em> in Turkmen — a name that reflects our roots and our mission: connecting markets across continents, moving goods along the modern trade routes between Europe and Central Asia.
+        </p>
     </div>
     <div class="page-number">Page 2 of 2</div>
 </div>

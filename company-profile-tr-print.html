@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Charwa GmbH — &#350;irket Profili</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            color: #1a1a1a;
+            font-size: 10pt;
+            line-height: 1.45;
+        }
+
+        /* Header banner */
+        .header {
+            background: #1e3a5f;
+            padding: 10mm 0 8mm 0;
+            margin-bottom: 6mm;
+        }
+        .header-inner {
+            max-width: 170mm;
+            margin: 0 auto;
+        }
+        .logo-text {
+            font-size: 26pt;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 4px;
+        }
+        .logo-subtitle {
+            font-size: 10pt;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 1px;
+        }
+
+        /* Content wrapper */
+        .content {
+            max-width: 170mm;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 11pt;
+            color: #1e3a5f;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 5mm;
+            margin-bottom: 2.5mm;
+            padding-bottom: 1.5mm;
+            border-bottom: 1.5px solid #e0e0e0;
+            page-break-after: avoid;
+        }
+
+        p { margin-bottom: 2mm; text-align: justify; }
+
+        .intro {
+            font-size: 10.5pt;
+            color: #333;
+            margin-bottom: 2.5mm;
+        }
+
+        /* Team */
+        .team-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5mm;
+        }
+        .team-member {
+            display: flex;
+            gap: 3mm;
+            page-break-inside: avoid;
+        }
+        .team-badge {
+            flex-shrink: 0;
+            width: 7mm;
+            height: 7mm;
+            background: #1e3a5f;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 8pt;
+            margin-top: 0.5mm;
+        }
+        .team-info { flex: 1; }
+        .team-name { font-weight: 700; color: #1e3a5f; font-size: 10pt; }
+        .team-role { font-size: 8.5pt; color: #666; font-style: italic; }
+        .team-desc { font-size: 9pt; margin-top: 0.5mm; }
+
+        .section-label {
+            font-size: 8pt;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2.5mm;
+            margin-bottom: 1mm;
+        }
+
+        /* Tags */
+        .tags { display: flex; flex-wrap: wrap; gap: 1.5mm; margin: 1.5mm 0; }
+        .tag {
+            background: #eef3f9;
+            color: #1e3a5f;
+            padding: 0.8mm 2.5mm;
+            border-radius: 2px;
+            font-size: 8.5pt;
+            font-weight: 600;
+        }
+
+        /* Market highlight */
+        .market-highlight {
+            background: #f7f9fc;
+            border-radius: 3px;
+            padding: 3mm;
+            margin-top: 2mm;
+            page-break-inside: avoid;
+        }
+
+        .market-stat {
+            display: flex;
+            gap: 3mm;
+            margin-top: 2mm;
+        }
+        .stat-box {
+            flex: 1;
+            text-align: center;
+            padding: 2.5mm 2mm;
+            background: white;
+            border-radius: 3px;
+            border: 1px solid #dde4ed;
+        }
+        .stat-num { font-size: 16pt; font-weight: 800; color: #1e3a5f; line-height: 1.1; }
+        .stat-label { font-size: 6.5pt; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 1mm; }
+
+        /* Tech grid */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2mm;
+            margin-top: 2mm;
+        }
+        .tech-item {
+            background: #f7f9fc;
+            border-left: 3px solid #1e3a5f;
+            padding: 2mm 3mm;
+            page-break-inside: avoid;
+        }
+        .tech-item strong { font-size: 9pt; color: #1e3a5f; }
+        .tech-item span { display: block; font-size: 8pt; color: #555; }
+
+        /* Process steps */
+        .process { display: flex; flex-direction: column; gap: 2mm; }
+        .step { display: flex; gap: 3mm; page-break-inside: avoid; }
+        .step-num {
+            flex-shrink: 0; width: 5.5mm; height: 5.5mm;
+            background: #1e3a5f; color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 7.5pt; font-weight: 700; margin-top: 0.5mm;
+        }
+        .step-content { flex: 1; }
+        .step-title { font-weight: 700; font-size: 9.5pt; }
+        .step-desc { font-size: 9pt; color: #444; }
+
+        /* Details table */
+        .details-table { width: 100%; border-collapse: collapse; margin-top: 2mm; font-size: 9pt; }
+        .details-table td { padding: 1.5mm 2mm; border-bottom: 1px solid #eee; }
+        .details-table td:first-child { font-weight: 700; color: #1e3a5f; width: 35%; }
+
+        /* Contact bar */
+        .contact-bar {
+            display: flex; justify-content: space-between; flex-wrap: wrap;
+            gap: 2mm; margin-top: 4mm; padding-top: 3mm;
+            border-top: 2px solid #1e3a5f; font-size: 8.5pt;
+        }
+        .contact-item { display: flex; align-items: center; gap: 1.5mm; }
+        .contact-label { font-weight: 700; color: #1e3a5f; }
+
+        /* Charwa quote */
+        .charwa-quote {
+            margin-top: 5mm;
+            padding: 3mm 4mm;
+            background: #1e3a5f;
+            border-radius: 3px;
+            border-left: 4px solid #4a90d9;
+            page-break-inside: avoid;
+        }
+        .charwa-quote p {
+            margin: 0; color: white; font-size: 9pt; text-align: left;
+        }
+
+        /* Section breaks */
+        .section-block { page-break-inside: avoid; }
+
+        /* LinkedIn icon */
+        .li-icon { text-decoration: none; vertical-align: middle; display: inline-block; margin-left: 1mm; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-inner">
+        <div class="logo-text">CHARWA</div>
+        <div class="logo-subtitle">Trading & Logistics</div>
+    </div>
+</div>
+
+<div class="content">
+
+    <h2>Hakk&#305;m&#305;zda</h2>
+    <p class="intro">
+        Charwa GmbH, Avrupa Birli&#287;i genelinden birinci s&#305;n&#305;f kullan&#305;lm&#305;&#351; kamyon ve yar&#305; r&ouml;morklar&#305; tedarik ederek ihracat pazarlar&#305;na sunan, Berlin merkezli bir ticari ara&ccedil; ticareti &#351;irketidir.
+        Derin otomotiv sekt&ouml;r&uuml; uzmanl&#305;&#287;&#305;n&#305;, &ouml;zel geli&#351;tirme teknolojisiyle birle&#351;tirerek h&#305;zl&#305;, &#351;effaf ve g&uuml;venilir bir ara&ccedil; tedarik deneyimi sunuyoruz.
+    </p>
+    <p>
+        Yaln&#305;z ve verimli bir yap&#305;yla faaliyet g&ouml;steren Charwa, sahada aktif bir Genel M&uuml;d&uuml;r taraf&#305;ndan y&ouml;netilmekte olup, uzman dan&#305;&#351;manlardan olu&#351;an bir a&#287; taraf&#305;ndan desteklenmektedir — otomotiv uzmanl&#305;&#287;&#305;n&#305;, &ouml;nc&uuml; teknolojiyi ve Avrupa'n&#305;n en b&uuml;y&uuml;k ihracat&ccedil;&#305; topluluklar&#305;ndan birine do&#287;rudan eri&#351;imi bir araya getirmektedir.
+    </p>
+
+    <h2>Ekibimiz</h2>
+    <div class="team-grid">
+        <div class="team-member">
+            <div class="team-badge">AP</div>
+            <div class="team-info">
+                <div class="team-name">Aygul Porsyyeva <a href="https://www.linkedin.com/in/aygul-a/" class="li-icon" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="#0077b5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+                <div class="team-role">Genel M&uuml;d&uuml;r & Kurucu</div>
+                <div class="team-desc">University of North Texas (ABD) mezunu. &#304;ngilizce, Almanca ve T&uuml;rkmen&ccedil;e'ye ak&#305;c&#305; d&uuml;zeyde h&acirc;kim. T&uuml;m &#351;irket operasyonlar&#305;n&#305;, m&uuml;&#351;teri ili&#351;kilerini ve birden fazla pazardaki kurumsal ileti&#351;imleri y&ouml;netmektedir.</div>
+            </div>
+        </div>
+
+        <div class="section-label">Dan&#305;&#351;manlar & Ortak Kurucular</div>
+
+        <div class="team-member">
+            <div class="team-badge">B</div>
+            <div class="team-info">
+                <div class="team-name">Batyr <a href="https://www.linkedin.com/in/batirch/" class="li-icon" target="_blank"><svg width="12" height="12" viewBox="0 0 24 24" fill="#0077b5"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></div>
+                <div class="team-role">Ortak Kurucu & Teknoloji Dan&#305;&#351;man&#305;</div>
+                <div class="team-desc">Otomotiv sekt&ouml;r&uuml;nde 10 y&#305;l&#305; a&#351;k&#305;n deneyim; bunun 5 y&#305;l&#305; Avrupa'n&#305;n en b&uuml;y&uuml;k otomotiv pazar yeri olan AutoScout24'te b&uuml;y&uuml;k &ouml;l&ccedil;ekli veri ve platform sistemleri &uuml;zerinde &ccedil;al&#305;&#351;arak ge&ccedil;irilmi&#351;tir. Charwa'n&#305;n &ouml;zel tedarik ara&ccedil;lar&#305;n&#305;, yapay zeka entegrasyonlar&#305;n&#305; ve dahili operasyon platformunu tasarlamaktad&#305;r.</div>
+            </div>
+        </div>
+
+        <div class="team-member">
+            <div class="team-badge">P</div>
+            <div class="team-info">
+                <div class="team-name">Palvan</div>
+                <div class="team-role">Ortak Kurucu & &#304;&#351; Geli&#351;tirme Dan&#305;&#351;man&#305;</div>
+                <div class="team-desc">Avrupa'daki en b&uuml;y&uuml;k T&uuml;rkmen ihracat&ccedil;&#305; a&#287;lar&#305;ndan biriyle ba&#287;lant&#305;l&#305;d&#305;r. Ticari ara&ccedil; i&ccedil;eriklerinde 40.000'den fazla takip&ccedil;i ve 450.000'den fazla g&ouml;r&uuml;nt&uuml;lenme ile &ouml;nemli bir dijital varl&#305;&#287;a sahip olup, nitelikli al&#305;c&#305;lar&#305; ve ihracat f&#305;rsatlar&#305;n&#305; Charwa'ya y&ouml;nlendirmektedir.</div>
+            </div>
+        </div>
+    </div>
+
+    <h2>Ne Yap&#305;yoruz</h2>
+    <p>AB genelinden kullan&#305;lm&#305;&#351; ticari ara&ccedil;lar&#305; tedarik ediyor, de&#287;erlendiriyor ve Orta Asya'daki y&uuml;ksek talepli pazarlara ihracat ediyoruz. &#304;hracat m&uuml;&#351;terilerimize do&#287;ru arac&#305; bulmaktan AB ihracat g&uuml;mr&uuml;&#287;&uuml;n&uuml; tamamlamaya kadar t&uuml;m s&uuml;re&ccedil; boyunca destek sa&#287;l&#305;yoruz.</p>
+
+    <p style="font-size: 8.5pt; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1mm; margin-top: 3mm;">Kamyonlar</p>
+    <div class="tags">
+        <span class="tag">DAF</span>
+        <span class="tag">MAN</span>
+        <span class="tag">Volvo</span>
+        <span class="tag">Renault</span>
+    </div>
+    <p style="font-size: 8.5pt; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1mm; margin-top: 2mm;">Yar&#305; R&ouml;morklar & So&#287;utuculu R&ouml;morklar</p>
+    <div class="tags">
+        <span class="tag">Krone</span>
+        <span class="tag">Schmitz Cargobull</span>
+        <span class="tag">Fliegl</span>
+        <span class="tag">K&ouml;gel</span>
+        <span class="tag">Wielton</span>
+        <span class="tag">Schwarzm&uuml;ller</span>
+        <span class="tag">Kassb&ouml;hrer</span>
+    </div>
+    <p style="margin-top: 2mm;"><strong>Polonya, Hollanda, Almanya, &#304;spanya, Fransa, Letonya, Litvanya, Romanya, &Ccedil;ek Cumhuriyeti</strong> ve di&#287;er AB pazarlar&#305;ndan tedarik sa&#287;l&#305;yoruz — sistemlerimiz m&uuml;&#351;terilerimiz i&ccedil;in en iyi ara&ccedil;lar&#305; rekabet&ccedil;i fiyatlarla bulmak amac&#305;yla her g&uuml;n 13 Avrupa pazar yerini taramaktad&#305;r.</p>
+
+    <div class="section-block">
+        <h2>Neden T&uuml;rkmenistan — Hareket Halinde Bir Pazar</h2>
+        <div class="market-highlight">
+            <p>T&uuml;rkmenistan — karayla &ccedil;evrili bir Orta Asya &uuml;lkesi — son y&#305;llarda ticari ara&ccedil; ithalat&#305;nda y&uuml;zde birka&ccedil; y&uuml;zl&uuml;k bir art&#305;&#351; ya&#351;am&#305;&#351;t&#305;r. Bunun ba&#351;l&#305;ca nedenleri:</p>
+            <p style="margin-top: 2mm;"><strong>Ku&#351;ak ve Yol Giri&#351;imi</strong> — &Ccedil;in'den karayolu ta&#351;&#305;mac&#305;l&#305;&#287;&#305; art&#305;k sadece iki hafta s&uuml;rmekte olup, T&uuml;rkmenistan'&#305; Do&#287;u Asya ile Avrupa aras&#305;nda kilit bir transit koridor haline getirmektedir.</p>
+            <p style="margin-top: 2mm;"><strong>Petrokimya b&uuml;y&uuml;mesi</strong> — D&uuml;nyan&#305;n en b&uuml;y&uuml;k do&#287;al gaz rezervlerinden birine sahip olup, h&#305;zla geni&#351;leyen i&#351;leme kapasitesi a&#287;&#305;r hizmet ta&#351;&#305;mac&#305;l&#305;&#287;&#305; gerektirmektedir.</p>
+            <p style="margin-top: 2mm;"><strong>Tar&#305;msal geni&#351;leme</strong> — H&uuml;k&uuml;metin sera ve tar&#305;ma yapt&#305;&#287;&#305; yat&#305;r&#305;mlar, &Ouml;zbekistan ve &ouml;tesine ihracat i&ccedil;in so&#287;utuculu kamyon talebini art&#305;rmaktad&#305;r.</p>
+            <div class="market-stat">
+                <div class="stat-box"><div class="stat-num">13</div><div class="stat-label">Taranan AB Pazar&#305;</div></div>
+                <div class="stat-box"><div class="stat-num">15+</div><div class="stat-label">Ticareti Yap&#305;lan Ara&ccedil;</div></div>
+                <div class="stat-box"><div class="stat-num">40K+</div><div class="stat-label">&Ccedil;evrimi&ccedil;i Takip&ccedil;i</div></div>
+                <div class="stat-box"><div class="stat-num">450K+</div><div class="stat-label">&#304;&ccedil;erik G&ouml;r&uuml;nt&uuml;lenme</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2>T&uuml;rkmenistan'daki Ortaklar</h2>
+        <p>Charwa, T&uuml;rkmenistan'da yerle&#351;ik &#351;irketlerle &ccedil;al&#305;&#351;arak AB'den sat&#305;n almadan nihai teslimata kadar g&uuml;venilir u&ccedil;tan uca hizmet sunmaktad&#305;r.</p>
+        <div class="tech-grid" style="grid-template-columns: 1fr;">
+            <div class="tech-item"><strong>Hazar Logistik</strong> — hazarlogistik.com<span>Merkezi Mary, T&uuml;rkmenistan'da bulunan kapsaml&#305; ta&#351;&#305;mac&#305;l&#305;k ve lojistik sa&#287;lay&#305;c&#305;s&#305;. T&uuml;rkmenistan, &Ouml;zbekistan, T&uuml;rkiye, G&uuml;rcistan, BAE, &Ccedil;in ve Kazakistan genelinde konteyner, karayolu, demiryolu, deniz ve hava ta&#351;&#305;mac&#305;l&#305;&#287;&#305; yapmaktad&#305;r.</span></div>
+            <div class="tech-item"><strong>Eminli Logistics</strong> — eminli.com.tm<span>T&uuml;rkmenistan merkezli uluslararas&#305; nakliye ve kargo ta&#351;&#305;mac&#305;l&#305;&#287;&#305; &#351;irketi. Avrupa genelinde kamyon ta&#351;&#305;mac&#305;l&#305;&#287;&#305;nda uzmanla&#351;m&#305;&#351; olup, k&uuml;resel bir ortak a&#287;&#305;na sahiptir.</span></div>
+            <div class="tech-item"><strong>Rowshen Group</strong> — rowshen.com<span>1992 y&#305;l&#305;nda kurulan, A&#351;kabat ve Mary'de &uuml;retim, in&#351;aat, tar&#305;m ve g&#305;da &uuml;retimi alanlar&#305;nda faaliyet g&ouml;steren &ccedil;e&#351;itlendirilmi&#351; T&uuml;rkmenistan merkezli bir holding.</span></div>
+        </div>
+        <p style="font-size: 8.5pt; color: #666; margin-top: 2mm; font-style: italic;">Ek ortakl&#305;klar geli&#351;tirme a&#351;amas&#305;ndad&#305;r.</p>
+    </div>
+
+    <div class="section-block">
+        <h2>Nas&#305;l &Ccedil;al&#305;&#351;&#305;yoruz</h2>
+        <div class="process">
+            <div class="step"><div class="step-num">1</div><div class="step-content"><span class="step-title">Tedarik</span><span class="step-desc"> — &Ouml;zel botlar&#305;m&#305;z 13 Avrupa pazar yerini 24 saat taramaktad&#305;r. En iyi e&#351;le&#351;meler otomatik uyar&#305;larla an&#305;nda iletilir.</span></div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-content"><span class="step-title">De&#287;erlendirme & Sat&#305;n Alma</span><span class="step-desc"> — Her ara&ccedil;, al&#305;c&#305; gereksinimlerine g&ouml;re incelenir. Fiyat m&uuml;zakerelerini y&uuml;r&uuml;t&uuml;r ve birden fazla AB &uuml;lkesinde denetimleri koordine ederiz.</span></div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-content"><span class="step-title">Dok&uuml;mantasyon</span><span class="step-desc"> — Yar&#305; otomatik sistemler faturalar&#305;, sat&#305;&#351; s&ouml;zle&#351;melerini, proforma faturalar&#305; ve vek&acirc;letnameleri &uuml;retir — hatalar&#305; azalt&#305;r ve i&#351;lem s&uuml;resini dakikalara indirir.</span></div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-content"><span class="step-title">Lojistik</span><span class="step-desc"> — Al&#305;c&#305;lar&#305; g&uuml;venilir lojistik ortaklar ve ba&#287;&#305;ms&#305;z s&uuml;r&uuml;c&uuml;lerle ara&ccedil; ta&#351;&#305;mac&#305;l&#305;&#287;&#305; ve AB ihracat g&uuml;mr&uuml;&#287;&uuml; i&ccedil;in bulu&#351;tururuz.</span></div></div>
+            <div class="step"><div class="step-num">5</div><div class="step-content"><span class="step-title">&#304;hracat & Teslimat</span><span class="step-desc"> — Sat&#305;n almadan arac&#305;n AB'den &ccedil;&#305;k&#305;&#351;&#305;na kadar her a&#351;amada &#351;effaf ileti&#351;imle tam destek sa&#287;l&#305;yoruz.</span></div></div>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2>Teknoloji Avantaj&#305;m&#305;z</h2>
+        <p>Kullan&#305;lm&#305;&#351; ticari ara&ccedil; alan&#305;ndaki &ccedil;o&#287;u rakibin aksine, Charwa tamamen &#351;irket i&ccedil;inde geli&#351;tirilmi&#351; &ouml;zel bir teknoloji platformu &uuml;zerinde &ccedil;al&#305;&#351;maktad&#305;r — bu sayede k&uuml;&ccedil;&uuml;k bir ekip, &ccedil;ok daha b&uuml;y&uuml;k organizasyonlar&#305;n h&#305;z&#305;nda ve &ouml;l&ccedil;e&#287;inde faaliyet g&ouml;sterebilmektedir.</p>
+        <div class="tech-grid">
+            <div class="tech-item"><strong>Yapay Zeka Destekli Tedarik</strong><span>Ak&#305;ll&#305; anla&#351;ma e&#351;le&#351;tirme ile 13 AB pazar yerinin otomatik taramas&#305;</span></div>
+            <div class="tech-item"><strong>Dok&uuml;man Otomasyonu</strong><span>S&ouml;zle&#351;meler, faturalar ve ihracat belgeleri saniyeler i&ccedil;inde olu&#351;turulur</span></div>
+            <div class="tech-item"><strong>Pazar &#304;stihbarat&#305;</strong><span>Fiyat trendleri, stok durumu ve pazar ko&#351;ullar&#305; hakk&#305;nda veriye dayal&#305; raporlama</span></div>
+            <div class="tech-item"><strong>Anla&#351;ma Hatt&#305;</strong><span>&#304;lk temastan ihracat tamamlanmas&#305;na kadar her i&#351;lemin tam g&ouml;r&uuml;n&uuml;rl&uuml;&#287;&uuml;</span></div>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2>Dijital Varl&#305;k</h2>
+        <div class="tech-grid">
+            <div class="tech-item"><strong>Web Sitesi</strong><span>charwa.de</span></div>
+            <div class="tech-item"><strong>LinkedIn</strong><span>linkedin.com/company/charwa-gmbh</span></div>
+            <div class="tech-item"><strong>TikTok</strong><span>@charwa_palvan — 40K+ takip&ccedil;i, 450K+ g&ouml;r&uuml;nt&uuml;lenme</span></div>
+            <div class="tech-item"><strong>E-posta</strong><span>info@charwa.de</span></div>
+        </div>
+    </div>
+
+    <div class="section-block">
+        <h2>&#350;irket Bilgileri</h2>
+        <table class="details-table">
+            <tr><td>&#350;irket</td><td>Charwa GmbH</td></tr>
+            <tr><td>Hukuki &#350;ekil</td><td>Gesellschaft mit beschr&auml;nkter Haftung (GmbH)</td></tr>
+            <tr><td>Tescil</td><td>Amtsgericht Charlottenburg, HRB 282995 B</td></tr>
+            <tr><td>Vergi No</td><td>DE459922747</td></tr>
+            <tr><td>Genel M&uuml;d&uuml;r</td><td>Aygul Porsyyeva</td></tr>
+            <tr><td>Konum</td><td>Berlin, Almanya</td></tr>
+        </table>
+    </div>
+
+    <div class="contact-bar">
+        <div class="contact-item"><span class="contact-label">Web:</span> charwa.de</div>
+        <div class="contact-item"><span class="contact-label">E-posta:</span> info@charwa.de</div>
+        <div class="contact-item"><span class="contact-label">Sicil No:</span> HRB 282995 B</div>
+    </div>
+
+    <div class="charwa-quote">
+        <p>"Charwa" T&uuml;rkmen dilinde <em>G&ouml;&ccedil;ebe</em> anlam&#305;na gelir — k&ouml;klerimizi ve misyonumuzu yans&#305;tan bir isim: k&#305;talar aras&#305;nda pazarlar&#305; birbirine ba&#287;lamak, Avrupa ile Orta Asya aras&#305;ndaki modern ticaret yollar&#305;nda mallar&#305; ta&#351;&#305;mak.</p>
+    </div>
+
+</div>
+
+</body>
+</html>
