@@ -127,6 +127,68 @@
             margin-top: 8px;
         }
 
+        /* Partner Logos */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        .partner-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            aspect-ratio: 3 / 2;
+        }
+
+        .partner-logo:hover {
+            border-color: var(--accent-border);
+            box-shadow: var(--shadow-md);
+        }
+
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .partner-logo:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        .partner-logo__placeholder {
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 500;
+            text-align: center;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 1024px) {
+            .partners-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .partner-logo {
+                padding: 16px;
+            }
+        }
+
         /* Empty state */
         .gallery-empty {
             grid-column: 1 / -1;
@@ -196,6 +258,24 @@
             <p data-i18n="references.intro">Eine Auswahl erfolgreich vermittelter Nutzfahrzeuge.</p>
         </div>
     </div>
+
+    <!-- Partners -->
+    <section class="section section--alt">
+        <div class="container">
+            <div class="section__header">
+                <h2 data-i18n="references.partners.title">Unsere Partner</h2>
+                <p data-i18n="references.partners.subtitle">Unternehmen, mit denen wir zusammenarbeiten.</p>
+            </div>
+            <div class="partners-grid">
+                <!-- Replace placeholder text with: <img src="img/partners/logo-name.png" alt="Company Name"> -->
+                <div class="partner-logo"><span class="partner-logo__placeholder">Logo 1</span></div>
+                <div class="partner-logo"><span class="partner-logo__placeholder">Logo 2</span></div>
+                <div class="partner-logo"><span class="partner-logo__placeholder">Logo 3</span></div>
+                <div class="partner-logo"><span class="partner-logo__placeholder">Logo 4</span></div>
+                <div class="partner-logo"><span class="partner-logo__placeholder">Logo 5</span></div>
+            </div>
+        </div>
+    </section>
 
     <!-- Gallery -->
     <section class="section">

@@ -150,6 +150,8 @@ const translations = {
         // References
         'references.title': 'Referenzen',
         'references.intro': 'Eine Auswahl erfolgreich vermittelter Nutzfahrzeuge.',
+        'references.partners.title': 'Unsere Partner',
+        'references.partners.subtitle': 'Unternehmen, mit denen wir zusammenarbeiten.',
         'references.filter.all': 'Alle',
         'references.filter.trucks': 'Sattelzugmaschinen',
         'references.filter.trailers': 'Auflieger',
@@ -321,6 +323,8 @@ const translations = {
         // References
         'references.title': 'References',
         'references.intro': 'A selection of successfully traded commercial vehicles.',
+        'references.partners.title': 'Our Partners',
+        'references.partners.subtitle': 'Companies we work with.',
         'references.filter.all': 'All',
         'references.filter.trucks': 'Tractor Units',
         'references.filter.trailers': 'Semi-Trailers',
@@ -492,6 +496,8 @@ const translations = {
         // References
         'references.title': 'Referanslar',
         'references.intro': 'Ba\u015Far\u0131yla sat\u0131lan ticari ara\u00E7lardan bir se\u00E7ki.',
+        'references.partners.title': 'Ortaklar\u0131m\u0131z',
+        'references.partners.subtitle': 'Birlikte \u00E7al\u0131\u015Ft\u0131\u011F\u0131m\u0131z \u015Firketler.',
         'references.filter.all': 'T\u00FCm\u00FC',
         'references.filter.trucks': '\u00C7ekiciler',
         'references.filter.trailers': 'Yar\u0131 R\u00F6morklar',
