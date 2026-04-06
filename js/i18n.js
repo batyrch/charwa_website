@@ -160,6 +160,7 @@ const translations = {
         'references.type.trailer': 'Auflieger',
         'references.type.reefer': 'K\u00FChlauflieger',
         'references.sold': 'Verkauft',
+        'references.swipe': '\u2190 Wischen zum Bl\u00E4ttern \u2192',
 
         // Impressum
         'impressum.title': 'Impressum',
@@ -333,6 +334,7 @@ const translations = {
         'references.type.trailer': 'Semi-Trailer',
         'references.type.reefer': 'Refrigerated Trailer',
         'references.sold': 'Sold',
+        'references.swipe': '\u2190 Swipe to browse \u2192',
 
         // Impressum
         'impressum.title': 'Legal Notice',
@@ -506,6 +508,7 @@ const translations = {
         'references.type.trailer': 'Yar\u0131 R\u00F6mork',
         'references.type.reefer': 'So\u011Futuculu R\u00F6mork',
         'references.sold': 'Sat\u0131ld\u0131',
+        'references.swipe': '\u2190 Kayd\u0131rarak g\u00F6z at\u0131n \u2192',
 
         // Impressum
         'impressum.title': 'Yasal Bilgiler',

@@ -1004,6 +1004,68 @@ p:last-child { margin-bottom: 0; }
     }
 }
 
+/* ===== Mobile Bottom Nav ===== */
+.bottom-nav {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: var(--bg-nav);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid var(--border-color);
+        height: 60px;
+        padding: 0 8px;
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .bottom-nav__link {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        text-decoration: none;
+        color: var(--text-muted);
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        transition: color var(--transition);
+    }
+
+    .bottom-nav__link.active {
+        color: var(--accent);
+    }
+
+    .bottom-nav__link svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    /* Add padding to body so content isn't hidden behind bottom nav */
+    body {
+        padding-bottom: 60px;
+    }
+
+    /* Hide hamburger menu — bottom nav replaces it */
+    .nav__hamburger {
+        display: none !important;
+    }
+
+    /* Hide fullscreen mobile menu */
+    .nav__menu {
+        display: none !important;
+    }
+}
+
 /* ===== Print ===== */
 @media print {
     .nav, .footer, .theme-toggle, .lang-selector, .nav__hamburger {
