@@ -16,21 +16,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .contact-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            align-items: start;
-        }
         .contact-cards {
             display: flex;
             flex-direction: column;
             gap: 12px;
-        }
-        @media (max-width: 768px) {
-            .contact-layout {
-                grid-template-columns: 1fr;
-            }
+            max-width: 560px;
+            margin: 0 auto;
         }
     </style>
     <script>
@@ -76,43 +67,6 @@
     <!-- Contact Content -->
     <section class="section">
         <div class="container">
-            <div class="contact-layout">
-                <!-- Form -->
-                <div>
-                    <h2 data-i18n="contact.form.title" class="mb-24">Nachricht senden</h2>
-                    <form id="contactForm" action="mailto:info@charwa.de" method="POST" enctype="text/plain">
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="contact.form.name">Ihr Name</label>
-                            <input type="text" class="form-input" name="name" required data-i18n-placeholder="contact.form.name">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="contact.form.email">E-Mail-Adresse</label>
-                            <input type="email" class="form-input" name="email" required data-i18n-placeholder="contact.form.email">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="contact.form.phone">Telefon (optional)</label>
-                            <input type="tel" class="form-input" name="phone" data-i18n-placeholder="contact.form.phone">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="contact.form.subject">Betreff</label>
-                            <select class="form-select" name="subject" required>
-                                <option value="inquiry" data-i18n="contact.form.subject.inquiry">Fahrzeuganfrage</option>
-                                <option value="general" data-i18n="contact.form.subject.general">Allgemeine Anfrage</option>
-                                <option value="partnership" data-i18n="contact.form.subject.partnership">Partnerschaft</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="contact.form.message">Ihre Nachricht</label>
-                            <textarea class="form-textarea" name="message" rows="5" required data-i18n-placeholder="contact.form.message"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn--primary" style="width: 100%; justify-content: center;" data-i18n="contact.form.submit">Nachricht senden</button>
-                        <p style="font-size: 13px; color: var(--text-muted); margin-top: 12px;" data-i18n="contact.form.privacy">Mit dem Absenden stimmen Sie unserer <a href="privacy.html">Datenschutzerklärung</a> zu.</p>
-                    </form>
-                </div>
-
-                <!-- Contact Info -->
-                <div>
-                    <h2 data-i18n="contact.info.title" class="mb-24">Kontaktdaten</h2>
                     <div class="contact-cards">
                         <a href="mailto:info@charwa.de" class="contact-card">
                             <div class="contact-card__icon">
@@ -174,8 +128,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
         </div>
     </section>
 
