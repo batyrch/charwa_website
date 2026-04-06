@@ -165,6 +165,34 @@
             opacity: 1;
         }
 
+        /* Invert white logos for light theme */
+        .partner-logo img.logo-invert {
+            filter: grayscale(100%) invert(1);
+            opacity: 0.6;
+        }
+
+        .partner-logo:hover img.logo-invert {
+            filter: invert(1);
+            opacity: 1;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root:not([data-theme="light"]) .partner-logo img.logo-invert {
+                filter: grayscale(100%);
+            }
+            :root:not([data-theme="light"]) .partner-logo:hover img.logo-invert {
+                filter: none;
+            }
+        }
+
+        [data-theme="dark"] .partner-logo img.logo-invert {
+            filter: grayscale(100%);
+        }
+
+        [data-theme="dark"] .partner-logo:hover img.logo-invert {
+            filter: none;
+        }
+
         .partner-logo__placeholder {
             color: var(--text-muted);
             font-size: 13px;
@@ -267,12 +295,11 @@
                 <p data-i18n="references.partners.subtitle">Unternehmen, mit denen wir zusammenarbeiten.</p>
             </div>
             <div class="partners-grid">
-                <!-- Replace placeholder text with: <img src="img/partners/logo-name.png" alt="Company Name"> -->
-                <div class="partner-logo"><span class="partner-logo__placeholder">Logo 1</span></div>
-                <div class="partner-logo"><span class="partner-logo__placeholder">Logo 2</span></div>
-                <div class="partner-logo"><span class="partner-logo__placeholder">Logo 3</span></div>
-                <div class="partner-logo"><span class="partner-logo__placeholder">Logo 4</span></div>
-                <div class="partner-logo"><span class="partner-logo__placeholder">Logo 5</span></div>
+                <div class="partner-logo"><img src="img/partners/basworld.svg" alt="BAS World"></div>
+                <div class="partner-logo"><img src="img/partners/classtrucks.svg" alt="Class Trucks"></div>
+                <div class="partner-logo"><img src="img/partners/truxone.svg" alt="Trux One" class="logo-invert"></div>
+                <div class="partner-logo"><img src="img/partners/luxtruck.svg" alt="Lux Truck" class="logo-invert"></div>
+                <div class="partner-logo"><img src="img/partners/transbed-strada.png" alt="Transbed Strada"></div>
             </div>
         </div>
     </section>
