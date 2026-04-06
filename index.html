@@ -1,614 +1,204 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charwa GmbH - Coming Soon</title>
-    <meta name="description" content="Charwa GmbH - European Exports. Coming Soon.">
+    <title>Charwa GmbH — Nutzfahrzeughandel</title>
+    <meta name="description" content="Charwa GmbH beschafft hochwertige gebrauchte Lkw und Auflieger aus dem europäischen Markt — technologiegestützt, transparent und zuverlässig.">
+    <meta property="og:title" content="Charwa GmbH — Nutzfahrzeughandel">
+    <meta property="og:description" content="Charwa GmbH beschafft hochwertige gebrauchte Lkw und Auflieger aus dem europäischen Markt — technologiegestützt, transparent und zuverlässig.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://charwa.de/">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚛</text></svg>">
     <script defer src="https://analytics.batyrch.com/script.js" data-website-id="d181dd82-c9fa-4df9-bb37-ce727aff444d"></script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #111111;
-            --border-color: #1e1e1e;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --text-muted: #5a5a5a;
-            --accent: #22c55e;
-            --accent-dark: #16a34a;
-            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            height: 100%;
-        }
-
-        body {
-            font-family: var(--font-family);
-            background: var(--bg-primary);
-            color: var(--text-secondary);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* Language selector */
-        .lang-selector {
-            position: fixed;
-            top: 24px;
-            right: 24px;
-            display: flex;
-            gap: 4px;
-            z-index: 100;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 4px;
-        }
-
-        .lang-selector button {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            padding: 6px 12px;
-            font-size: 12px;
-            font-weight: 600;
-            font-family: inherit;
-            border-radius: 6px;
-            transition: all 0.2s;
-            letter-spacing: 0.02em;
-        }
-
-        .lang-selector button:hover {
-            color: var(--text-secondary);
-        }
-
-        .lang-selector button.active {
-            background: var(--accent);
-            color: var(--bg-primary);
-        }
-
-        /* Main layout: split into left accent + right content */
-        .page {
-            display: flex;
-            flex: 1;
-        }
-
-        /* Left accent bar */
-        .accent-panel {
-            width: 420px;
-            min-height: 100%;
-            background: linear-gradient(165deg, #0f2818 0%, #0a0a0a 50%, #0a1a0f 100%);
-            position: relative;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        .accent-panel::before {
-            content: '';
-            position: absolute;
-            top: -30%;
-            left: -60%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(ellipse at center, rgba(34, 197, 94, 0.08) 0%, transparent 60%);
-        }
-
-        .accent-panel::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--accent);
-        }
-
-        /* Decorative lines on the accent panel */
-        .accent-lines {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            overflow: hidden;
-        }
-
-        .accent-lines span {
-            position: absolute;
-            display: block;
-            width: 1px;
-            background: linear-gradient(to bottom, transparent, rgba(34, 197, 94, 0.12), transparent);
-        }
-
-        .accent-lines span:nth-child(1) { left: 25%; height: 100%; animation: drift 8s ease-in-out infinite; }
-        .accent-lines span:nth-child(2) { left: 50%; height: 100%; animation: drift 12s ease-in-out infinite reverse; }
-        .accent-lines span:nth-child(3) { left: 75%; height: 100%; animation: drift 10s ease-in-out infinite; }
-
-        @keyframes drift {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        .accent-content {
-            position: relative;
-            z-index: 1;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 60px 48px;
-        }
-
-        .accent-badge {
-            display: inline-block;
-            padding: 6px 14px;
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.2);
-            border-radius: 100px;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 32px;
-            width: fit-content;
-        }
-
-        .accent-heading {
-            font-size: 56px;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.05;
-            color: var(--text-primary);
-            margin-bottom: 24px;
-        }
-
-        .accent-heading span {
-            color: var(--accent);
-        }
-
-        .accent-desc {
-            font-size: 16px;
-            line-height: 1.7;
-            color: var(--text-secondary);
-            max-width: 320px;
-        }
-
-        .profile-btn {
-            display: inline-block;
-            margin-top: 28px;
-            padding: 12px 24px;
-            background: var(--accent);
-            color: var(--bg-primary);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            font-family: inherit;
-            border-radius: 8px;
-            transition: background 0.2s;
-            letter-spacing: 0.01em;
-        }
-
-        .profile-btn:hover {
-            background: var(--accent-dark);
-        }
-
-        /* Right content area */
-        .content-panel {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 60px 48px;
-            position: relative;
-        }
-
-        .content-inner {
-            max-width: 480px;
-            width: 100%;
-            animation: fadeUp 0.8s ease-out;
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
-            margin-bottom: 48px;
-        }
-
-        .coming-soon-label {
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-        }
-
-        .coming-soon-title {
-            font-size: 38px;
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
-            line-height: 1.15;
-            margin-bottom: 16px;
-        }
-
-        .coming-soon-text {
-            font-size: 15px;
-            line-height: 1.7;
-            color: var(--text-secondary);
-            margin-bottom: 48px;
-        }
-
-        /* Contact info cards */
-        .contact-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 48px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 14px 18px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            transition: border-color 0.2s;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .contact-item:hover {
-            border-color: var(--accent);
-        }
-
-        .contact-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            background: rgba(34, 197, 94, 0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .contact-icon svg {
-            width: 20px;
-            height: 20px;
-            color: var(--accent);
-        }
-
-        .contact-label {
-            font-size: 11px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--text-muted);
-            margin-bottom: 2px;
-        }
-
-        .contact-value {
-            font-size: 15px;
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-
-        /* Company info strip */
-        .company-info {
-            padding-top: 32px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .company-info p {
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.8;
-        }
-
-        .company-info strong {
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        /* Bottom bar */
-        .bottom-bar {
-            border-top: 1px solid var(--border-color);
-            padding: 20px 48px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        .bottom-bar a {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .bottom-bar a:hover {
-            color: var(--accent);
-        }
-
-        .bottom-links {
-            display: flex;
-            gap: 24px;
-        }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            .page {
-                flex-direction: column;
-            }
-
-            .accent-panel {
-                width: 100%;
-                min-height: auto;
-                padding: 0;
-            }
-
-            .accent-panel::after {
-                height: 3px;
-            }
-
-            .accent-content {
-                padding: 48px 32px;
-            }
-
-            .accent-heading {
-                font-size: 40px;
-            }
-
-            .content-panel {
-                padding: 48px 32px;
-            }
-
-            .bottom-bar {
-                padding: 20px 32px;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .lang-selector {
-                top: 16px;
-                right: 16px;
-            }
-
-            .accent-content {
-                padding: 36px 20px;
-            }
-
-            .accent-heading {
-                font-size: 32px;
-            }
-
-            .accent-desc {
-                font-size: 14px;
-            }
-
-            .content-panel {
-                padding: 36px 20px;
-            }
-
-            .coming-soon-title {
-                font-size: 28px;
-            }
-
-            .contact-item {
-                padding: 12px 14px;
-            }
-
-            .bottom-bar {
-                flex-direction: column;
-                gap: 12px;
-                text-align: center;
-                padding: 20px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        (function(){var t=localStorage.getItem('charwa_theme');if(t)document.documentElement.setAttribute('data-theme',t);})();
+    </script>
 </head>
-<body>
+<body data-page="home">
 
-    <!-- Language Selector -->
-    <div class="lang-selector">
-        <button onclick="setLanguage('en')" class="active">EN</button>
-        <button onclick="setLanguage('de')">DE</button>
-        <button onclick="setLanguage('tr')">TR</button>
-    </div>
-
-    <div class="page">
-        <!-- Left accent panel -->
-        <div class="accent-panel">
-            <div class="accent-lines">
-                <span></span>
-                <span></span>
-                <span></span>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="container nav__inner">
+            <a href="index.html" class="nav__logo">CHARWA</a>
+            <div class="nav__menu" id="navMenu">
+                <a href="index.html" data-i18n="nav.home">Startseite</a>
+                <a href="about.html" data-i18n="nav.about">Über uns</a>
+                <a href="services.html" data-i18n="nav.services">Leistungen</a>
+                <a href="vehicles.html" data-i18n="nav.vehicles">Fahrzeuge</a>
+                <a href="references.html" data-i18n="nav.references">Referenzen</a>
+                <a href="contact.html" data-i18n="nav.contact">Kontakt</a>
             </div>
-            <div class="accent-content">
-                <div class="accent-badge">Coming Soon</div>
-                <h1 class="accent-heading" data-i18n="heading">
-                    We're building<br>something <span>New.</span>
-                </h1>
-                <p class="accent-desc" data-i18n="desc">
-                    Charwa GmbH will soon be launching a new website. We're working on something special for you.
-                </p>
-                <a href="company-profile-en.html" class="profile-btn" data-i18n-attr="profile_btn_text">
-                    View Company Profile &rarr;
+            <div class="nav__controls">
+                <div class="lang-selector">
+                    <button onclick="setLanguage('de')">DE</button>
+                    <button onclick="setLanguage('en')">EN</button>
+                    <button onclick="setLanguage('tr')">TR</button>
+                </div>
+                <button class="theme-toggle" id="themeToggle" data-i18n-title="theme.toggle" aria-label="Toggle theme"></button>
+                <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero__content">
+                <div class="badge hero__badge" data-i18n="home.hero.badge">Nutzfahrzeughandel</div>
+                <h1 class="hero__title" data-i18n="home.hero.title">Europäische Nutzfahrzeuge.<br><span>Zuverlässig beschafft.</span></h1>
+                <p class="hero__subtitle" data-i18n="home.hero.subtitle">Charwa GmbH beschafft hochwertige gebrauchte Lkw und Auflieger aus dem europäischen Markt — technologiegestützt, transparent und zuverlässig.</p>
+                <a href="contact.html" class="btn btn--primary btn--large" data-i18n="home.hero.cta">Kontakt aufnehmen</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="section section--alt">
+        <div class="container">
+            <div class="grid grid--3">
+                <div class="stat">
+                    <div class="stat__number" data-i18n="home.stats.markets.num">13</div>
+                    <div class="stat__label" data-i18n="home.stats.markets.label">EU-Marktplätze</div>
+                </div>
+                <div class="stat">
+                    <div class="stat__number" data-i18n="home.stats.followers.num">40K+</div>
+                    <div class="stat__label" data-i18n="home.stats.followers.label">Online-Follower</div>
+                </div>
+                <div class="stat">
+                    <div class="stat__number" data-i18n="home.stats.views.num">450K+</div>
+                    <div class="stat__label" data-i18n="home.stats.views.label">Content-Aufrufe</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="section">
+        <div class="container">
+            <div class="section__header">
+                <h2 data-i18n="home.services.title">Unsere Kernleistungen</h2>
+                <p data-i18n="home.services.subtitle">Vom ersten Markt-Scan bis zur Exportabwicklung — alles aus einer Hand.</p>
+            </div>
+            <div class="grid grid--3">
+                <a href="services.html" class="card" style="text-decoration: none;">
+                    <div class="card__icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+                        </svg>
+                    </div>
+                    <div class="card__title" data-i18n="home.services.sourcing.title">Fahrzeugbeschaffung</div>
+                    <div class="card__text" data-i18n="home.services.sourcing.desc">KI-gestützte Systeme durchsuchen täglich 13 europäische Marktplätze nach den besten Angeboten.</div>
+                </a>
+                <a href="services.html" class="card" style="text-decoration: none;">
+                    <div class="card__icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
+                        </svg>
+                    </div>
+                    <div class="card__title" data-i18n="home.services.docs.title">Dokumentation</div>
+                    <div class="card__text" data-i18n="home.services.docs.desc">Automatisierte Erstellung von Verträgen, Rechnungen und Exportdokumenten in Minuten.</div>
+                </a>
+                <a href="services.html" class="card" style="text-decoration: none;">
+                    <div class="card__icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0H6.375c-.621 0-1.125-.504-1.125-1.125V14.25m17.25 0V6.375c0-.621-.504-1.125-1.125-1.125H2.25m19.5 7.875h.008v.008h-.008v-.008zm0-3h.008v.008h-.008v-.008zM3.375 14.25h.008v.008h-.008v-.008z"/>
+                        </svg>
+                    </div>
+                    <div class="card__title" data-i18n="home.services.logistics.title">Logistik & Export</div>
+                    <div class="card__text" data-i18n="home.services.logistics.desc">Koordination von Transport und EU-Ausfuhrabwicklung mit zuverlässigen Partnern.</div>
                 </a>
             </div>
         </div>
+    </section>
 
-        <!-- Right content panel -->
-        <div class="content-panel">
-            <div class="content-inner">
-                <div class="logo">CHARWA</div>
-
-                <p class="coming-soon-label" data-i18n="contact_label">Contact</p>
-                <h2 class="coming-soon-title" data-i18n="contact_title">Get in touch</h2>
-                <p class="coming-soon-text" data-i18n="contact_text">
-                    Have questions or need a quote? Reach out to us directly &mdash; we're here for you.
-                </p>
-
-                <div class="contact-grid">
-                    <a href="mailto:info@charwa.de" class="contact-item">
-                        <div class="contact-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <div class="contact-label" data-i18n="email_label">Email</div>
-                            <div class="contact-value">info@charwa.de</div>
-                        </div>
-                    </a>
-
-                    <a href="tel:+491604940999" class="contact-item">
-                        <div class="contact-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <div class="contact-label" data-i18n="phone_label">Phone</div>
-                            <div class="contact-value">+49 160 4940999</div>
-                        </div>
-                    </a>
-
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <div class="contact-label" data-i18n="vat_label">VAT ID</div>
-                            <div class="contact-value">DE 459922747</div>
-                        </div>
+    <!-- Why Charwa -->
+    <section class="section section--alt">
+        <div class="container">
+            <div class="section__header">
+                <h2 data-i18n="home.why.title">Warum Charwa</h2>
+                <p data-i18n="home.why.subtitle">Was uns von traditionellen Händlern unterscheidet.</p>
+            </div>
+            <div class="grid grid--3">
+                <div class="card">
+                    <div class="card__icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/>
+                        </svg>
                     </div>
+                    <div class="card__title" data-i18n="home.why.tech.title">Proprietäre Technologie</div>
+                    <div class="card__text" data-i18n="home.why.tech.desc">Unsere intern entwickelte Plattform ermöglicht schnellere Beschaffung und bessere Marktübersicht als traditionelle Methoden.</div>
                 </div>
-
-                <div class="company-info">
-                    <p>
-                        <strong>Charwa GmbH</strong><br>
-                        Kolonnenstra&szlig;e 8, 10827 Berlin, Germany
-                    </p>
+                <div class="card">
+                    <div class="card__icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </div>
+                    <div class="card__title" data-i18n="home.why.transparent.title">Volle Transparenz</div>
+                    <div class="card__text" data-i18n="home.why.transparent.desc">Jede Transaktion ist nachvollziehbar — vom Erstkontakt bis zum Exportabschluss.</div>
+                </div>
+                <div class="card">
+                    <div class="card__icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+                        </svg>
+                    </div>
+                    <div class="card__title" data-i18n="home.why.reliable.title">Zuverlässige Abwicklung</div>
+                    <div class="card__text" data-i18n="home.why.reliable.desc">Strukturierte Prozesse und erfahrene Partner sorgen für reibungslose Geschäftsabwicklung.</div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Bottom bar -->
-    <div class="bottom-bar">
-        <span data-i18n="copyright">&copy; 2026 Charwa GmbH. All rights reserved.</span>
-        <div class="bottom-links">
-            <a href="/impressum.html" data-i18n="impressum">Legal Notice</a>
-            <a href="/privacy.html" data-i18n="privacy">Privacy Policy</a>
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 data-i18n="home.cta.title">Bereit für eine Zusammenarbeit?</h2>
+            <p data-i18n="home.cta.text">Kontaktieren Sie uns für eine unverbindliche Beratung zu Ihrem Fahrzeugbedarf.</p>
+            <a href="contact.html" class="btn btn--primary btn--large" data-i18n="home.cta.btn">Jetzt Kontakt aufnehmen</a>
         </div>
-    </div>
+    </section>
 
-    <script>
-        const translations = {
-            en: {
-                heading: 'We\'re building<br>something <span>New.</span>',
-                desc: 'Charwa GmbH will soon be launching a new website. We\'re working on something special for you.',
-                contact_label: 'Contact',
-                contact_title: 'Get in touch',
-                contact_text: 'Have questions or need a quote? Reach out to us directly \u2014 we\'re here for you.',
-                email_label: 'Email',
-                phone_label: 'Phone',
-                vat_label: 'VAT ID',
-                profile_btn: 'View Company Profile \u2192',
-                profile_href: 'company-profile-en.html',
-                copyright: '\u00A9 2026 Charwa GmbH. All rights reserved.',
-                impressum: 'Legal Notice',
-                privacy: 'Privacy Policy'
-            },
-            de: {
-                heading: 'Wir bauen<br>etwas <span>Neues.</span>',
-                desc: 'Charwa GmbH wird bald mit einer neuen Website online gehen. Wir arbeiten an etwas Besonderem f\u00FCr Sie.',
-                contact_label: 'Kontakt',
-                contact_title: 'Erreichen Sie uns jetzt',
-                contact_text: 'Haben Sie Fragen oder m\u00F6chten Sie ein Angebot? Kontaktieren Sie uns direkt \u2014 wir sind f\u00FCr Sie da.',
-                email_label: 'E-Mail',
-                phone_label: 'Telefon',
-                vat_label: 'USt-IdNr.',
-                profile_btn: 'Unternehmensprofil ansehen \u2192',
-                profile_href: 'company-profile-de.html',
-                copyright: '\u00A9 2026 Charwa GmbH. Alle Rechte vorbehalten.',
-                impressum: 'Impressum',
-                privacy: 'Datenschutz'
-            },
-            tr: {
-                heading: 'Yeni bir \u015Fey<br>in\u015Fa ediyoruz.<span></span>',
-                desc: 'Charwa GmbH yak\u0131nda yeni bir web sitesiyle yay\u0131na girecek. Sizin i\u00E7in \u00F6zel bir \u015Fey haz\u0131rl\u0131yoruz.',
-                contact_label: '\u0130leti\u015Fim',
-                contact_title: 'Bize ula\u015F\u0131n',
-                contact_text: 'Sorular\u0131n\u0131z m\u0131 var veya teklif mi istiyorsunuz? Bize do\u011Frudan ula\u015F\u0131n \u2014 sizin i\u00E7in buraday\u0131z.',
-                email_label: 'E-posta',
-                phone_label: 'Telefon',
-                vat_label: 'Vergi No',
-                profile_btn: '\u015Eirket Profilini G\u00F6r\u00FCnt\u00FCle \u2192',
-                profile_href: 'company-profile-tr.html',
-                copyright: '\u00A9 2026 Charwa GmbH. T\u00FCm haklar\u0131 sakl\u0131d\u0131r.',
-                impressum: 'Yasal Bilgiler',
-                privacy: 'Gizlilik Politikas\u0131'
-            }
-        };
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <div class="footer__logo">CHARWA</div>
+                    <p class="footer__tagline" data-i18n="footer.tagline">Trading & Logistics</p>
+                </div>
+                <div class="footer__links">
+                    <a href="index.html" data-i18n="nav.home">Startseite</a>
+                    <a href="about.html" data-i18n="nav.about">Über uns</a>
+                    <a href="services.html" data-i18n="nav.services">Leistungen</a>
+                    <a href="vehicles.html" data-i18n="nav.vehicles">Fahrzeuge</a>
+                    <a href="references.html" data-i18n="nav.references">Referenzen</a>
+                    <a href="contact.html" data-i18n="nav.contact">Kontakt</a>
+                </div>
+                <div class="footer__contact">
+                    <p>info@charwa.de</p>
+                    <p>+49 160 4940999</p>
+                    <p>Kolonnenstra&szlig;e 8, 10827 Berlin</p>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <span data-i18n="footer.copyright">&copy; 2026 Charwa GmbH. Alle Rechte vorbehalten.</span>
+                <div class="footer__legal">
+                    <a href="impressum.html" data-i18n="footer.impressum">Impressum</a>
+                    <a href="privacy.html" data-i18n="footer.privacy">Datenschutz</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-        function setLanguage(lang) {
-            localStorage.setItem('charwa_lang', lang);
-            document.documentElement.lang = lang;
-
-            // Update all translatable elements
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) {
-                    el.innerHTML = translations[lang][key];
-                }
-            });
-
-            // Update profile button
-            const profileBtn = document.querySelector('.profile-btn');
-            if (profileBtn && translations[lang]) {
-                profileBtn.innerHTML = translations[lang].profile_btn;
-                profileBtn.href = translations[lang].profile_href;
-            }
-
-            // Update active button
-            document.querySelectorAll('.lang-selector button').forEach(btn => {
-                btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
-            });
-        }
-
-        // Initialize with saved language or default to English
-        setLanguage(localStorage.getItem('charwa_lang') || 'en');
-    </script>
-
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

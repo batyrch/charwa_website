@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referenzen — Charwa GmbH</title>
+    <meta name="description" content="Unsere Referenzen — eine Auswahl erfolgreich vermittelter Nutzfahrzeuge.">
+    <meta property="og:title" content="Referenzen — Charwa GmbH">
+    <meta property="og:description" content="Unsere Referenzen — eine Auswahl erfolgreich vermittelter Nutzfahrzeuge.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://charwa.de/references.html">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚛</text></svg>">
+    <script defer src="https://analytics.batyrch.com/script.js" data-website-id="d181dd82-c9fa-4df9-bb37-ce727aff444d"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .filter-tab {
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: inherit;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-tab:hover {
+            border-color: var(--accent-border);
+            color: var(--text-primary);
+        }
+
+        .filter-tab.active {
+            background: var(--accent);
+            color: var(--text-inverse);
+            border-color: var(--accent);
+        }
+
+        /* Vehicle Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        .gallery-item:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-border);
+        }
+
+        .gallery-item.hidden {
+            display: none;
+        }
+
+        .gallery-item__img {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+            display: block;
+            background: var(--bg-tertiary);
+        }
+
+        /* Placeholder for images not yet provided */
+        .gallery-item__placeholder {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+
+        .gallery-item__placeholder svg {
+            width: 48px;
+            height: 48px;
+            opacity: 0.4;
+        }
+
+        .gallery-item__info {
+            padding: 16px 20px;
+        }
+
+        .gallery-item__title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .gallery-item__meta {
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            gap: 12px;
+        }
+
+        .gallery-item__tag {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--accent-light);
+            color: var(--accent);
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        /* Empty state */
+        .gallery-empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 64px 24px;
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-tabs {
+                gap: 6px;
+            }
+
+            .filter-tab {
+                padding: 6px 14px;
+                font-size: 13px;
+            }
+        }
+    </style>
+    <script>
+        (function(){var t=localStorage.getItem('charwa_theme');if(t)document.documentElement.setAttribute('data-theme',t);})();
+    </script>
+</head>
+<body data-page="references">
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="container nav__inner">
+            <a href="index.html" class="nav__logo">CHARWA</a>
+            <div class="nav__menu" id="navMenu">
+                <a href="index.html" data-i18n="nav.home">Startseite</a>
+                <a href="about.html" data-i18n="nav.about">&Uuml;ber uns</a>
+                <a href="services.html" data-i18n="nav.services">Leistungen</a>
+                <a href="vehicles.html" data-i18n="nav.vehicles">Fahrzeuge</a>
+                <a href="references.html" data-i18n="nav.references">Referenzen</a>
+                <a href="contact.html" data-i18n="nav.contact">Kontakt</a>
+            </div>
+            <div class="nav__controls">
+                <div class="lang-selector">
+                    <button onclick="setLanguage('de')">DE</button>
+                    <button onclick="setLanguage('en')">EN</button>
+                    <button onclick="setLanguage('tr')">TR</button>
+                </div>
+                <button class="theme-toggle" id="themeToggle" data-i18n-title="theme.toggle" aria-label="Toggle theme"></button>
+                <button class="nav__hamburger" id="hamburger" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1 data-i18n="references.title">Referenzen</h1>
+            <p data-i18n="references.intro">Eine Auswahl erfolgreich vermittelter Nutzfahrzeuge.</p>
+        </div>
+    </div>
+
+    <!-- Gallery -->
+    <section class="section">
+        <div class="container">
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all" data-i18n="references.filter.all">Alle</button>
+                <button class="filter-tab" data-filter="truck" data-i18n="references.filter.trucks">Sattelzugmaschinen</button>
+                <button class="filter-tab" data-filter="trailer" data-i18n="references.filter.trailers">Auflieger</button>
+                <button class="filter-tab" data-filter="reefer" data-i18n="references.filter.reefer">K&uuml;hlauflieger</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid" id="galleryGrid">
+
+                <!-- Example items — replace placeholder with real <img> when photos are ready -->
+                <!-- To add a real image: replace the .gallery-item__placeholder div with:
+                     <img class="gallery-item__img" src="img/your-photo.jpg" alt="Description"> -->
+
+                <div class="gallery-item" data-category="truck">
+                    <div class="gallery-item__placeholder">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+                    </div>
+                    <div class="gallery-item__info">
+                        <div class="gallery-item__title">DAF XF 480</div>
+                        <div class="gallery-item__meta">
+                            <span data-i18n="references.type.truck">Sattelzugmaschine</span>
+                            <span>2019</span>
+                        </div>
+                        <span class="gallery-item__tag" data-i18n="references.sold">Verkauft</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="trailer">
+                    <div class="gallery-item__placeholder">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+                    </div>
+                    <div class="gallery-item__info">
+                        <div class="gallery-item__title">Krone SD</div>
+                        <div class="gallery-item__meta">
+                            <span data-i18n="references.type.trailer">Auflieger</span>
+                            <span>2020</span>
+                        </div>
+                        <span class="gallery-item__tag" data-i18n="references.sold">Verkauft</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="reefer">
+                    <div class="gallery-item__placeholder">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+                    </div>
+                    <div class="gallery-item__info">
+                        <div class="gallery-item__title">Schmitz Cargobull SKO 24</div>
+                        <div class="gallery-item__meta">
+                            <span data-i18n="references.type.reefer">K&uuml;hlauflieger</span>
+                            <span>2018</span>
+                        </div>
+                        <span class="gallery-item__tag" data-i18n="references.sold">Verkauft</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="truck">
+                    <div class="gallery-item__placeholder">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+                    </div>
+                    <div class="gallery-item__info">
+                        <div class="gallery-item__title">MAN TGX 18.500</div>
+                        <div class="gallery-item__meta">
+                            <span data-i18n="references.type.truck">Sattelzugmaschine</span>
+                            <span>2020</span>
+                        </div>
+                        <span class="gallery-item__tag" data-i18n="references.sold">Verkauft</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="trailer">
+                    <div class="gallery-item__placeholder">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+                    </div>
+                    <div class="gallery-item__info">
+                        <div class="gallery-item__title">Schmitz Cargobull SCS 24</div>
+                        <div class="gallery-item__meta">
+                            <span data-i18n="references.type.trailer">Auflieger</span>
+                            <span>2019</span>
+                        </div>
+                        <span class="gallery-item__tag" data-i18n="references.sold">Verkauft</span>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="truck">
+                    <div class="gallery-item__placeholder">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+                    </div>
+                    <div class="gallery-item__info">
+                        <div class="gallery-item__title">Volvo FH 500</div>
+                        <div class="gallery-item__meta">
+                            <span data-i18n="references.type.truck">Sattelzugmaschine</span>
+                            <span>2021</span>
+                        </div>
+                        <span class="gallery-item__tag" data-i18n="references.sold">Verkauft</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 data-i18n="home.cta.title">Bereit f&uuml;r eine Zusammenarbeit?</h2>
+            <p data-i18n="home.cta.text">Kontaktieren Sie uns f&uuml;r eine unverbindliche Beratung zu Ihrem Fahrzeugbedarf.</p>
+            <a href="contact.html" class="btn btn--primary btn--large" data-i18n="home.cta.btn">Jetzt Kontakt aufnehmen</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <div class="footer__logo">CHARWA</div>
+                    <p class="footer__tagline" data-i18n="footer.tagline">Trading & Logistics</p>
+                </div>
+                <div class="footer__links">
+                    <a href="index.html" data-i18n="nav.home">Startseite</a>
+                    <a href="about.html" data-i18n="nav.about">&Uuml;ber uns</a>
+                    <a href="services.html" data-i18n="nav.services">Leistungen</a>
+                    <a href="vehicles.html" data-i18n="nav.vehicles">Fahrzeuge</a>
+                    <a href="references.html" data-i18n="nav.references">Referenzen</a>
+                    <a href="contact.html" data-i18n="nav.contact">Kontakt</a>
+                </div>
+                <div class="footer__contact">
+                    <p>info@charwa.de</p>
+                    <p>+49 160 4940999</p>
+                    <p>Kolonnenstra&szlig;e 8, 10827 Berlin</p>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <span data-i18n="footer.copyright">&copy; 2026 Charwa GmbH. Alle Rechte vorbehalten.</span>
+                <div class="footer__legal">
+                    <a href="impressum.html" data-i18n="footer.impressum">Impressum</a>
+                    <a href="privacy.html" data-i18n="footer.privacy">Datenschutz</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Filter functionality
+        var tabs = document.querySelectorAll('.filter-tab');
+        var items = document.querySelectorAll('.gallery-item');
+
+        tabs.forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                var filter = this.getAttribute('data-filter');
+
+                // Update active tab
+                tabs.forEach(function(t) { t.classList.remove('active'); });
+                this.classList.add('active');
+
+                // Filter items
+                items.forEach(function(item) {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
