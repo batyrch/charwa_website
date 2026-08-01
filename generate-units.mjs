@@ -16,8 +16,16 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
-const BASE_URL = "https://charwa.de"; // single flip moves the domain (e.g. charwatransport.com)
-const WA_NUMBER = "491604940999";
+// DOMAIN (operator decision 2026-08-01): charwatransport.com preferred — it matches
+// the social-media handles. Until the domain is bought + DNS'd, pages build against
+// charwa.de but NO link goes out to followers (shared links are permanent).
+// When bought: flip BASE_URL, swap the CNAME file, regenerate.
+const BASE_URL = "https://charwa.de";
+
+// WA CTA (operator decision 2026-08-01): the future Meta WABA business number, so
+// enquiries enter the wa_inbound queue -> CRM. Blocked on Meta verification.
+// The ops number below is a build placeholder — swap BEFORE the first real share.
+const WA_NUMBER = "491604940999"; // PLACEHOLDER — replace with WABA number
 const PHONE = "+491604940999";
 
 const UNITS = join(ROOT, "units");
