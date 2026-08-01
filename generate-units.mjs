@@ -225,6 +225,26 @@ function render(u) {
     .replaceAll("{{I18N_JSON}}", JSON.stringify(I18N));
 }
 
+// 5-line English caption pack for the outsourced posting agent (all platforms).
+// Only public-JSON data — captions can't leak what the JSON doesn't hold.
+// km rounded to the nearest 10k: reads cleaner AND breaks reverse-search
+// matching against the source ad's exact figure.
+function caption(u, pageUrl) {
+  const kmRounded = Math.round(u.km / 10000) * 10000;
+  const enNum = (n) => Number(n).toLocaleString("en-US");
+  const gearbox = u.gearbox === "automatic" ? "Automatic" : u.gearbox === "manual" ? "Manual" : u.gearbox;
+  const country = (COUNTRIES[u.location_country] ?? { en: u.location_country }).en;
+  const pub = (u.price?.visibility ?? "PUBLIC") === "PUBLIC";
+  return [
+    `${u.make} ${u.model} · ${u.year}`,
+    [`~${enNum(kmRounded)} km`, gearbox, u.retarder ? "Retarder" : null].filter(Boolean).join(" · "),
+    [u.euro, u.axle_config, country].filter(Boolean).join(" · "),
+    pub ? `EUR ${enNum(u.price.list)} net — EU export documents handled`
+        : "Price on request — EU export documents handled",
+    pageUrl,
+  ].join("\n") + "\n";
+}
+
 function buildIndex(units) {
   const rows = units.map((u) => {
     const pub = (u.price?.visibility ?? "PUBLIC") === "PUBLIC";
@@ -265,7 +285,8 @@ for (const f of readdirSync(DATA).filter((f) => f.endsWith(".json")).sort()) {
   if (id === forceDraft) u.status = "PUBLISHED"; // run the full gate on forced builds too
   validate(u, id);
   writeFileSync(join(UNITS, `${id}.html`), render(u));
-  console.log(`built units/${id}.html`);
+  writeFileSync(join(UNITS, `${id}.caption.txt`), caption(u, `${BASE_URL}/units/${id}.html`));
+  console.log(`built units/${id}.html (+ caption)`);
   if (id !== forceDraft) built.push(u);
 }
 writeFileSync(join(UNITS, "index.html"), buildIndex(built));

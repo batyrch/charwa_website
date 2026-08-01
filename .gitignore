@@ -5,3 +5,4 @@ package-lock.json
 
 # built draft/test unit pages
 units/EXAMPLE.html
+units/EXAMPLE.caption.txt
