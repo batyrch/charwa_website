@@ -1,0 +1,48 @@
+{
+  "id": "EXAMPLE",
+  "status": "DRAFT",
+  "type": "tractor",
+  "make": "DAF",
+  "model": "XF 480",
+  "year": 2020,
+  "first_reg": "11/2020",
+  "km": 599636,
+  "km_source": "media_verified",
+  "euro": "Euro 6",
+  "gearbox": "automatic",
+  "retarder": true,
+  "axle_config": "4x2",
+  "cab": "Super Space Cab",
+  "spec": {
+    "Drivetrain": {
+      "Fuel type": "Diesel",
+      "Gearbox make": "ZF TraXon",
+      "Additional brake": "Intarder"
+    },
+    "Cabin": {
+      "Cabin type": "Super Space Cab",
+      "Cruise control": "Adaptive",
+      "Parking heater": true
+    },
+    "Chassis": {
+      "Axles": 2,
+      "Suspension": "Air",
+      "Fuel capacity": "800 L"
+    }
+  },
+  "facts": [
+    { "label_en": "Technical inspection (TÜV)", "label_ru": "Техосмотр (TÜV)", "value": "10/2026", "source": "media_verified" },
+    { "label_en": "Mileage", "label_ru": "Пробег", "value": "599.636 km", "source": "media_verified" },
+    { "label_en": "Known damage", "label_ru": "Известные повреждения", "value": "None disclosed", "source": "seller_stated" },
+    { "label_en": "Keys", "label_ru": "Ключи", "value": "2", "source": "seller_stated" }
+  ],
+  "condition_comment_en": "Clean unit, cab and interior in good order. Tyres approx. 60-80%. Ready for export handover.",
+  "condition_comment_ru": "Чистая машина, кабина и салон в хорошем состоянии. Резина примерно 60-80%. Готова к экспортной передаче.",
+  "price": { "list": 24500, "currency": "EUR", "basis": "net_export", "visibility": "PUBLIC" },
+  "location_country": "NL",
+  "media": {
+    "photos": ["img/units/EXAMPLE/01.jpg", "img/units/EXAMPLE/02.jpg", "img/units/EXAMPLE/03.jpg"],
+    "video_youtube": "https://youtu.be/EXAMPLE"
+  },
+  "flags": { "photos_scrubbed_ok": true, "dealer_permission_asked": true }
+}

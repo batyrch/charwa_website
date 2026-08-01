@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{PAGE_TITLE}}</title>
+    <meta name="description" content="{{META_DESC}}">
+    <meta property="og:title" content="{{OG_TITLE}}">
+    <meta property="og:description" content="{{OG_DESC}}">
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="{{OG_URL}}">
+    <meta property="og:image" content="{{OG_IMAGE}}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230d2137'/><text x='50' y='68' font-size='52' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'>C</text></svg>">
+    <link rel="stylesheet" href="../css/unit.css">
+    <script type="application/ld+json">{{JSONLD}}</script>
+</head>
+<body>
+
+    <header class="u-band">
+        <div class="u-band__brand">
+            <a class="u-band__wordmark" href="https://charwa.de">CHARWA</a>
+            <span class="u-band__tagline">VEHICLE EXPORT TRADING</span>
+        </div>
+        <button class="u-band__lang" id="langToggle" aria-label="Language">EN</button>
+    </header>
+
+    <main class="u-main">
+
+        <section class="u-gallery" aria-label="Photos">
+            <div class="u-gallery__strip">
+{{GALLERY_ITEMS}}
+            </div>
+            <div class="u-gallery__meta">
+                <span class="u-gallery__count"><span data-k="photos">Фото</span>: {{PHOTO_COUNT}}</span>
+{{VIDEO_LINK}}
+            </div>
+        </section>
+
+        <section class="u-title">
+            <h1>{{TITLE}}</h1>
+            <span class="u-title__meta"><span data-k="unitNo">Номер</span> {{ID}}</span>
+        </section>
+
+        <section class="u-tiles">
+{{FACT_TILES}}
+        </section>
+
+        <section class="u-price">
+{{PRICE_BLOCK}}
+        </section>
+
+        <section class="u-block">
+            <h2 class="u-eyebrow" data-k="factsTitle">Проверенные данные</h2>
+            <table class="u-table">
+                <tbody>
+{{VERIFIED_FACTS_ROWS}}
+                </tbody>
+            </table>
+{{CONDITION_COMMENT}}
+        </section>
+
+{{SPEC_SECTION}}
+
+        <section class="u-block">
+            <h2 class="u-eyebrow" data-k="locationTitle">Местонахождение</h2>
+            <p class="u-location"><span data-lang="ru">{{LOCATION_NAME_RU}}</span><span data-lang="en" style="display:none">{{LOCATION_NAME_EN}}</span></p>
+        </section>
+
+        <section class="u-notes">
+            <h2 class="u-eyebrow" data-k="notesTitle">Условия</h2>
+            <ul>
+                <li data-k="note1">Все цены нетто, без НДС (MwSt.) — экспорт.</li>
+                <li data-k="note2">Экспортные документы (EX/T2, 0% НДС) оформляет Charwa GmbH, Берлин.</li>
+                <li data-k="note3">Осмотр на месте (DEKRA или независимый эксперт) возможен до полной оплаты.</li>
+                <li data-k="note4">Доставка до места назначения организуется по запросу.</li>
+                <li data-k="note5">Предложение действительно при наличии; возможны изменения.</li>
+            </ul>
+        </section>
+
+        <footer class="u-footer">
+            Charwa GmbH · Kolonnenstraße 8, 10827 Berlin · <a href="https://charwa.de">charwa.de</a> · <a href="https://charwa.de/impressum.html">Impressum</a>
+        </footer>
+
+    </main>
+
+    <div class="u-cta">
+        <a class="u-cta__primary" href="{{WA_LINK}}" target="_blank" rel="noopener" data-k="ctaWa">Написать в WhatsApp</a>
+        <a class="u-cta__secondary" href="tel:{{TEL_LINK}}" data-k="ctaCall">Позвонить</a>
+    </div>
+
+    <script>
+    (function(){
+        var DICT = {{I18N_JSON}};
+        var lang = localStorage.getItem('charwa_unit_lang') || 'ru';
+        var btn = document.getElementById('langToggle');
+        function apply(l){
+            document.documentElement.lang = l;
+            btn.textContent = l === 'ru' ? 'EN' : 'RU';
+            document.querySelectorAll('[data-k]').forEach(function(el){
+                var k = el.getAttribute('data-k');
+                if (DICT[l] && DICT[l][k] !== undefined) el.textContent = DICT[l][k];
+            });
+            document.querySelectorAll('[data-lang]').forEach(function(el){
+                el.style.display = el.getAttribute('data-lang') === l ? '' : 'none';
+            });
+        }
+        btn.addEventListener('click', function(){
+            lang = lang === 'ru' ? 'en' : 'ru';
+            localStorage.setItem('charwa_unit_lang', lang);
+            apply(lang);
+        });
+        apply(lang);
+    })();
+    </script>
+</body>
+</html>

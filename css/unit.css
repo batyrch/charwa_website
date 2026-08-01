@@ -1,0 +1,347 @@
+/* ============================================================
+   Charwa unit page — vendored from "Charwa Design System"
+   (claude.ai/design project a6297429). Tokens adapted from
+   print (A4) to mobile screen scale; palette/rules unchanged.
+   Deliberately standalone: does NOT import the site style.css
+   (two design systems must not blend — site Rule 7 flag).
+   Green is reserved EXCLUSIVELY for money. No icons, no emoji,
+   no gradients, near-square corners, light only (paper).
+   ============================================================ */
+
+:root {
+  /* colors — verbatim from tokens/colors.css */
+  --chw-navy-900: #0d2137;
+  --chw-navy-700: #1b3a56;
+  --chw-navy-500: #2f5474;
+  --chw-green-700: #126b45;
+  --chw-green-600: #158a56;
+  --chw-green-100: #e5f2eb;
+  --chw-white: #ffffff;
+  --chw-ink-900: #16202b;
+  --chw-ink-700: #33404d;
+  --chw-ink-500: #6b7887;
+  --chw-ink-300: #9aa6b2;
+  --chw-line-200: #dfe4ea;
+  --chw-line-300: #c9d1da;
+  --chw-surface: #f4f6f9;
+  --chw-surface-2: #eef1f5;
+
+  /* type — system stack per DS (offline-safe, no webfonts) */
+  --font-sans: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif;
+  --ls-eyebrow: 0.14em;
+  --ls-wordmark: 0.08em;
+
+  /* spacing — 4px base */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 20px; --sp-6: 24px; --sp-8: 32px; --sp-10: 40px;
+
+  --radius-sm: 2px;
+  --radius-box: 3px;
+
+  --cta-h: 64px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--font-sans);
+  color: var(--chw-ink-900);
+  background: var(--chw-white);
+  line-height: 1.5;
+  font-size: 15px;
+  padding-bottom: calc(var(--cta-h) + env(safe-area-inset-bottom, 0px));
+}
+
+/* ===== Header band (navy, full-bleed) ===== */
+.u-band {
+  background: var(--chw-navy-900);
+  color: var(--chw-white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-3) var(--sp-4);
+}
+.u-band__wordmark {
+  color: var(--chw-white);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: var(--ls-wordmark);
+}
+.u-band__tagline {
+  display: block;
+  font-size: 8px;
+  letter-spacing: var(--ls-eyebrow);
+  color: var(--chw-ink-300);
+  margin-top: 2px;
+}
+.u-band__lang {
+  background: none;
+  border: 1px solid var(--chw-navy-500);
+  color: var(--chw-white);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  padding: var(--sp-1) var(--sp-3);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+/* ===== Main column ===== */
+.u-main { max-width: 640px; margin: 0 auto; }
+
+/* ===== Gallery ===== */
+.u-gallery__strip {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  gap: 2px;
+  background: var(--chw-navy-900);
+}
+.u-gallery__strip img {
+  width: 100%;
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+.u-gallery__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--sp-2) var(--sp-4);
+  border-bottom: 1px solid var(--chw-line-200);
+  font-size: 12px;
+  color: var(--chw-ink-500);
+}
+.u-gallery__video {
+  color: var(--chw-navy-700);
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--chw-line-300);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-1) var(--sp-3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 11px;
+}
+
+/* ===== Title ===== */
+.u-title { padding: var(--sp-5) var(--sp-4) var(--sp-2); }
+.u-title h1 {
+  font-size: 24px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+.u-title__meta {
+  display: block;
+  margin-top: var(--sp-1);
+  font-size: 12px;
+  color: var(--chw-ink-500);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* ===== Key-fact tiles (document grid, hairlines not cards) ===== */
+.u-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--chw-line-200);
+  border-bottom: 1px solid var(--chw-line-200);
+  margin: var(--sp-4) var(--sp-4) 0;
+}
+.u-tile {
+  padding: var(--sp-3) var(--sp-2);
+  border-right: 1px solid var(--chw-line-200);
+}
+.u-tile:nth-child(3n) { border-right: none; }
+.u-tile:nth-child(n+4) { border-top: 1px solid var(--chw-line-200); }
+.u-tile__label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-eyebrow);
+  color: var(--chw-ink-300);
+  display: block;
+}
+.u-tile__value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--chw-ink-900);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* ===== Price (the ONLY green on the page) ===== */
+.u-price { padding: var(--sp-5) var(--sp-4); }
+.u-price__eyebrow {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-eyebrow);
+  color: var(--chw-ink-500);
+}
+.u-price__value {
+  margin-top: var(--sp-1);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--chw-green-700);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.u-price__value .u-price__cur {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--chw-green-600);
+  margin-right: var(--sp-1);
+}
+.u-price__basis {
+  margin-top: var(--sp-1);
+  font-size: 12px;
+  color: var(--chw-ink-500);
+}
+.u-price--request .u-price__value { color: var(--chw-ink-700); font-size: 20px; }
+
+/* ===== Blocks / eyebrows / tables ===== */
+.u-block { padding: var(--sp-5) var(--sp-4) 0; }
+.u-eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-eyebrow);
+  color: var(--chw-navy-900);
+  font-weight: 700;
+  border-bottom: 2px solid var(--chw-navy-900);
+  padding-bottom: var(--sp-2);
+  margin-bottom: 0;
+}
+.u-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.u-table tr:nth-child(even) { background: var(--chw-surface); }
+.u-table td {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--chw-line-200);
+  vertical-align: top;
+}
+.u-table td:first-child { color: var(--chw-ink-700); width: 44%; }
+.u-table td.u-num { font-variant-numeric: tabular-nums lining-nums; }
+
+/* provenance badges — text only, no color theatrics */
+.u-src {
+  display: inline-block;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+  margin-left: var(--sp-2);
+  vertical-align: middle;
+}
+.u-src--verified { border: 1px solid var(--chw-navy-500); color: var(--chw-navy-700); }
+.u-src--stated { border: 1px solid var(--chw-line-300); color: var(--chw-ink-300); }
+
+.u-comment {
+  margin-top: var(--sp-3);
+  padding: var(--sp-3);
+  background: var(--chw-surface);
+  border-left: 3px solid var(--chw-navy-900);
+  border-radius: var(--radius-box);
+  font-size: 13px;
+  color: var(--chw-ink-700);
+}
+
+/* spec groups */
+.u-spec-group { margin-top: var(--sp-4); }
+.u-spec-group h3 {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-eyebrow);
+  color: var(--chw-ink-500);
+  font-weight: 600;
+  margin-bottom: var(--sp-1);
+}
+
+/* ===== Location ===== */
+.u-location { padding-top: var(--sp-3); font-size: 15px; font-weight: 600; }
+
+/* ===== Notes (4px CSS bullet per DS) ===== */
+.u-notes { padding: var(--sp-5) var(--sp-4) 0; }
+.u-notes ul { list-style: none; margin-top: var(--sp-3); }
+.u-notes li {
+  position: relative;
+  padding-left: var(--sp-4);
+  font-size: 12.5px;
+  color: var(--chw-ink-700);
+  margin-bottom: var(--sp-2);
+}
+.u-notes li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--chw-navy-900);
+}
+
+/* ===== Footer ===== */
+.u-footer {
+  margin-top: var(--sp-8);
+  padding: var(--sp-4);
+  border-top: 1px solid var(--chw-line-200);
+  font-size: 11px;
+  color: var(--chw-ink-500);
+  text-align: center;
+}
+.u-footer a { color: var(--chw-ink-700); }
+
+/* ===== Sticky CTA (navy — green is money-only) ===== */
+.u-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--cta-h) + env(safe-area-inset-bottom, 0px));
+  padding: var(--sp-2) var(--sp-3) calc(var(--sp-2) + env(safe-area-inset-bottom, 0px));
+  background: var(--chw-white);
+  border-top: 1px solid var(--chw-line-300);
+  display: flex;
+  gap: var(--sp-2);
+  max-width: 100%;
+}
+.u-cta__primary {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--chw-navy-900);
+  color: var(--chw-white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: var(--radius-box);
+}
+.u-cta__secondary {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--sp-5);
+  border: 1px solid var(--chw-navy-900);
+  color: var(--chw-navy-900);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: var(--radius-box);
+}
+
+/* ===== Wider screens: keep the sheet feel ===== */
+@media (min-width: 700px) {
+  body { background: var(--chw-surface-2); }
+  .u-main {
+    background: var(--chw-white);
+    box-shadow: 0 2px 18px rgba(13, 33, 55, 0.14);
+    margin-top: var(--sp-6);
+    margin-bottom: var(--sp-10);
+  }
+  .u-cta { max-width: 640px; left: 50%; transform: translateX(-50%); }
+}
