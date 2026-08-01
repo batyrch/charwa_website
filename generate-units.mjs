@@ -229,15 +229,31 @@ function render(u) {
 // Only public-JSON data — captions can't leak what the JSON doesn't hold.
 // km rounded to the nearest 10k: reads cleaner AND breaks reverse-search
 // matching against the source ad's exact figure.
+// Cab names abbreviate for caption brevity (page keeps the full name).
+const CAB_ABBREV = {
+  "super space cab": "SSC", "space cab": "SC", "comfort cab": "CC", "day cab": "DC",
+  "globetrotter xl": "GT XL", "globetrotter xxl": "GT XXL", "globetrotter": "GT",
+  "highline": "HL", "streamspace": "SS", "bigspace": "BS", "gigaspace": "GS",
+};
+const cabShort = (cab) => CAB_ABBREV[String(cab).toLowerCase()] ?? cab;
+
 function caption(u, pageUrl) {
   const kmRounded = Math.round(u.km / 10000) * 10000;
   const enNum = (n) => Number(n).toLocaleString("en-US");
-  const gearbox = u.gearbox === "automatic" ? "Automatic" : u.gearbox === "manual" ? "Manual" : u.gearbox;
   const country = (COUNTRIES[u.location_country] ?? { en: u.location_country }).en;
   const pub = (u.price?.visibility ?? "PUBLIC") === "PUBLIC";
+  // Retarder is part of the NAME — buyers search "<model> retarder". Gearbox omitted.
+  const name = [u.make, u.model, u.retarder ? "Retarder" : null].filter(Boolean).join(" ");
+  // Line-2 companion is type-specific: cab (tractor, abbreviated) / fridge (reefer) / body (trailer)
+  const typeSignal =
+    u.type === "reefer"
+      ? [u.spec?.Reefer?.["Fridge make"], u.spec?.Reefer?.["Fridge hours"]].filter(Boolean).join(" ") || null
+      : u.type === "trailer"
+        ? u.spec?.Chassis?.Body ?? null
+        : u.cab ? cabShort(u.cab) : null;
   return [
-    `${u.make} ${u.model} · ${u.year}`,
-    [`~${enNum(kmRounded)} km`, gearbox, u.retarder ? "Retarder" : null].filter(Boolean).join(" · "),
+    `${name} · ${u.year}`,
+    [`~${enNum(kmRounded)} km`, typeSignal].filter(Boolean).join(" · "),
     [u.euro, u.axle_config, country].filter(Boolean).join(" · "),
     pub ? `EUR ${enNum(u.price.list)} net — EU export documents handled`
         : "Price on request — EU export documents handled",
